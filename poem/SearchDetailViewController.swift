@@ -171,9 +171,9 @@ class SearchDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        let containerVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
+        let containerVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         
-        containerVC.titleText = keyword
+        //containerVC.titleText = keyword
         var poems:Array<PoemEntity> = []
         var index:Int = 0
         var i:Int  = 0

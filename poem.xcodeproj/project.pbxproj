@@ -40,6 +40,7 @@
 		50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63155194E0787001D9CDC /* AuthorEntity.swift */; };
 		50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63157194E0C10001D9CDC /* SearchListViewController.swift */; };
 		50BC1987194B77AE00FE209B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BC1986194B77AE00FE209B /* MBProgressHUD.m */; };
+		50D0B4B7195D1B4C0006E6D1 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */; };
 		50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD6194ABB11006AAD93 /* EGODatabase.m */; };
 		50E71CF4194ABB11006AAD93 /* EGODatabaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD8194ABB11006AAD93 /* EGODatabaseRequest.m */; };
 		50E71CF5194ABB11006AAD93 /* EGODatabaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CDA194ABB11006AAD93 /* EGODatabaseResult.m */; };
@@ -133,6 +134,7 @@
 		50BC1985194B77AE00FE209B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		50BC1986194B77AE00FE209B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		50CF5FB1194AE1B800A22460 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; };
+		50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
 		50E71CD5194ABB11006AAD93 /* EGODatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabase.h; sourceTree = "<group>"; };
 		50E71CD6194ABB11006AAD93 /* EGODatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGODatabase.m; sourceTree = "<group>"; };
 		50E71CD7194ABB11006AAD93 /* EGODatabaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseRequest.h; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		50E71CDF194ABB11006AAD93 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */,
 				5063E68A195BDB7D008C56C8 /* music.mp3 */,
 				50F5FAB1195AEF53004A60E0 /* fsongti.ttf */,
 				50F5FAAD195AED87004A60E0 /* fkaiti.TTF */,
@@ -528,6 +531,7 @@
 				503F1C9A1949AA6300110456 /* Main.storyboard in Resources */,
 				503070B0194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				50F5FAAF195AED87004A60E0 /* fkaiti.TTF in Resources */,
+				50D0B4B7195D1B4C0006E6D1 /* bg.mp3 in Resources */,
 				50E71D02194ABB11006AAD93 /* 8.jpg in Resources */,
 				50E71D00194ABB11006AAD93 /* 6.jpg in Resources */,
 				5063E68B195BDB7D008C56C8 /* music.mp3 in Resources */,

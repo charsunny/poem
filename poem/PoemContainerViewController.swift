@@ -28,7 +28,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("music",ofType:"mp3"))
+        let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("bg",ofType:"mp3"))
         player = AVAudioPlayer(contentsOfURL:soundFileURL,error:nil)
         player!.numberOfLoops = -1; //infinite
         if showLoadingText == nil {
