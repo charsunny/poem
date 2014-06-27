@@ -1,0 +1,830 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		500287EB1954377F00F5D749 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500287E41954377F00F5D749 /* libWeiboSDK.a */; };
+		500287EC1954377F00F5D749 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 500287E51954377F00F5D749 /* WeiboSDK.bundle */; };
+		500287ED1954377F00F5D749 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500287E81954377F00F5D749 /* libWeChatSDK.a */; };
+		500DFC53194A1C0900E95BE5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DFC52194A1C0900E95BE5 /* ContentViewController.swift */; };
+		501CE5FC194ABD650067B5FC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 501CE5FB194ABD650067B5FC /* libsqlite3.dylib */; };
+		501CE5FF194ABF400067B5FC /* PoemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501CE5FE194ABF400067B5FC /* PoemEntity.swift */; };
+		501EE77F1952BB2B00FF3F3E /* color.plist in Resources */ = {isa = PBXBuildFile; fileRef = 501EE77E1952BB2B00FF3F3E /* color.plist */; };
+		503070AB194EAC9900C8FE67 /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030709F194EAC9900C8FE67 /* ChineseToPinyinResource.m */; };
+		503070AC194EAC9900C8FE67 /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 503070A1194EAC9900C8FE67 /* HanyuPinyinOutputFormat.m */; };
+		503070AD194EAC9900C8FE67 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 503070A3194EAC9900C8FE67 /* NSString+PinYin4Cocoa.m */; };
+		503070AE194EAC9900C8FE67 /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 503070A6194EAC9900C8FE67 /* PinyinFormatter.m */; };
+		503070AF194EAC9900C8FE67 /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 503070A8194EAC9900C8FE67 /* PinyinHelper.m */; };
+		503070B0194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 503070AA194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt */; };
+		503070B2194EB69A00C8FE67 /* string+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503070B1194EB69A00C8FE67 /* string+subscript.swift */; };
+		50340D941953F36800CE1593 /* FavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50340D931953F36800CE1593 /* FavManager.swift */; };
+		503F1C931949AA6300110456 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1C921949AA6300110456 /* AppDelegate.swift */; };
+		503F1C951949AA6300110456 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1C941949AA6300110456 /* FirstViewController.swift */; };
+		503F1C971949AA6300110456 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1C961949AA6300110456 /* SecondViewController.swift */; };
+		503F1C9A1949AA6300110456 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 503F1C981949AA6300110456 /* Main.storyboard */; };
+		503F1C9C1949AA6300110456 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503F1C9B1949AA6300110456 /* Images.xcassets */; };
+		503F1CA81949AA6300110456 /* poemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CA71949AA6300110456 /* poemTests.swift */; };
+		5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */; };
+		504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A751D19518221005A3353 /* SXCollectionViewCell.swift */; };
+		5063E68B195BDB7D008C56C8 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5063E68A195BDB7D008C56C8 /* music.mp3 */; };
+		5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */; };
+		508C5BC0194E11B100870925 /* SongName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C5BBF194E11B100870925 /* SongName.swift */; };
+		50A5109B195ABA5300A8A026 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5109A195ABA5300A8A026 /* MoreTableViewController.swift */; };
+		50AFDFF619534DA500983C64 /* AddFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AFDFF519534DA500983C64 /* AddFavViewController.swift */; };
+		50B0E19019503450008FDF34 /* FavCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E18F19503450008FDF34 /* FavCollectionViewController.swift */; };
+		50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */; };
+		50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63155194E0787001D9CDC /* AuthorEntity.swift */; };
+		50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63157194E0C10001D9CDC /* SearchListViewController.swift */; };
+		50BC1987194B77AE00FE209B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BC1986194B77AE00FE209B /* MBProgressHUD.m */; };
+		50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD6194ABB11006AAD93 /* EGODatabase.m */; };
+		50E71CF4194ABB11006AAD93 /* EGODatabaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD8194ABB11006AAD93 /* EGODatabaseRequest.m */; };
+		50E71CF5194ABB11006AAD93 /* EGODatabaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CDA194ABB11006AAD93 /* EGODatabaseResult.m */; };
+		50E71CF6194ABB11006AAD93 /* EGODatabaseRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CDD194ABB11006AAD93 /* EGODatabaseRow.m */; };
+		50E71CF7194ABB11006AAD93 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE0194ABB11006AAD93 /* 1.jpg */; };
+		50E71CF8194ABB11006AAD93 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE1194ABB11006AAD93 /* 10.jpg */; };
+		50E71CF9194ABB11006AAD93 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE2194ABB11006AAD93 /* 11.jpg */; };
+		50E71CFA194ABB11006AAD93 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE3194ABB11006AAD93 /* 12.jpg */; };
+		50E71CFB194ABB11006AAD93 /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE4194ABB11006AAD93 /* 13.jpg */; };
+		50E71CFC194ABB11006AAD93 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE5194ABB11006AAD93 /* 2.jpg */; };
+		50E71CFD194ABB11006AAD93 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE6194ABB11006AAD93 /* 3.jpg */; };
+		50E71CFE194ABB11006AAD93 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE7194ABB11006AAD93 /* 4.jpg */; };
+		50E71CFF194ABB11006AAD93 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE8194ABB11006AAD93 /* 5.jpg */; };
+		50E71D00194ABB11006AAD93 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CE9194ABB11006AAD93 /* 6.jpg */; };
+		50E71D01194ABB11006AAD93 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CEA194ABB11006AAD93 /* 7.jpg */; };
+		50E71D02194ABB11006AAD93 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CEB194ABB11006AAD93 /* 8.jpg */; };
+		50E71D03194ABB11006AAD93 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CEC194ABB11006AAD93 /* 9.jpg */; };
+		50E71D06194ABB11006AAD93 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CEF194ABB11006AAD93 /* icomoon.ttf */; };
+		50E71D07194ABB11006AAD93 /* kaiti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CF0194ABB11006AAD93 /* kaiti.ttf */; };
+		50E71D08194ABB11006AAD93 /* poem.db in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CF1194ABB11006AAD93 /* poem.db */; };
+		50E71D09194ABB11006AAD93 /* songti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CF2194ABB11006AAD93 /* songti.ttf */; };
+		50EDCD06194B853800940211 /* PoemContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EDCD05194B853800940211 /* PoemContainerViewController.swift */; };
+		50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF50851951B95C0043D686 /* EditFavViewController.swift */; };
+		50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF50871951D1780043D686 /* FavListTableViewController.swift */; };
+		50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508B195207FD0043D686 /* fav.xcdatamodeld */; };
+		50EF5090195209720043D686 /* FavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508F195209720043D686 /* FavItem.m */; };
+		50EF5093195209730043D686 /* FavFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EF5092195209730043D686 /* FavFolder.m */; };
+		50F5FAAA195AEB0D004A60E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F5FAA9195AEB0D004A60E0 /* StoreKit.framework */; };
+		50F5FAAC195AEB13004A60E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F5FAAB195AEB13004A60E0 /* MessageUI.framework */; };
+		50F5FAAF195AED87004A60E0 /* fkaiti.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAAD195AED87004A60E0 /* fkaiti.TTF */; };
+		50F5FAB2195AEF53004A60E0 /* fsongti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAB1195AEF53004A60E0 /* fsongti.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		503F1CA21949AA6300110456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 503F1C851949AA6300110456 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 503F1C8C1949AA6300110456;
+			remoteInfo = poem;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		500287E41954377F00F5D749 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		500287E51954377F00F5D749 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		500287E61954377F00F5D749 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		500287E81954377F00F5D749 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		500287E91954377F00F5D749 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		500287EA1954377F00F5D749 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		500DFC52194A1C0900E95BE5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		501CE5FB194ABD650067B5FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		501CE5FD194ABDB00067B5FC /* Poem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Poem-Bridging-Header.h"; sourceTree = "<group>"; };
+		501CE5FE194ABF400067B5FC /* PoemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemEntity.swift; sourceTree = "<group>"; };
+		501EE77E1952BB2B00FF3F3E /* color.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = color.plist; sourceTree = "<group>"; };
+		5030709E194EAC9900C8FE67 /* ChineseToPinyinResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyinResource.h; sourceTree = "<group>"; };
+		5030709F194EAC9900C8FE67 /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyinResource.m; sourceTree = "<group>"; };
+		503070A0194EAC9900C8FE67 /* HanyuPinyinOutputFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanyuPinyinOutputFormat.h; sourceTree = "<group>"; };
+		503070A1194EAC9900C8FE67 /* HanyuPinyinOutputFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HanyuPinyinOutputFormat.m; sourceTree = "<group>"; };
+		503070A2194EAC9900C8FE67 /* NSString+PinYin4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin4Cocoa.h"; sourceTree = "<group>"; };
+		503070A3194EAC9900C8FE67 /* NSString+PinYin4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin4Cocoa.m"; sourceTree = "<group>"; };
+		503070A4194EAC9900C8FE67 /* PinYin4Objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinYin4Objc.h; sourceTree = "<group>"; };
+		503070A5194EAC9900C8FE67 /* PinyinFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinFormatter.h; sourceTree = "<group>"; };
+		503070A6194EAC9900C8FE67 /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinFormatter.m; sourceTree = "<group>"; };
+		503070A7194EAC9900C8FE67 /* PinyinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinHelper.h; sourceTree = "<group>"; };
+		503070A8194EAC9900C8FE67 /* PinyinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinHelper.m; sourceTree = "<group>"; };
+		503070AA194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unicode_to_hanyu_pinyin.txt; sourceTree = "<group>"; };
+		503070B1194EB69A00C8FE67 /* string+subscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "string+subscript.swift"; sourceTree = "<group>"; };
+		50340D931953F36800CE1593 /* FavManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavManager.swift; sourceTree = "<group>"; };
+		503F1C8D1949AA6300110456 /* poem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = poem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		503F1C911949AA6300110456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		503F1C921949AA6300110456 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		503F1C941949AA6300110456 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		503F1C961949AA6300110456 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		503F1C991949AA6300110456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		503F1C9B1949AA6300110456 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		503F1CA11949AA6300110456 /* poemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = poemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		503F1CA61949AA6300110456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		503F1CA71949AA6300110456 /* poemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = poemTests.swift; sourceTree = "<group>"; };
+		5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
+		504A751D19518221005A3353 /* SXCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXCollectionViewCell.swift; sourceTree = "<group>"; };
+		5063E68A195BDB7D008C56C8 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
+		508C5BBF194E11B100870925 /* SongName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongName.swift; sourceTree = "<group>"; };
+		50A5109A195ABA5300A8A026 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
+		50AFDFF519534DA500983C64 /* AddFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavViewController.swift; sourceTree = "<group>"; };
+		50B0E18F19503450008FDF34 /* FavCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavCollectionViewController.swift; sourceTree = "<group>"; };
+		50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomContentViewController.swift; sourceTree = "<group>"; };
+		50B63155194E0787001D9CDC /* AuthorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorEntity.swift; sourceTree = "<group>"; };
+		50B63157194E0C10001D9CDC /* SearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		50BC1985194B77AE00FE209B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		50BC1986194B77AE00FE209B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		50CF5FB1194AE1B800A22460 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; };
+		50E71CD5194ABB11006AAD93 /* EGODatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabase.h; sourceTree = "<group>"; };
+		50E71CD6194ABB11006AAD93 /* EGODatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGODatabase.m; sourceTree = "<group>"; };
+		50E71CD7194ABB11006AAD93 /* EGODatabaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseRequest.h; sourceTree = "<group>"; };
+		50E71CD8194ABB11006AAD93 /* EGODatabaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGODatabaseRequest.m; sourceTree = "<group>"; };
+		50E71CD9194ABB11006AAD93 /* EGODatabaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseResult.h; sourceTree = "<group>"; };
+		50E71CDA194ABB11006AAD93 /* EGODatabaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGODatabaseResult.m; sourceTree = "<group>"; };
+		50E71CDB194ABB11006AAD93 /* EGODatabaseResult_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseResult_Internal.h; sourceTree = "<group>"; };
+		50E71CDC194ABB11006AAD93 /* EGODatabaseRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseRow.h; sourceTree = "<group>"; };
+		50E71CDD194ABB11006AAD93 /* EGODatabaseRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGODatabaseRow.m; sourceTree = "<group>"; };
+		50E71CDE194ABB11006AAD93 /* EGODatabaseRow_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseRow_Internal.h; sourceTree = "<group>"; };
+		50E71CE0194ABB11006AAD93 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		50E71CE1194ABB11006AAD93 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
+		50E71CE2194ABB11006AAD93 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
+		50E71CE3194ABB11006AAD93 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
+		50E71CE4194ABB11006AAD93 /* 13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 13.jpg; sourceTree = "<group>"; };
+		50E71CE5194ABB11006AAD93 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		50E71CE6194ABB11006AAD93 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		50E71CE7194ABB11006AAD93 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		50E71CE8194ABB11006AAD93 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		50E71CE9194ABB11006AAD93 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		50E71CEA194ABB11006AAD93 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		50E71CEB194ABB11006AAD93 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		50E71CEC194ABB11006AAD93 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		50E71CEF194ABB11006AAD93 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
+		50E71CF0194ABB11006AAD93 /* kaiti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kaiti.ttf; sourceTree = "<group>"; };
+		50E71CF1194ABB11006AAD93 /* poem.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = poem.db; sourceTree = "<group>"; };
+		50E71CF2194ABB11006AAD93 /* songti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = songti.ttf; sourceTree = "<group>"; };
+		50EDCD05194B853800940211 /* PoemContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemContainerViewController.swift; sourceTree = "<group>"; };
+		50EF50851951B95C0043D686 /* EditFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavViewController.swift; sourceTree = "<group>"; };
+		50EF50871951D1780043D686 /* FavListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavListTableViewController.swift; sourceTree = "<group>"; };
+		50EF508C195207FD0043D686 /* fav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fav.xcdatamodel; sourceTree = "<group>"; };
+		50EF508E195209720043D686 /* FavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavItem.h; sourceTree = "<group>"; };
+		50EF508F195209720043D686 /* FavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavItem.m; sourceTree = "<group>"; };
+		50EF5091195209730043D686 /* FavFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavFolder.h; sourceTree = "<group>"; };
+		50EF5092195209730043D686 /* FavFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavFolder.m; sourceTree = "<group>"; };
+		50F5FAA9195AEB0D004A60E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		50F5FAAB195AEB13004A60E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		50F5FAAD195AED87004A60E0 /* fkaiti.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fkaiti.TTF; sourceTree = "<group>"; };
+		50F5FAB1195AEF53004A60E0 /* fsongti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fsongti.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		503F1C8A1949AA6300110456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50F5FAAC195AEB13004A60E0 /* MessageUI.framework in Frameworks */,
+				50F5FAAA195AEB0D004A60E0 /* StoreKit.framework in Frameworks */,
+				501CE5FC194ABD650067B5FC /* libsqlite3.dylib in Frameworks */,
+				500287EB1954377F00F5D749 /* libWeiboSDK.a in Frameworks */,
+				500287ED1954377F00F5D749 /* libWeChatSDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		503F1C9E1949AA6300110456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		500287E31954377F00F5D749 /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				500287E41954377F00F5D749 /* libWeiboSDK.a */,
+				500287E51954377F00F5D749 /* WeiboSDK.bundle */,
+				500287E61954377F00F5D749 /* WeiboSDK.h */,
+			);
+			path = libWeiboSDK;
+			sourceTree = "<group>";
+		};
+		500287E71954377F00F5D749 /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				500287E81954377F00F5D749 /* libWeChatSDK.a */,
+				500287E91954377F00F5D749 /* WXApi.h */,
+				500287EA1954377F00F5D749 /* WXApiObject.h */,
+			);
+			path = WeChat;
+			sourceTree = "<group>";
+		};
+		5030709C194EAC9900C8FE67 /* PinYin4Objc */ = {
+			isa = PBXGroup;
+			children = (
+				5030709D194EAC9900C8FE67 /* Classes */,
+				503070A9194EAC9900C8FE67 /* Resources */,
+			);
+			path = PinYin4Objc;
+			sourceTree = "<group>";
+		};
+		5030709D194EAC9900C8FE67 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5030709E194EAC9900C8FE67 /* ChineseToPinyinResource.h */,
+				5030709F194EAC9900C8FE67 /* ChineseToPinyinResource.m */,
+				503070A0194EAC9900C8FE67 /* HanyuPinyinOutputFormat.h */,
+				503070A1194EAC9900C8FE67 /* HanyuPinyinOutputFormat.m */,
+				503070A2194EAC9900C8FE67 /* NSString+PinYin4Cocoa.h */,
+				503070A3194EAC9900C8FE67 /* NSString+PinYin4Cocoa.m */,
+				503070A4194EAC9900C8FE67 /* PinYin4Objc.h */,
+				503070A5194EAC9900C8FE67 /* PinyinFormatter.h */,
+				503070A6194EAC9900C8FE67 /* PinyinFormatter.m */,
+				503070A7194EAC9900C8FE67 /* PinyinHelper.h */,
+				503070A8194EAC9900C8FE67 /* PinyinHelper.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		503070A9194EAC9900C8FE67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				503070AA194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		503F1C841949AA6300110456 = {
+			isa = PBXGroup;
+			children = (
+				503F1C8F1949AA6300110456 /* poem */,
+				503F1CA41949AA6300110456 /* poemTests */,
+				503F1C8E1949AA6300110456 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		503F1C8E1949AA6300110456 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				503F1C8D1949AA6300110456 /* poem.app */,
+				503F1CA11949AA6300110456 /* poemTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		503F1C8F1949AA6300110456 /* poem */ = {
+			isa = PBXGroup;
+			children = (
+				5050C2EA19567F3700BF8E9C /* iPad */,
+				500287E31954377F00F5D749 /* libWeiboSDK */,
+				500287E71954377F00F5D749 /* WeChat */,
+				504A751C195181F9005A3353 /* utils */,
+				504A751B195181E3005A3353 /* views */,
+				504A751A195181DA005A3353 /* models */,
+				504A7519195181C6005A3353 /* controllers */,
+				5030709C194EAC9900C8FE67 /* PinYin4Objc */,
+				50BC1984194B77AE00FE209B /* progresshud */,
+				50E71CD4194ABB11006AAD93 /* EGODB */,
+				50E71CDF194ABB11006AAD93 /* res */,
+				503F1C921949AA6300110456 /* AppDelegate.swift */,
+				503F1C981949AA6300110456 /* Main.storyboard */,
+				50EF508B195207FD0043D686 /* fav.xcdatamodeld */,
+				503F1C9B1949AA6300110456 /* Images.xcassets */,
+				503F1C901949AA6300110456 /* Supporting Files */,
+				50CF5FB1194AE1B800A22460 /* test.playground */,
+			);
+			path = poem;
+			sourceTree = "<group>";
+		};
+		503F1C901949AA6300110456 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				50F5FAAB195AEB13004A60E0 /* MessageUI.framework */,
+				50F5FAA9195AEB0D004A60E0 /* StoreKit.framework */,
+				501CE5FB194ABD650067B5FC /* libsqlite3.dylib */,
+				503F1C911949AA6300110456 /* Info.plist */,
+				501CE5FD194ABDB00067B5FC /* Poem-Bridging-Header.h */,
+				501EE77E1952BB2B00FF3F3E /* color.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		503F1CA41949AA6300110456 /* poemTests */ = {
+			isa = PBXGroup;
+			children = (
+				503F1CA71949AA6300110456 /* poemTests.swift */,
+				503F1CA51949AA6300110456 /* Supporting Files */,
+			);
+			path = poemTests;
+			sourceTree = "<group>";
+		};
+		503F1CA51949AA6300110456 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				503F1CA61949AA6300110456 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		504A7519195181C6005A3353 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				503F1C941949AA6300110456 /* FirstViewController.swift */,
+				503F1C961949AA6300110456 /* SecondViewController.swift */,
+				50B63157194E0C10001D9CDC /* SearchListViewController.swift */,
+				5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */,
+				50EDCD05194B853800940211 /* PoemContainerViewController.swift */,
+				50B0E18F19503450008FDF34 /* FavCollectionViewController.swift */,
+				50AFDFF519534DA500983C64 /* AddFavViewController.swift */,
+				50EF50851951B95C0043D686 /* EditFavViewController.swift */,
+				500DFC52194A1C0900E95BE5 /* ContentViewController.swift */,
+				50EF50871951D1780043D686 /* FavListTableViewController.swift */,
+				50340D931953F36800CE1593 /* FavManager.swift */,
+				50A5109A195ABA5300A8A026 /* MoreTableViewController.swift */,
+				50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		504A751A195181DA005A3353 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				50EF5091195209730043D686 /* FavFolder.h */,
+				50EF5092195209730043D686 /* FavFolder.m */,
+				50EF508E195209720043D686 /* FavItem.h */,
+				50EF508F195209720043D686 /* FavItem.m */,
+				501CE5FE194ABF400067B5FC /* PoemEntity.swift */,
+				508C5BBF194E11B100870925 /* SongName.swift */,
+				50B63155194E0787001D9CDC /* AuthorEntity.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		504A751B195181E3005A3353 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				504A751D19518221005A3353 /* SXCollectionViewCell.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		504A751C195181F9005A3353 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				503070B1194EB69A00C8FE67 /* string+subscript.swift */,
+				5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		5050C2EA19567F3700BF8E9C /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		50BC1984194B77AE00FE209B /* progresshud */ = {
+			isa = PBXGroup;
+			children = (
+				50BC1985194B77AE00FE209B /* MBProgressHUD.h */,
+				50BC1986194B77AE00FE209B /* MBProgressHUD.m */,
+			);
+			path = progresshud;
+			sourceTree = "<group>";
+		};
+		50E71CD4194ABB11006AAD93 /* EGODB */ = {
+			isa = PBXGroup;
+			children = (
+				50E71CD5194ABB11006AAD93 /* EGODatabase.h */,
+				50E71CD6194ABB11006AAD93 /* EGODatabase.m */,
+				50E71CD7194ABB11006AAD93 /* EGODatabaseRequest.h */,
+				50E71CD8194ABB11006AAD93 /* EGODatabaseRequest.m */,
+				50E71CD9194ABB11006AAD93 /* EGODatabaseResult.h */,
+				50E71CDA194ABB11006AAD93 /* EGODatabaseResult.m */,
+				50E71CDB194ABB11006AAD93 /* EGODatabaseResult_Internal.h */,
+				50E71CDC194ABB11006AAD93 /* EGODatabaseRow.h */,
+				50E71CDD194ABB11006AAD93 /* EGODatabaseRow.m */,
+				50E71CDE194ABB11006AAD93 /* EGODatabaseRow_Internal.h */,
+			);
+			path = EGODB;
+			sourceTree = "<group>";
+		};
+		50E71CDF194ABB11006AAD93 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				5063E68A195BDB7D008C56C8 /* music.mp3 */,
+				50F5FAB1195AEF53004A60E0 /* fsongti.ttf */,
+				50F5FAAD195AED87004A60E0 /* fkaiti.TTF */,
+				50E71CE0194ABB11006AAD93 /* 1.jpg */,
+				50E71CE1194ABB11006AAD93 /* 10.jpg */,
+				50E71CE2194ABB11006AAD93 /* 11.jpg */,
+				50E71CE3194ABB11006AAD93 /* 12.jpg */,
+				50E71CE4194ABB11006AAD93 /* 13.jpg */,
+				50E71CE5194ABB11006AAD93 /* 2.jpg */,
+				50E71CE6194ABB11006AAD93 /* 3.jpg */,
+				50E71CE7194ABB11006AAD93 /* 4.jpg */,
+				50E71CE8194ABB11006AAD93 /* 5.jpg */,
+				50E71CE9194ABB11006AAD93 /* 6.jpg */,
+				50E71CEA194ABB11006AAD93 /* 7.jpg */,
+				50E71CEB194ABB11006AAD93 /* 8.jpg */,
+				50E71CEC194ABB11006AAD93 /* 9.jpg */,
+				50E71CEF194ABB11006AAD93 /* icomoon.ttf */,
+				50E71CF0194ABB11006AAD93 /* kaiti.ttf */,
+				50E71CF1194ABB11006AAD93 /* poem.db */,
+				50E71CF2194ABB11006AAD93 /* songti.ttf */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		503F1C8C1949AA6300110456 /* poem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 503F1CAB1949AA6300110456 /* Build configuration list for PBXNativeTarget "poem" */;
+			buildPhases = (
+				503F1C891949AA6300110456 /* Sources */,
+				503F1C8A1949AA6300110456 /* Frameworks */,
+				503F1C8B1949AA6300110456 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = poem;
+			productName = poem;
+			productReference = 503F1C8D1949AA6300110456 /* poem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		503F1CA01949AA6300110456 /* poemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 503F1CAE1949AA6300110456 /* Build configuration list for PBXNativeTarget "poemTests" */;
+			buildPhases = (
+				503F1C9D1949AA6300110456 /* Sources */,
+				503F1C9E1949AA6300110456 /* Frameworks */,
+				503F1C9F1949AA6300110456 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				503F1CA31949AA6300110456 /* PBXTargetDependency */,
+			);
+			name = poemTests;
+			productName = poemTests;
+			productReference = 503F1CA11949AA6300110456 /* poemTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		503F1C851949AA6300110456 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Sun Xi";
+				TargetAttributes = {
+					503F1C8C1949AA6300110456 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					503F1CA01949AA6300110456 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 503F1C8C1949AA6300110456;
+					};
+				};
+			};
+			buildConfigurationList = 503F1C881949AA6300110456 /* Build configuration list for PBXProject "poem" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 503F1C841949AA6300110456;
+			productRefGroup = 503F1C8E1949AA6300110456 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				503F1C8C1949AA6300110456 /* poem */,
+				503F1CA01949AA6300110456 /* poemTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		503F1C8B1949AA6300110456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50E71D08194ABB11006AAD93 /* poem.db in Resources */,
+				50F5FAB2195AEF53004A60E0 /* fsongti.ttf in Resources */,
+				50E71CFF194ABB11006AAD93 /* 5.jpg in Resources */,
+				50E71CFD194ABB11006AAD93 /* 3.jpg in Resources */,
+				50E71CF9194ABB11006AAD93 /* 11.jpg in Resources */,
+				50E71D06194ABB11006AAD93 /* icomoon.ttf in Resources */,
+				50E71D03194ABB11006AAD93 /* 9.jpg in Resources */,
+				50E71CF7194ABB11006AAD93 /* 1.jpg in Resources */,
+				50E71D07194ABB11006AAD93 /* kaiti.ttf in Resources */,
+				50E71CFA194ABB11006AAD93 /* 12.jpg in Resources */,
+				503F1C9A1949AA6300110456 /* Main.storyboard in Resources */,
+				503070B0194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt in Resources */,
+				50F5FAAF195AED87004A60E0 /* fkaiti.TTF in Resources */,
+				50E71D02194ABB11006AAD93 /* 8.jpg in Resources */,
+				50E71D00194ABB11006AAD93 /* 6.jpg in Resources */,
+				5063E68B195BDB7D008C56C8 /* music.mp3 in Resources */,
+				50E71D09194ABB11006AAD93 /* songti.ttf in Resources */,
+				50E71CF8194ABB11006AAD93 /* 10.jpg in Resources */,
+				503F1C9C1949AA6300110456 /* Images.xcassets in Resources */,
+				501EE77F1952BB2B00FF3F3E /* color.plist in Resources */,
+				50E71CFC194ABB11006AAD93 /* 2.jpg in Resources */,
+				50E71D01194ABB11006AAD93 /* 7.jpg in Resources */,
+				50E71CFE194ABB11006AAD93 /* 4.jpg in Resources */,
+				50E71CFB194ABB11006AAD93 /* 13.jpg in Resources */,
+				500287EC1954377F00F5D749 /* WeiboSDK.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		503F1C9F1949AA6300110456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		503F1C891949AA6300110456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */,
+				50EDCD06194B853800940211 /* PoemContainerViewController.swift in Sources */,
+				501CE5FF194ABF400067B5FC /* PoemEntity.swift in Sources */,
+				50340D941953F36800CE1593 /* FavManager.swift in Sources */,
+				503070AF194EAC9900C8FE67 /* PinyinHelper.m in Sources */,
+				50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */,
+				500DFC53194A1C0900E95BE5 /* ContentViewController.swift in Sources */,
+				503F1C971949AA6300110456 /* SecondViewController.swift in Sources */,
+				50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */,
+				50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */,
+				50EF5090195209720043D686 /* FavItem.m in Sources */,
+				50BC1987194B77AE00FE209B /* MBProgressHUD.m in Sources */,
+				504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */,
+				5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */,
+				50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */,
+				50E71CF6194ABB11006AAD93 /* EGODatabaseRow.m in Sources */,
+				503F1C931949AA6300110456 /* AppDelegate.swift in Sources */,
+				50B0E19019503450008FDF34 /* FavCollectionViewController.swift in Sources */,
+				503070AD194EAC9900C8FE67 /* NSString+PinYin4Cocoa.m in Sources */,
+				50A5109B195ABA5300A8A026 /* MoreTableViewController.swift in Sources */,
+				50E71CF4194ABB11006AAD93 /* EGODatabaseRequest.m in Sources */,
+				503070AB194EAC9900C8FE67 /* ChineseToPinyinResource.m in Sources */,
+				503070AC194EAC9900C8FE67 /* HanyuPinyinOutputFormat.m in Sources */,
+				50E71CF5194ABB11006AAD93 /* EGODatabaseResult.m in Sources */,
+				50AFDFF619534DA500983C64 /* AddFavViewController.swift in Sources */,
+				503070AE194EAC9900C8FE67 /* PinyinFormatter.m in Sources */,
+				503F1C951949AA6300110456 /* FirstViewController.swift in Sources */,
+				50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */,
+				508C5BC0194E11B100870925 /* SongName.swift in Sources */,
+				503070B2194EB69A00C8FE67 /* string+subscript.swift in Sources */,
+				50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */,
+				5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */,
+				50EF5093195209730043D686 /* FavFolder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		503F1C9D1949AA6300110456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				503F1CA81949AA6300110456 /* poemTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		503F1CA31949AA6300110456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 503F1C8C1949AA6300110456 /* poem */;
+			targetProxy = 503F1CA21949AA6300110456 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		503F1C981949AA6300110456 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				503F1C991949AA6300110456 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		503F1CA91949AA6300110456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		503F1CAA1949AA6300110456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		503F1CAC1949AA6300110456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
+				INFOPLIST_FILE = poem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/poem/libWeiboSDK",
+					"$(PROJECT_DIR)/poem/WeChat",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D01EEEF8-0953-4015-95FA-D74F1A2F0C0D";
+				SWIFT_OBJC_BRIDGING_HEADER = "poem/Poem-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		503F1CAD1949AA6300110456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
+				INFOPLIST_FILE = poem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/poem/libWeiboSDK",
+					"$(PROJECT_DIR)/poem/WeChat",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D01EEEF8-0953-4015-95FA-D74F1A2F0C0D";
+				SWIFT_OBJC_BRIDGING_HEADER = "poem/Poem-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		503F1CAF1949AA6300110456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/poem.app/poem";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = poemTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		503F1CB01949AA6300110456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/poem.app/poem";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = poemTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		503F1C881949AA6300110456 /* Build configuration list for PBXProject "poem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503F1CA91949AA6300110456 /* Debug */,
+				503F1CAA1949AA6300110456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		503F1CAB1949AA6300110456 /* Build configuration list for PBXNativeTarget "poem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503F1CAC1949AA6300110456 /* Debug */,
+				503F1CAD1949AA6300110456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		503F1CAE1949AA6300110456 /* Build configuration list for PBXNativeTarget "poemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503F1CAF1949AA6300110456 /* Debug */,
+				503F1CB01949AA6300110456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50EF508B195207FD0043D686 /* fav.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50EF508C195207FD0043D686 /* fav.xcdatamodel */,
+			);
+			currentVersion = 50EF508C195207FD0043D686 /* fav.xcdatamodel */;
+			path = fav.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 503F1C851949AA6300110456 /* Project object */;
+}
