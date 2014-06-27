@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SongNameEntity {
+class SongNameEntity {
     
     var rowid:Int = 0
     var name:String = ""
@@ -16,19 +16,15 @@ struct SongNameEntity {
     var desc:String = ""
     var icon:String = ""
     
-    static var songNameMap:Dictionary<String, Array<SongNameEntity>> = Dictionary<String, Array<SongNameEntity>>()
-    
     init(let row:EGODatabaseRow) {
         self.name = row.stringForColumn("name")
         self.info = row.stringForColumn("info")
         self.desc = row.stringForColumn("desc")
     }
     
-    static func getAllName()->Dictionary<String, Array<SongNameEntity>>  {
+    class func getAllName()->NSDictionary  {
         
-        if songNameMap.count > 0 {
-            return songNameMap
-        }
+        var songNameMap:NSMutableDictionary = NSMutableDictionary()
         
         let query:String = String("SELECT * FROM songname")
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
@@ -46,12 +42,13 @@ struct SongNameEntity {
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
                 if songNameMap[key] == nil {
-                    var value:Array<SongNameEntity> = []
-                    value.append(poemEntity)
+                    var value:NSMutableArray = NSMutableArray()
+                    value.addObject(poemEntity)
                     songNameMap[key] = value
                 } else {
-                    var value:Array<SongNameEntity> = songNameMap[key]!
-                    value.append(poemEntity)
+                    let value = songNameMap[key] as NSMutableArray
+                    //var value:NSMutableArray = NSMutableArray(array:orginValue)
+                    value.addObject(poemEntity)
                     songNameMap[key] = value
                 }
             }

@@ -46,28 +46,19 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         
         self.view.userInteractionEnabled = false
         
-        dispatch_async(dispatch_get_global_queue(0, 0), {()->Void in
-            if !self.isSong {
-                AuthorEntity.getAllAuthor()
-            } else {
-                SongNameEntity.getAllName()
-            }
-            dispatch_async(dispatch_get_main_queue(), {[weak self] ()->Void in
-                UIView.animateWithDuration(1, animations: {() -> Void in
-                    textView.alpha = 0
-                    //textView.transform = CGAffineTransformMakeScale(2, 2)
-                    //textView.transform = CGAffineTransformMakeRotation(Float(2*M_PI))
-                    }, completion: {(finish:Bool)->Void in
-                        if self == nil {
-                            return
-                        }
-                        self!.loadFinish = true
-                        self!.view.userInteractionEnabled = true
-                        self?.tableView.reloadData()
-                        self!.navigationController.setNavigationBarHidden(false, animated: false);
-                    })
-                })
-            })
+        UIView.animateWithDuration(1, animations: {() -> Void in
+            textView.alpha = 0
+            //textView.transform = CGAffineTransformMakeScale(2, 2)
+            //textView.transform = CGAffineTransformMakeRotation(Float(2*M_PI))
+            }, completion: {(finish:Bool)->Void in
+                if self == nil {
+                    return
+                }
+                self.loadFinish = true
+                self.view.userInteractionEnabled = true
+                self.tableView.reloadData()
+                self.navigationController.setNavigationBarHidden(false, animated: false);
+        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -79,19 +70,19 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             return 0
         }
         if isSong {
-            return SongNameEntity.songNameMap.count
+            return songNameMap.count
         } else {
-            return AuthorEntity.authorMap.count
+            return authorMap.count
         }
     }
     
     override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
         if isSong {
-            let keys:Array<String> = Array(SongNameEntity.songNameMap.keys)
-            return keys[section]
+            let keys = songNameMap.allKeys
+            return keys[section] as String
         } else {
-            let keys:Array<String> = Array(AuthorEntity.authorMap.keys)
-            return keys[section]
+            let keys = authorMap.allKeys
+            return keys[section] as String
         }
     }
     
@@ -100,10 +91,9 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             return nil
         }
         if isSong {
-            let keys = SongNameEntity.songNameMap.keys
-            return  Array(keys)
+            return  songNameMap.allKeys
         } else {
-            return Array(AuthorEntity.authorMap.keys)
+            return authorMap.allKeys
         }
     }
     
@@ -112,13 +102,13 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             return 0;
         }
         if isSong {
-            let key:String = Array(SongNameEntity.songNameMap.keys)[section]
-            let songSection = SongNameEntity.songNameMap[key]
-            return songSection!.count
+            let key:String = songNameMap.allKeys[section] as String
+            let songSection = songNameMap[key] as NSArray
+            return songSection.count
         } else {
-            let key:String = Array(AuthorEntity.authorMap.keys)[section]
-            let author = AuthorEntity.authorMap[key]
-            return author!.count
+            let key:String = authorMap.allKeys[section] as String
+            let author = authorMap[key] as NSArray
+            return author.count
         }
     }
     
@@ -131,9 +121,9 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         cell.textLabel.font = UIFont(name: kFontSong, size: 20)
         cell.detailTextLabel.font = UIFont(name: kFontKai, size: 14)
         if isSong {
-            let key:String = Array(SongNameEntity.songNameMap.keys)[indexPath.section]
-            let songSection = SongNameEntity.songNameMap[key]
-            let songName:SongNameEntity = songSection![indexPath.row]
+            let key:String = songNameMap.allKeys[indexPath.section] as String
+            let songSection = songNameMap[key] as NSArray
+            let songName:SongNameEntity = songSection[indexPath.row] as SongNameEntity
             
             let color = favColorDic.allValues[abs(songName.name.hashValue)%9] as Int
             cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
@@ -152,9 +142,9 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             cell.textLabel.text = songName.name
             cell.detailTextLabel.text = songName.info
         } else {
-            let key:String = Array(AuthorEntity.authorMap.keys)[indexPath.section]
-            let authorSection = AuthorEntity.authorMap[key]
-            let author:AuthorEntity = authorSection![indexPath.row]
+            let key:String = authorMap.allKeys[indexPath.section] as String
+            let authorSection = authorMap[key] as NSArray
+            let author:AuthorEntity = authorSection[indexPath.row] as AuthorEntity
             
             let color = favColorDic.allValues[abs(author.name.hashValue)%9] as Int
             cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
@@ -187,14 +177,14 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
                 searchDetailVC.isSong = isSong
                 searchDetailVC.keyword = cell.textLabel.text
                 if isSong {
-                    let key:String = Array(SongNameEntity.songNameMap.keys)[tableView.indexPathForCell(cell).section]
-                    let songSection = SongNameEntity.songNameMap[key]
-                    let songName:SongNameEntity = songSection![tableView.indexPathForCell(cell).row]
+                    let key:String = songNameMap.allKeys[tableView.indexPathForCell(cell).section] as String
+                    let songSection = songNameMap[key] as NSArray
+                    let songName:SongNameEntity = songSection[tableView.indexPathForCell(cell).row] as SongNameEntity
                     searchDetailVC.songNameEntity = songName
                 } else {
-                    let key:String = Array(AuthorEntity.authorMap.keys)[tableView.indexPathForCell(cell).section]
-                    let authorSection = AuthorEntity.authorMap[key]
-                    let author:AuthorEntity = authorSection![tableView.indexPathForCell(cell).row]
+                    let key:String = authorMap.allKeys[tableView.indexPathForCell(cell).section] as String
+                    let authorSection = authorMap[key] as NSArray
+                    let author:AuthorEntity = authorSection[tableView.indexPathForCell(cell).row] as AuthorEntity
                     searchDetailVC.authorEntity = author
                 }
             }

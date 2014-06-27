@@ -22,6 +22,9 @@ let favManagedDoc:UIManagedDocument = UIManagedDocument(fileURL: NSURL(fileURLWi
 let favColorDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("color", ofType: "plist"))
 var favFolders:Array<FavFolder> = []
 
+var songNameMap:NSDictionary = NSDictionary()
+var authorMap:NSDictionary = NSDictionary()
+
 func UIColorFromRGB(rgbValue:Int)->UIColor {
     return UIColor(red: CGFloat((rgbValue & 0xFF0000) >> 16)/255.0 , green: CGFloat((rgbValue & 0xFF00) >> 8)/255.0, blue: CGFloat((rgbValue & 0xFF))/255.0, alpha: 1.0)
 }
@@ -40,9 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WeiboSDK.registerApp(kAppKey_WeiBo)
         WeiboSDK.enableDebugMode(true)
         FavManager.sharedFavManager
-        for font:AnyObject in UIFont.familyNames() {
-            println("\(font)")
-        }
+//        for font:AnyObject in UIFont.familyNames() {
+//            println("\(font)")
+//        }
+        dispatch_async(dispatch_get_global_queue(0, 0), {()->Void in
+            authorMap = AuthorEntity.getAllAuthor()
+            songNameMap = SongNameEntity.getAllName()
+        })
         return true
     }
     

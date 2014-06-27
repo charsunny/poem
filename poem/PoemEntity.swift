@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PoemEntity {
+class PoemEntity {
     
     var rowid:Int = 0
     var title:String = ""
@@ -26,7 +26,7 @@ struct PoemEntity {
         self.author = row.stringForColumn("author")
     }
     
-    static func formatContent(str:String)->String {
+    class func formatContent(str:String)->String {
         var cont:NSMutableString = NSMutableString(string:str)
         cont.replaceOccurrencesOfString("，", withString: "，\n", options: .LiteralSearch, range: NSMakeRange(0, cont.length))
         cont.replaceOccurrencesOfString("。", withString: "。\n", options: .LiteralSearch, range: NSMakeRange(0, cont.length))
@@ -35,7 +35,7 @@ struct PoemEntity {
         return cont
     }
     
-    static func genRandomPoem(count:Int = 10, type:Int = -1)->Array<PoemEntity> {
+    class func genRandomPoem(count:Int = 10, type:Int = -1)->Array<PoemEntity> {
         
         var poems:Array<PoemEntity> = Array<PoemEntity>()
         
@@ -56,7 +56,7 @@ struct PoemEntity {
         return poems;
     }
     
-    static func getPoemByIndex(index:Int) -> PoemEntity? {
+    class func getPoemByIndex(index:Int) -> PoemEntity? {
         var query:String = String("SELECT rowid, * FROM poetry where rowid = \(index) ")
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if result?.count() > 0 {
@@ -67,11 +67,13 @@ struct PoemEntity {
         return nil
     }
     
-    static func getPoemByAuthor(var author:String?) -> Dictionary<String, Array<PoemEntity>> {
+    class func getPoemByAuthor(var author:String?) -> NSDictionary {
+        
+        let poemMap:NSMutableDictionary = NSMutableDictionary()
+        
         if author == nil {
-            return [:]
+            return poemMap
         }
-        var poemMap:Dictionary<String, Array<PoemEntity>> = Dictionary<String, Array<PoemEntity>>()
         
         var pyFormat:HanyuPinyinOutputFormat = HanyuPinyinOutputFormat()
         pyFormat.toneType = ToneTypeWithoutTone
@@ -89,12 +91,13 @@ struct PoemEntity {
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
                 if poemMap[key] == nil {
-                    var value:Array<PoemEntity> = []
-                    value.append(poemEntity)
+                    var value:NSMutableArray = NSMutableArray()
+                    value.addObject(poemEntity)
                     poemMap[key] = value
                 } else {
-                    var value:Array<PoemEntity> = poemMap[key]!
-                    value.append(poemEntity)
+                    let value = poemMap[key] as NSMutableArray
+                    //var value:NSMutableArray = NSMutableArray(array:orginValue)
+                    value.addObject(poemEntity)
                     poemMap[key] = value
                 }
             }
@@ -102,13 +105,13 @@ struct PoemEntity {
         return poemMap;
     }
     
-    static func getSongByName(var name:String?) -> Dictionary<String, Array<PoemEntity>> {
+    class func getSongByName(var name:String?) -> NSDictionary {
+        
+        let poemMap:NSMutableDictionary = NSMutableDictionary()
         
         if name == nil {
-            return [:]
+            return poemMap
         }
-        
-        var poemMap:Dictionary<String, Array<PoemEntity>> = Dictionary<String, Array<PoemEntity>>()
         
         var pyFormat:HanyuPinyinOutputFormat = HanyuPinyinOutputFormat()
         pyFormat.toneType = ToneTypeWithoutTone
@@ -126,12 +129,13 @@ struct PoemEntity {
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
                 if poemMap[key] == nil {
-                    var value:Array<PoemEntity> = []
-                    value.append(poemEntity)
+                    var value:NSMutableArray = NSMutableArray()
+                    value.addObject(poemEntity)
                     poemMap[key] = value
                 } else {
-                    var value:Array<PoemEntity> = poemMap[key]!
-                    value.append(poemEntity)
+                    let value = poemMap[key] as NSMutableArray
+                    //var value:NSMutableArray = NSMutableArray(array:orginValue)
+                    value.addObject(poemEntity)
                     poemMap[key] = value
                 }
             }

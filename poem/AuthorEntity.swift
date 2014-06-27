@@ -8,14 +8,12 @@
 
 import Foundation
 
-struct AuthorEntity {
+class AuthorEntity {
     
     var rowid:Int = 0
     var name:String = ""
     var desc:String = ""
     var icon:String = ""
-    
-    static var authorMap:Dictionary<String, Array<AuthorEntity>> = Dictionary<String, Array<AuthorEntity>>()
     
     init(let row:EGODatabaseRow) {
         self.rowid = row.stringForColumn("rowid").toInt()!
@@ -23,12 +21,10 @@ struct AuthorEntity {
         self.desc = row.stringForColumn("desc")
     }
     
-    static func getAllAuthor()->Dictionary<String, Array<AuthorEntity>> {
+    class func getAllAuthor()->NSDictionary {
         
-        if authorMap.count > 0 {
-            return authorMap
-        }
-
+       var authorMap:NSMutableDictionary = NSMutableDictionary()
+        
         let query:String = String("SELECT rowid, * FROM author")
         
         var pyFormat:HanyuPinyinOutputFormat = HanyuPinyinOutputFormat()
@@ -45,12 +41,13 @@ struct AuthorEntity {
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
                 if authorMap[key] == nil {
-                    var value:Array<AuthorEntity> = []
-                    value.append(poemEntity)
+                    var value:NSMutableArray = NSMutableArray()
+                    value.addObject(poemEntity)
                     authorMap[key] = value
                 } else {
-                    var value:Array<AuthorEntity> = authorMap[key]!
-                    value.append(poemEntity)
+                    let value = authorMap[key] as NSMutableArray
+                    //var value:NSMutableArray = NSMutableArray(array:orginValue)
+                    value.addObject(poemEntity)
                     authorMap[key] = value
                 }
             }

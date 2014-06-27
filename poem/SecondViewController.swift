@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class SecondViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
+class SecondViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
     
     @IBOutlet var searchBar : UISearchBar
     
@@ -19,7 +19,7 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
         let spLine:UIView = UIView(frame: CGRectMake(0, 43.5, self.view.bounds.width, 0.5))
         spLine.backgroundColor = UIColor.lightGrayColor()
         searchBar.addSubview(spLine)
-        
+        searchBar.delegate = self
         let footView:UIView = UIView()
         footView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footView
@@ -130,6 +130,22 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
         default:
             NSLog("xx")
         }
+    }
+    
+    
+    func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!) {
+//        switch searchBar.selectedScopeButtonIndex {
+//        case 0:
+//            
+//        }
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
+        
+    }
+    
+    func searchBar(searchBar: UISearchBar!, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
     }
 
 }

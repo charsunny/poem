@@ -9,8 +9,6 @@
 import UIKit
 import QuartzCore
 
-var detailPoemMap:Dictionary<String, Array<PoemEntity>> = Dictionary<String, Array<PoemEntity>>()
-
 class SearchDetailViewController: UITableViewController {
     
     var isSong:Bool = false
@@ -20,6 +18,8 @@ class SearchDetailViewController: UITableViewController {
     var songNameEntity:SongNameEntity?
     
     var authorEntity:AuthorEntity?
+    
+    var detailPoemMap:NSDictionary = NSDictionary()
     
     @IBOutlet var titleLabel : UILabel
     
@@ -48,10 +48,6 @@ class SearchDetailViewController: UITableViewController {
             descLabel.text = songNameEntity!.info + "\n" + songNameEntity!.desc
         }
         
-        if detailPoemMap.count > 0 {
-            detailPoemMap.removeAll(keepCapacity: false)
-        }
-        
         let color = favColorDic.allValues[abs(titleLabel.text.hashValue)%9] as Int
         titleLabel.backgroundColor = UIColorFromRGB(color)
         
@@ -61,9 +57,9 @@ class SearchDetailViewController: UITableViewController {
         self.view.addSubview(activtyIndicator)
         dispatch_async(dispatch_get_global_queue(0, 0), {[weak self]()->Void in
             if !self!.isSong {
-                detailPoemMap = PoemEntity.getPoemByAuthor(self?.authorEntity?.name)
+                self!.detailPoemMap = PoemEntity.getPoemByAuthor(self?.authorEntity?.name)
             } else {
-                detailPoemMap = PoemEntity.getSongByName(self?.songNameEntity?.name)
+                self!.detailPoemMap = PoemEntity.getSongByName(self?.songNameEntity?.name)
             }
             dispatch_async(dispatch_get_main_queue(), { ()->Void in
                 self?.activtyIndicator!.stopAnimating()
@@ -112,20 +108,20 @@ class SearchDetailViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-        let keys:Array<String> = Array(detailPoemMap.keys)
-        return keys[section]
+        let keys = detailPoemMap.allKeys
+        return keys[section] as String
     }
 
     override func sectionIndexTitlesForTableView(tableView: UITableView!) -> AnyObject[]! {
-        return Array(detailPoemMap.keys)
+        return detailPoemMap.allKeys
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if tableView === self.searchDisplayController.searchResultsTableView {
             return 0;
         }
-        let key:String = Array(detailPoemMap.keys)[section]
-        if let author = detailPoemMap[key] {
+        let key:String = detailPoemMap.allKeys[section] as String
+        if let author = detailPoemMap[key] as? NSArray {
             return author.count
         }
         return 0
@@ -142,9 +138,9 @@ class SearchDetailViewController: UITableViewController {
         cell.imageView.layer.cornerRadius = 5
         cell.imageView.clipsToBounds = true
         
-        let key:String = Array(detailPoemMap.keys)[indexPath.section]
-        if let poemSection = detailPoemMap[key] {
-            let poem:PoemEntity = poemSection[indexPath.row]
+        let key:String = detailPoemMap.allKeys[indexPath.section] as String
+        if let poemSection = detailPoemMap[key] as? NSArray {
+            let poem:PoemEntity = poemSection[indexPath.row] as PoemEntity
             cell.imageView.image = nil
             cell.textLabel.text = poem.title
             cell.detailTextLabel.text = poem.content
@@ -174,21 +170,22 @@ class SearchDetailViewController: UITableViewController {
         let containerVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         
         //containerVC.titleText = keyword
-        var poems:Array<PoemEntity> = []
+        var poems:NSMutableArray = NSMutableArray()
         var index:Int = 0
         var i:Int  = 0
-        let poemMaps = detailPoemMap.values
-        for poemArray in poemMaps {
+        let poemMaps = detailPoemMap.allValues
+        for poemMap:AnyObject in poemMaps {
+            let poemArray = poemMap as NSArray
             if i < indexPath.section {
                 index += poemArray.count
             }
             i++
-            for poem in poemArray {
-                poems.append(poem)
+            for poem:AnyObject in poemArray {
+                poems.addObject(poem)
             }
         }
         index += indexPath.row
-        containerVC.poemEntity = poems[index]
+        containerVC.poemEntity = poems[index] as? PoemEntity
         self.navigationController.pushViewController(containerVC, animated: true)
     }
 }
