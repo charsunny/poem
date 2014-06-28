@@ -7,7 +7,6 @@
 //
 
 #import "EGODatabase.h"
-#import "MBProgressHUD.h"
 #import "PinYin4Objc.h"
 #import "FavFolder.h"
 #import "FavItem.h"

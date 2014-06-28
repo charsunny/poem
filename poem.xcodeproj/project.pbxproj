@@ -39,7 +39,6 @@
 		50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */; };
 		50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63155194E0787001D9CDC /* AuthorEntity.swift */; };
 		50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63157194E0C10001D9CDC /* SearchListViewController.swift */; };
-		50BC1987194B77AE00FE209B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BC1986194B77AE00FE209B /* MBProgressHUD.m */; };
 		50D0B4B7195D1B4C0006E6D1 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */; };
 		50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD6194ABB11006AAD93 /* EGODatabase.m */; };
 		50E71CF4194ABB11006AAD93 /* EGODatabaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD8194ABB11006AAD93 /* EGODatabaseRequest.m */; };
@@ -131,8 +130,6 @@
 		50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomContentViewController.swift; sourceTree = "<group>"; };
 		50B63155194E0787001D9CDC /* AuthorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorEntity.swift; sourceTree = "<group>"; };
 		50B63157194E0C10001D9CDC /* SearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
-		50BC1985194B77AE00FE209B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		50BC1986194B77AE00FE209B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		50CF5FB1194AE1B800A22460 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; };
 		50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
 		50E71CD5194ABB11006AAD93 /* EGODatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabase.h; sourceTree = "<group>"; };
@@ -283,7 +280,6 @@
 				504A751A195181DA005A3353 /* models */,
 				504A7519195181C6005A3353 /* controllers */,
 				5030709C194EAC9900C8FE67 /* PinYin4Objc */,
-				50BC1984194B77AE00FE209B /* progresshud */,
 				50E71CD4194ABB11006AAD93 /* EGODB */,
 				50E71CDF194ABB11006AAD93 /* res */,
 				503F1C921949AA6300110456 /* AppDelegate.swift */,
@@ -382,15 +378,6 @@
 			children = (
 			);
 			name = iPad;
-			sourceTree = "<group>";
-		};
-		50BC1984194B77AE00FE209B /* progresshud */ = {
-			isa = PBXGroup;
-			children = (
-				50BC1985194B77AE00FE209B /* MBProgressHUD.h */,
-				50BC1986194B77AE00FE209B /* MBProgressHUD.m */,
-			);
-			path = progresshud;
 			sourceTree = "<group>";
 		};
 		50E71CD4194ABB11006AAD93 /* EGODB */ = {
@@ -572,7 +559,6 @@
 				50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */,
 				50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */,
 				50EF5090195209720043D686 /* FavItem.m in Sources */,
-				50BC1987194B77AE00FE209B /* MBProgressHUD.m in Sources */,
 				504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */,
 				5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */,
 				50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */,
