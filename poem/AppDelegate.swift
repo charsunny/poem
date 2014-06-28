@@ -11,7 +11,7 @@ import UIKit
 let kAppKey_WeiXin = "wxf04441074e0bff9c"
 let kAppKey_WeiBo = "979020811"
 
-let kFontSong:String = "FZQingKeBenYueSongS-R-GB"//"A-OTF Akashi Std"//
+let kFontSong:String = "FZQingKeBenYueSongS-R-GB"//"FZSongKeBenXiuKaiT-R-GB"
 let kFontKai:String = "FZKai-Z03S"//"FZKai-Z03T"//
 let kFontIcon:String = "icomoon"
 let kDBPath:String? = NSBundle.mainBundle().pathForResource("poem", ofType: "db")
@@ -43,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WeiboSDK.registerApp(kAppKey_WeiBo)
         WeiboSDK.enableDebugMode(true)
         FavManager.sharedFavManager
-//        for font:AnyObject in UIFont.familyNames() {
-//            println("\(font)")
-//        }
+        for font:AnyObject in UIFont.familyNames() {
+            println("\(font)")
+        }
         dispatch_async(dispatch_get_global_queue(0, 0), {()->Void in
             authorMap = AuthorEntity.getAllAuthor()
             songNameMap = SongNameEntity.getAllName()

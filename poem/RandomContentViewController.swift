@@ -36,16 +36,6 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
     
     @lazy var butterFly:UIImageView = UIImageView(frame:CGRectMake(0,0,30,30))
     
-    var animator:UIDynamicAnimator?
-    
-    var gravityBeahvior:UIGravityBehavior?
-    
-    var collisionBehavior:UICollisionBehavior?
-    
-    var itemBehavior:UIDynamicItemBehavior?
-    
-    var pushBehavior:UIPushBehavior?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -73,7 +63,7 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         
         // init contents
         self.authorLabel.font = UIFont(name:kFontSong, size:16)
-        self.contentView.font = UIFont(name:kFontKai, size:24)
+        self.contentView.font = UIFont(name:kFontKai, size:20)
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
         self.titleLabel.adjustsLetterSpacingToFitWidth = true
         self.titleLabel.adjustsFontSizeToFitWidth = true

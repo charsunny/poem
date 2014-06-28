@@ -67,7 +67,32 @@ class PoemEntity {
         return nil
     }
     
-    class func getPoemByAuthor(var author:String?) -> NSDictionary {
+    class func getPoemByKeyword(key:String, scope:Int) -> NSArray {
+        
+        
+        let poems:NSMutableArray = NSMutableArray()
+        
+        var query:String = "SELECT rowid, * FROM poetry WHERE title like '%%\(key)%%' LIMIT 100"
+        if scope == 1 {
+            query = "SELECT rowid, * FROM poetry WHERE author like '%%\(key)%%' LIMIT 100"
+        } else if scope == 2 {
+            query = "SELECT rowid, * FROM poetry WHERE content like '%%\(key)%%' LIMIT 100"
+        }
+        
+        
+        let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
+        if let count:Int = result?.count() {
+            for idx in 0..count {
+                let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
+                let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
+                poems.addObject(poemEntity)
+            }
+        }
+        
+        return poems
+    }
+    
+    class func getPoemByAuthor(author:String?) -> NSDictionary {
         
         let poemMap:NSMutableDictionary = NSMutableDictionary()
         

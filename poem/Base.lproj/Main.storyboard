@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
@@ -320,9 +321,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" appearanceType="aqua" contentMode="redraw" searchBarStyle="minimal" placeholder="输入关键字进行检索" showsScopeBar="YES" id="Xjv-CO-xHE">
+                        <searchBar key="tableHeaderView" appearanceType="aqua" contentMode="redraw" placeholder="输入关键字进行检索" showsScopeBar="YES" id="Xjv-CO-xHE">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
                                 <string>标题</string>
@@ -401,14 +403,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" appearanceType="aqua" contentMode="redraw" searchBarStyle="minimal" placeholder="输入关键字进行检索" id="Vvb-Mf-hgq">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="jCm-Mr-lxP" id="T72-Yh-7Uf"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="aHD-TP-QuE" detailTextLabel="151-9Z-gmb" imageView="ZqZ-Mc-E0K" style="IBUITableViewCellStyleSubtitle" id="LxX-Lt-9vZ">
                                 <rect key="frame" x="0.0" y="66" width="320" height="64"/>
@@ -454,7 +448,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Beb-PQ-zJQ"/>
                     <connections>
-                        <outlet property="searchBar" destination="Vvb-Mf-hgq" id="las-tJ-cMI"/>
                         <outlet property="searchDisplayController" destination="dk4-em-SgR" id="3wb-KB-ccG"/>
                     </connections>
                 </tableViewController>
@@ -462,7 +455,6 @@
                 <searchDisplayController id="dk4-em-SgR">
                     <connections>
                         <outlet property="delegate" destination="jCm-Mr-lxP" id="PeT-wa-h44"/>
-                        <outlet property="searchBar" destination="Vvb-Mf-hgq" id="Yk4-Sr-ZHn"/>
                         <outlet property="searchContentsController" destination="jCm-Mr-lxP" id="Mzx-76-ZYW"/>
                         <outlet property="searchResultsDataSource" destination="jCm-Mr-lxP" id="OLS-um-zKQ"/>
                         <outlet property="searchResultsDelegate" destination="jCm-Mr-lxP" id="MA8-8B-A4e"/>
@@ -634,7 +626,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="消息推送" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jv8-pZ-ssF">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="背景音乐" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jv8-pZ-ssF">
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -673,6 +665,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="应用评分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Gl-a2-Yro">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rb0-kT-jRz" style="IBUITableViewCellStyleDefault" id="5YA-OH-MZD">
+                                        <rect key="frame" x="0.0" y="343" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5YA-OH-MZD" id="KeT-af-vo2">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="分享给朋友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rb0-kT-jRz">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1016,7 +1025,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K7o-8Q-eIr">
+                            <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K7o-8Q-eIr">
                                 <rect key="frame" x="100" y="185" width="220" height="275"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>

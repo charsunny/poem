@@ -30,6 +30,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
         super.viewDidLoad()
         let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("bg",ofType:"mp3"))
         player = AVAudioPlayer(contentsOfURL:soundFileURL,error:nil)
+        player!.volume = 0.5
         player!.numberOfLoops = -1; //infinite
         if showLoadingText == nil {
             initPageVC()
@@ -76,7 +77,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
     }
     
     deinit {
-        player!.pause()
+        player!.stop()
     }
     
     func contentVCAtIndex(index:Int) -> RandomContentViewController? {

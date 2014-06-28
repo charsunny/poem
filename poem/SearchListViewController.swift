@@ -18,16 +18,14 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
     
     var loadFinish:Bool = false
 
-    @IBOutlet var searchBar : UISearchBar
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.title = isSong ? "词牌" : "诗人"
         
-        let spLine:UIView = UIView(frame: CGRectMake(0, 43.5, 320, 0.5))
-        spLine.backgroundColor = UIColor.lightGrayColor()
-        searchBar.addSubview(spLine)
+//        let spLine:UIView = UIView(frame: CGRectMake(0, 43.5, 320, 0.5))
+//        spLine.backgroundColor = UIColor.lightGrayColor()
+//        searchBar.addSubview(spLine)
         
         let footView:UIView = UIView()
         footView.backgroundColor = UIColor.clearColor()
@@ -91,7 +89,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             return nil
         }
         if isSong {
-            return  songNameMap.allKeys
+            return songNameMap.allKeys
         } else {
             return authorMap.allKeys
         }

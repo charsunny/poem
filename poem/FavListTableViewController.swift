@@ -113,8 +113,7 @@ class FavListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let favItem = favItems![indexPath!.row] as FavItem
         let poemEntity = PoemEntity.getPoemByIndex(favItem.index.integerValue)
-        let contentVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
-        contentVC.titleText = "我的收藏"
+        let contentVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         contentVC.poemEntity = poemEntity
         self.navigationController.pushViewController(contentVC, animated: true)
     }

@@ -13,6 +13,8 @@ import QuartzCore
 
 class ContentViewController: UIViewController,UIActionSheetDelegate {
     
+    var poemDic:NSDictionary?
+    
     var poemEntity:PoemEntity?
     
     var titleText:String = "返回"
@@ -44,16 +46,6 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     @lazy var butterFly:UIImageView = UIImageView(frame:CGRectMake(0,0,30,30))
     
     var player:AVAudioPlayer?
-    
-    var animator:UIDynamicAnimator?
-    
-    var gravityBeahvior:UIGravityBehavior?
-    
-    var collisionBehavior:UICollisionBehavior?
-    
-    var itemBehavior:UIDynamicItemBehavior?
-    
-    var pushBehavior:UIPushBehavior?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,42 +56,15 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         player = AVAudioPlayer(contentsOfURL:soundFileURL,error:nil)
         player!.numberOfLoops = -1; //infinite
         
-        //init animator
-        animator = UIDynamicAnimator(referenceView:self.view)
-        gravityBeahvior = UIGravityBehavior(items:nil)
-        gravityBeahvior!.magnitude = 0.01
-        collisionBehavior = UICollisionBehavior(items:nil)
-        collisionBehavior!.translatesReferenceBoundsIntoBoundary = true
-        itemBehavior = UIDynamicItemBehavior(items:nil)
-        itemBehavior!.elasticity = 0.01
-        itemBehavior!.friction = 0.9
-        itemBehavior!.resistance = 0.01
-        itemBehavior!.density = 0.5
-        pushBehavior = UIPushBehavior(items:nil, mode:.Instantaneous)
-        pushBehavior!.pushDirection = CGVectorMake(0,1)
-        pushBehavior!.magnitude = 0.01
-        
-        animator!.addBehavior(gravityBeahvior)
-        //animator!.addBehavior(collisionBehavior)
-        animator!.addBehavior(itemBehavior)
-        animator!.addBehavior(pushBehavior)
-        
         //let color = favColorDic.allValues[3] as Int
         //menuButton.setBackgroundImage(UIImage.colorImage(UIColorFromRGB(color), rect:menuButton.bounds), forState:.Normal)
         menuButton.clipsToBounds = true
         menuButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
         shareButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
         
-        let winterLeafImageView:UIImageView = UIImageView(frame:CGRectMake(0,0,25,30))
-        
-        var images:NSMutableArray = NSMutableArray()
         var butterFlyImages = NSMutableArray()
         let butterFlyIndex = rand()%3+1
         for i:Int in 1...20 {
-            let imageName:NSString = NSString(format:"WinterLeaf_%02d",i)
-            let image:UIImage = UIImage(named:imageName)
-            images.addObject(image)
-            
             let butterImageName:NSString = NSString(format:"FallButterfly%d_%02d",butterFlyIndex,i)
             let butterImage:UIImage? = UIImage(named:butterImageName)
             if butterImage != nil {
@@ -112,36 +77,28 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         butterFly.startAnimating()
         self.initButterFlyAnimation(Int(butterFlyIndex))
         
-        winterLeafImageView.animationImages = images
-        winterLeafImageView.center = CGPointMake(200,100)
-        self.view.addSubview(winterLeafImageView)
-        winterLeafImageView.startAnimating()
-        gravityBeahvior!.addItem(winterLeafImageView)
-        collisionBehavior!.addItem(winterLeafImageView)
-        itemBehavior!.addItem(winterLeafImageView)
-        pushBehavior!.addItem(winterLeafImageView)
-        pushBehavior!.setTargetOffsetFromCenter(UIOffsetMake(0.1,10),forItem:winterLeafImageView)
-        
         // init contents
         self.authorLabel.font = UIFont(name:kFontSong, size:16)
-        self.contentView.font = UIFont(name:kFontKai, size:24)
+        self.contentView.font = UIFont(name:kFontKai, size:20)
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
         self.descLabel.font = UIFont(name:kFontSong, size:16)
         self.descView.font = UIFont(name:kFontKai, size:14)
         self.titleLabel.adjustsLetterSpacingToFitWidth = true
         self.titleLabel.adjustsFontSizeToFitWidth = true
+        self.addParallaxEffect(self.titleLabel, depth: 15)
+        self.addParallaxEffect(self.authorLabel, depth: 15)
+        self.addParallaxEffect(self.contentView, depth: 15)
+        self.addParallaxEffect(self.descView, depth: 15)
+        self.addParallaxEffect(self.descLabel, depth: 15)
+        
+        poemEntity = PoemEntity.getPoemByIndex((poemDic!["index"] as String).toInt()!)
         self.titleLabel.text = poemEntity?.title
         self.authorLabel.text = poemEntity?.author
         if poemEntity?.type == 1 {
             self.contentView.textAlignment = .Left
         }
         self.contentView.text = PoemEntity.formatContent(poemEntity!.content)
-        self.descView.text = poemEntity!.content
-        self.addParallaxEffect(self.titleLabel, depth: 15)
-        self.addParallaxEffect(self.authorLabel, depth: 15)
-        self.addParallaxEffect(self.contentView, depth: 15)
-        self.addParallaxEffect(self.descView, depth: 15)
-        self.addParallaxEffect(self.descLabel, depth: 15)
+        self.descView.text = poemDic!["desc"] as String
         
         if self.parentViewController is UINavigationController {
             self.navigationController.interactivePopGestureRecognizer.delegate = nil
@@ -194,7 +151,10 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
 //        self.contentView.removeObserver(self , forKeyPath:"contentSize");
         super.viewDidDisappear(animated)
         synthesizer.stopSpeakingAtBoundary(.Word)
-        player!.pause()
+    }
+    
+    deinit {
+        player!.stop()
     }
     
     override func observeValueForKeyPath(keyPath: String!,

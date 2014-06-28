@@ -14,31 +14,28 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     @IBOutlet var scrollView : UIScrollView
     
     @IBOutlet var pageControl : UIPageControl
-    
-    let colCount = 5
+
     var timer:NSTimer?
     var lastPage = 0
     var lastReady = false
     var dataReady = false
     
-    var poemArray:Array< Array<PoemEntity>? > = []
-    var headPoems:Array<PoemEntity> = []
+    var poemArray:NSArray = NSArray()
+    var headPoems:NSArray = NSArray()
                             
     override func viewDidLoad() {
         super.viewDidLoad()
-        // init gestures
-        addGestures()
-        // init poems
+        
         loadPoems()
-        let reqURL = NSURL(string: "http://172.22.109.113/poem/")
-        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
-            if let json:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
-                    println("\(json)")
-                }
-            })
-        reqTask.resume()
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target:self, selector:"onTimer", userInfo: nil, repeats:true)
         timer?.fire()
+        
+        let footView:UIView = UIView()
+        footView.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = footView
+        tableView.contentOffset = CGPointMake(0,44)
+        tableView.sectionIndexBackgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,48 +48,54 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         timer?.invalidate()
     }
     
-    func addGestures() -> Void {
-        let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
-        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeRight")
-        swipeLeft.direction = .Left
-        swipeRight.direction = .Right
-        self.view.addGestureRecognizer(swipeLeft)
-        self.view.addGestureRecognizer(swipeRight)
-    }
-    
     func loadPoems() -> Void {
-        pageControl.numberOfPages = colCount
+        
         pageControl.hidden = true
-        let progressHud:MBProgressHUD = MBProgressHUD(view: self.tableView)
-        progressHud.labelText = "正在加载"
-        self.tableView.addSubview(progressHud)
-        progressHud.showAnimated(true, {()->Void in
-        for i in 0..self.colCount {
-            var poem = PoemEntity.genRandomPoem(count: 5)
-            self.poemArray.append(poem)
-        }
-        self.headPoems = PoemEntity.genRandomPoem(count: self.colCount)
-        }, {()->Void in
-            self.dataReady = true
-            progressHud.removeFromSuperview()
-            self.pageControl.hidden = false
-            self.initHeadBannerView()
-            self.tableView.reloadData()
-            self.runCellAnimation(1)
+        self.view.userInteractionEnabled = false
+        let activiyIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle:.Gray)
+        activiyIndicator.center = self.view.center
+        self.view.addSubview(activiyIndicator)
+        activiyIndicator.startAnimating()
+        let reqURL = NSURL(string: "http://poetry.duapp.com/?qt=rec")
+        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
+            activiyIndicator.removeFromSuperview()
+            if let json:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
+                
+                self.poemArray = json["data"] as NSArray
+                let headAr:NSMutableArray = NSMutableArray()
+                for poem:AnyObject in self.poemArray {
+                    let tmp = poem as NSDictionary
+                    if (tmp["head"] as String).toInt() > 0 {
+                        headAr.addObject(poem)
+                    }
+                }
+                self.dataReady = true
+                self.headPoems = headAr
+                dispatch_async(dispatch_get_main_queue(), {()->Void in
+                    self.pageControl.numberOfPages = headAr.count
+                    self.pageControl.hidden = false
+                    self.initHeadBannerView()
+                    self.tableView.reloadData()
+                    self.runCellAnimation(1)
+                    self.view.userInteractionEnabled = true
+                })
+            }
         })
+        reqTask.resume()
+
     }
     
     func initHeadBannerView() -> Void {
-        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*CGFloat(colCount), scrollView.frame.size.height)
+        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*CGFloat(self.headPoems.count), scrollView.frame.size.height)
         scrollView.pagingEnabled = true
         scrollView.delegate = self
         var orginX:CGFloat = 0
-        for var i = 0; i < colCount;  i++ {
+        for var i = 0; i < self.headPoems.count;  i++ {
             var idx:Int32 = rand() % 13 + 1
             let imagePath:String = NSBundle.mainBundle().pathForResource("\(idx)", ofType: "jpg")
             var headBannerView:UIView;
-            let poemEntity = headPoems[i]
-            headBannerView = createHeadBannerView(imagePath, text: poemEntity.content)
+            let poemEntity = headPoems[i] as NSDictionary
+            headBannerView = createHeadBannerView(imagePath, text: poemEntity["desc"] as String)
             headBannerView.tag = 100 + i
             headBannerView.frame = CGRectMake(orginX, 0, headBannerView.frame.width, headBannerView.frame.height)
             orginX = orginX + scrollView.frame.size.width
@@ -118,22 +121,6 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         return view
     }
     
-    func reloadHeadViewData() -> Void{
-        for var i = 0; i < colCount;  i++ {
-            let view:UIView? = scrollView.viewWithTag(100+i)
-            let imageView:UIImageView? = view?.viewWithTag(10) as UIImageView?
-            let textView:UILabel? = view?.viewWithTag(20) as UILabel?
-            if headPoems.count > i {
-                let poemEntity = headPoems[i]
-                if textView {
-                    textView!.text = poemEntity.content
-                }
-            }
-        }
-        pageControl.currentPage = 0;
-        scrollView.contentOffset = CGPointMake(0, 0)
-    }
-    
     func onTimer()->Void {
         if !dataReady {
             return
@@ -148,25 +135,9 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
             pageControl.currentPage = (++pageControl.currentPage)%poemArray.count
         }
         self.scrollView.contentOffset = CGPointMake(CGFloat(pageControl.currentPage)*320, 0)
-        tableView.reloadData()
+        //tableView.reloadData()
         self.runHeadAnimation(1)
-        self.runCellAnimation(1)
-    }
-    
-    func swipeLeft()->Void {
-        if pageControl.currentPage < colCount - 1 {
-            lastPage = pageControl.currentPage
-            pageControl.currentPage++
-            self.pageValueChanged(pageControl)
-        }
-    }
-    
-    func swipeRight()->Void {
-        if pageControl.currentPage > 0 {
-            lastPage = pageControl.currentPage
-            pageControl.currentPage--
-            self.pageValueChanged(pageControl)
-        }
+        //self.runCellAnimation(1)
     }
     
     func runCellAnimation(direction:Int)->Void {
@@ -204,9 +175,9 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     
     func onTapHeadView() -> Void {
         let contentVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
-        let poem:PoemEntity = headPoems[pageControl.currentPage]
+        let poem = headPoems[pageControl.currentPage] as NSDictionary
         contentVC.titleText = "诗词推荐"
-        contentVC.poemEntity = poem
+        //contentVC.poemEntity = poem
         self.navigationController.pushViewController(contentVC, animated: true)
     }
     
@@ -214,15 +185,15 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         timer?.invalidate()
         if scrollView === self.scrollView {
             var page = abs(scrollView.contentOffset.x) / scrollView.frame.size.width
-            var direction = 0
-            if pageControl.currentPage < Int(page) {
-                direction = 1
-            } else if pageControl.currentPage == Int(page) {
-                direction = -1
-            }
-            pageControl.currentPage = Int(page)
-            tableView.reloadData()
-            self.runCellAnimation(direction)
+//            var direction = 0
+//            if pageControl.currentPage < Int(page) {
+//                direction = 1
+//            } else if pageControl.currentPage == Int(page) {
+//                direction = -1
+//            }
+                pageControl.currentPage = Int(page)
+//            tableView.reloadData()
+//            self.runCellAnimation(direction)
         }
     }
     
@@ -236,18 +207,11 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         }
 
         self.scrollView.contentOffset = CGPointMake(CGFloat(sender.currentPage)*320, 0)
-        tableView.reloadData()
         self.runHeadAnimation(direction)
-        self.runCellAnimation(direction)
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if poemArray.count > pageControl.currentPage {
-            if let poems = poemArray[pageControl.currentPage] {
-                return poems.count
-            }
-        }
-        return 0
+        return poemArray.count
     }
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -256,41 +220,37 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         
         cell.imageView.layer.cornerRadius = 10
         
-        if poemArray.count > pageControl.currentPage {
-            if let poems:Array<PoemEntity> = poemArray[pageControl.currentPage] {
-                let poem:PoemEntity = poems[indexPath.row]
-                cell.textLabel.font = UIFont(name: kFontSong, size: 22)
-                cell.textLabel.text = poem.title
-                cell.detailTextLabel.font = UIFont(name:kFontKai, size:14)
-                cell.detailTextLabel.numberOfLines = 2
-                cell.detailTextLabel.text = poem.content
-                
-                let color = favColorDic.allValues[abs(poem.author.hashValue)%9] as Int
-                cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
-                if let label = cell.imageView.viewWithTag(1) as? UILabel {
-                    label.text = poem.author
-                } else {
-                    let label:UILabel = UILabel(frame:CGRectMake(5,5,50,50))
-                    label.text = poem.author
-                    label.textAlignment = .Center
-                    label.numberOfLines = 0
-                    label.tag = 1
-                    label.font = UIFont(name: kFontSong, size: 20)
-                    cell.imageView.addSubview(label)
-                }
-            }
+        let poem = poemArray[indexPath.row] as NSDictionary
+        cell.textLabel.font = UIFont(name: kFontSong, size: 22)
+        cell.textLabel.text = poem["title"] as String
+        cell.detailTextLabel.font = UIFont(name:kFontKai, size:14)
+        cell.detailTextLabel.numberOfLines = 2
+        cell.detailTextLabel.text = poem["desc"] as String
+        
+        let color = favColorDic.allValues[abs((poem["author"] as String).hashValue)%9] as Int
+        cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
+        if let label = cell.imageView.viewWithTag(1) as? UILabel {
+            label.text = poem["author"] as String
+        } else {
+            let label:UILabel = UILabel(frame:CGRectMake(5,5,50,50))
+            label.text = poem["author"] as String
+            label.textAlignment = .Center
+            label.numberOfLines = 0
+            label.tag = 1
+            label.font = UIFont(name: kFontSong, size: 20)
+            cell.imageView.addSubview(label)
         }
+        
         return cell
     }
     
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let containerVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
-        if let poems:Array<PoemEntity> = poemArray[pageControl.currentPage] {
-            containerVC.titleText = "诗词推荐"
-            containerVC.poemEntity = poems[indexPath.row]
+        let poem = poemArray[indexPath.row] as NSDictionary
+        containerVC.titleText = "诗词推荐"
+        containerVC.poemDic = poem
             //containerVC.curIdx = indexPath.row
-        }
         self.navigationController.pushViewController(containerVC, animated: true)
     }
 

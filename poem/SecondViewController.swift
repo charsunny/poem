@@ -9,7 +9,9 @@
 import UIKit
 import QuartzCore
 
-class SecondViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
+class SecondViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate ,UISearchDisplayDelegate{
+    
+    var searchResult:NSArray = NSArray()
     
     @IBOutlet var searchBar : UISearchBar
     
@@ -21,6 +23,7 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
         searchBar.addSubview(spLine)
         searchBar.delegate = self
         let footView:UIView = UIView()
+        self.searchDisplayController.delegate = self
         footView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footView
     }
@@ -28,6 +31,10 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         self.navigationController.setNavigationBarHidden(true, animated: true);
+    }
+    
+    func positionForBar(pos:UIBarPositioning)->UIBarPosition {
+        return .TopAttached
     }
 
     func runCellAnimation(direction:Int)->Void {
@@ -58,14 +65,46 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if tableView === self.searchDisplayController.searchResultsTableView {
-            return 0;
+            return searchResult.count;
         }
        return 4;
     }
     
+    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+         if tableView === self.searchDisplayController.searchResultsTableView {
+            return 64
+         } else {
+            return 76
+        }
+    }
+    
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         if tableView === self.searchDisplayController.searchResultsTableView {
-            return nil;
+            var cell:UITableViewCell? =  tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell
+            if cell == nil {
+                cell = UITableViewCell(style:.Subtitle, reuseIdentifier: "cell")
+            }
+            let poem:PoemEntity = searchResult[indexPath.row] as PoemEntity
+            cell!.textLabel.text = poem.title
+            cell!.detailTextLabel.text = poem.content
+            cell!.textLabel.font = UIFont(name: kFontSong, size: 18)
+            cell!.detailTextLabel.font = UIFont(name: kFontKai, size: 14)
+            let color = favColorDic.allValues[abs(poem.author.hashValue)%9] as Int
+            cell!.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
+            cell!.imageView.layer.cornerRadius = 5
+            cell!.imageView.clipsToBounds = true
+            if let label = cell!.imageView.viewWithTag(1) as? UILabel {
+                label.text = poem.author
+            } else {
+                let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
+                label.text = poem.author
+                label.textAlignment = .Center
+                label.numberOfLines = 0
+                label.tag = 1
+                label.font = UIFont(name: kFontSong, size: 18)
+                cell!.imageView.addSubview(label)
+            }
+            return cell
         }
         let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel.font = UIFont(name: kFontSong, size: 24)
@@ -104,6 +143,13 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
     
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if tableView === self.searchDisplayController.searchResultsTableView {
+            let poem:PoemEntity = searchResult[indexPath.row] as PoemEntity
+            let containerVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
+            containerVC.poemEntity = poem
+            self.navigationController.pushViewController(containerVC, animated: true)
+            return
+        }
         switch indexPath.row {
         case 0:
             let containerVC:PoemContainerViewController = self.storyboard.instantiateViewControllerWithIdentifier("containervc") as PoemContainerViewController
@@ -134,19 +180,42 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
     
     
     func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!) {
-//        switch searchBar.selectedScopeButtonIndex {
-//        case 0:
-//            
-//        }
+        if !searchText.isEmpty {
+            self.searchDisplayController.searchResultsTableView.hidden = true
+            dispatch_async(dispatch_get_global_queue(0, 0), {()->Void in
+                self.searchResult = PoemEntity.getPoemByKeyword(searchText, scope:searchBar.selectedScopeButtonIndex)
+                dispatch_async(dispatch_get_main_queue(), {()->Void in
+                    self.searchDisplayController.searchResultsTableView.reloadData()
+                    })
+                })
+        } else {
+            searchResult = NSArray()
+            self.searchDisplayController.searchResultsTableView.reloadData()
+        }
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
-        
+        if !searchBar.text.isEmpty {
+            searchResult = PoemEntity.getPoemByKeyword(searchBar.text, scope:searchBar.selectedScopeButtonIndex)
+        } else {
+            searchResult = NSArray()
+        }
+        self.searchDisplayController.searchResultsTableView.reloadData()
     }
     
     func searchBar(searchBar: UISearchBar!, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if !searchBar.text.isEmpty {
+            dispatch_async(dispatch_get_global_queue(0, 0), {()->Void in
+                self.searchResult = PoemEntity.getPoemByKeyword(searchBar.text, scope:selectedScope)
+                dispatch_async(dispatch_get_main_queue(), {()->Void in
+                    self.searchDisplayController.searchResultsTableView.reloadData()
+                })
+            })
+        } else {
+            searchResult = NSArray()
+            self.searchDisplayController.searchResultsTableView.reloadData()
+        }
         
     }
-
 }
 
