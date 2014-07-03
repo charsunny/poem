@@ -63,7 +63,7 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         
         // init contents
         self.authorLabel.font = UIFont(name:kFontSong, size:16)
-        self.contentView.font = UIFont(name:kFontKai, size:20)
+        self.contentView.font = UIFont(name:kFontKai, size:(isBigFont ? 26 : 20))
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
         self.titleLabel.adjustsLetterSpacingToFitWidth = true
         self.titleLabel.adjustsFontSizeToFitWidth = true
@@ -114,7 +114,7 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         //navHidden = self.navigationController.navigationBarHidden
-        self.navigationController.setNavigationBarHidden(true, animated: false);
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
     }
     
     override func viewDidAppear(animated: Bool) {

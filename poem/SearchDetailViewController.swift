@@ -11,15 +11,17 @@ import QuartzCore
 
 class SearchDetailViewController: UITableViewController {
     
-    var isSong:Bool = false
+    var isSong:Bool!
     
-    var keyword:String = ""
+    var keyword:String!
     
-    var songNameEntity:SongNameEntity?
+    var songNameEntity:SongNameEntity!
     
-    var authorEntity:AuthorEntity?
+    var authorEntity:AuthorEntity!
     
-    var detailPoemMap:NSDictionary = NSDictionary()
+    var detailPoemMap:NSDictionary!
+    
+    var sectionkeys:NSArray!
     
     @IBOutlet var titleLabel : UILabel
     
@@ -56,11 +58,17 @@ class SearchDetailViewController: UITableViewController {
         activtyIndicator!.startAnimating()
         self.view.addSubview(activtyIndicator)
         dispatch_async(dispatch_get_global_queue(0, 0), {[weak self]()->Void in
+            if self == nil {
+                return
+            }
             if !self!.isSong {
                 self!.detailPoemMap = PoemEntity.getPoemByAuthor(self?.authorEntity?.name)
             } else {
                 self!.detailPoemMap = PoemEntity.getSongByName(self?.songNameEntity?.name)
             }
+            self!.sectionkeys = (self!.detailPoemMap.allKeys as NSArray).sortedArrayUsingComparator({(s1:AnyObject!, s2:AnyObject!)->NSComparisonResult in
+                return (s1 as NSString).compare(s2 as String)
+            })
             dispatch_async(dispatch_get_main_queue(), { ()->Void in
                 self?.activtyIndicator!.stopAnimating()
                 self?.tableView.reloadData()
@@ -92,7 +100,7 @@ class SearchDetailViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
-        self.navigationController.setNavigationBarHidden(false, animated: true);
+        self.navigationController?.setNavigationBarHidden(false, animated: true);
     }
     
     override func viewDidDisappear(animated: Bool)  {
@@ -108,19 +116,18 @@ class SearchDetailViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-        let keys = detailPoemMap.allKeys
-        return keys[section] as String
+        return self.sectionkeys[section] as String
     }
 
     override func sectionIndexTitlesForTableView(tableView: UITableView!) -> AnyObject[]! {
-        return detailPoemMap.allKeys
+        return self.sectionkeys
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if tableView === self.searchDisplayController.searchResultsTableView {
             return 0;
         }
-        let key:String = detailPoemMap.allKeys[section] as String
+        let key:String = self.sectionkeys[section] as String
         if let author = detailPoemMap[key] as? NSArray {
             return author.count
         }
@@ -138,13 +145,13 @@ class SearchDetailViewController: UITableViewController {
         cell.imageView.layer.cornerRadius = 5
         cell.imageView.clipsToBounds = true
         
-        let key:String = detailPoemMap.allKeys[indexPath.section] as String
+        let key:String = self.sectionkeys[indexPath.section] as String
         if let poemSection = detailPoemMap[key] as? NSArray {
             let poem:PoemEntity = poemSection[indexPath.row] as PoemEntity
             cell.imageView.image = nil
             cell.textLabel.text = poem.title
             cell.detailTextLabel.text = poem.content
-            if isSong {
+            if poem.type == 1 {
                 cell.textLabel.text = poem.subtitle
                 let color = favColorDic.allValues[abs(poem.author.hashValue)%9] as Int
                 cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
@@ -154,6 +161,7 @@ class SearchDetailViewController: UITableViewController {
                     let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
                     label.text = poem.author
                     label.textAlignment = .Center
+                    label.lineBreakMode = .ByClipping
                     label.numberOfLines = 0
                     label.tag = 1
                     label.font = UIFont(name: kFontSong, size: 18)
@@ -169,23 +177,10 @@ class SearchDetailViewController: UITableViewController {
         
         let containerVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         
-        //containerVC.titleText = keyword
-        var poems:NSMutableArray = NSMutableArray()
-        var index:Int = 0
-        var i:Int  = 0
-        let poemMaps = detailPoemMap.allValues
-        for poemMap:AnyObject in poemMaps {
-            let poemArray = poemMap as NSArray
-            if i < indexPath.section {
-                index += poemArray.count
-            }
-            i++
-            for poem:AnyObject in poemArray {
-                poems.addObject(poem)
-            }
+        let key:String = self.sectionkeys[indexPath.section] as String
+        if let poemSection = detailPoemMap[key] as? NSArray {
+            containerVC.poemEntity = poemSection[indexPath.row] as? PoemEntity
+            self.navigationController.pushViewController(containerVC, animated: true)
         }
-        index += indexPath.row
-        containerVC.poemEntity = poems[index] as? PoemEntity
-        self.navigationController.pushViewController(containerVC, animated: true)
     }
 }

@@ -14,7 +14,19 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fontnamechanged", name: "addfav", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fontnamechanged", name: "tradchar", object: nil)
     }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "tradchar", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "addfav", object: nil)
+    }
+    
+    func fontnamechanged() -> Void {
+        collectionView.reloadData()
+    }
+
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,7 +43,7 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
             let cell = sender as SXCollectionViewCell
             let indexPath = collectionView.indexPathForCell(cell)
             let favItems = favFolders[indexPath.row].items
-            desVC.favItems = favItems.allObjects
+            desVC.favItems = NSMutableArray(array: favItems.allObjects)
             desVC.navigationItem.title = cell.titleLabel.text
             
         } else if segue.destinationViewController is EditFavViewController {

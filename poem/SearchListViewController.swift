@@ -12,11 +12,13 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
     
     var isSong:Bool = false
     
-    var showLoadingText:String?
+    var showLoadingText:String = ""
     
-    var titleText:String = "返回"
+    var titleText:String = ""
     
     var loadFinish:Bool = false
+    
+    var sectionkeys:NSArray!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,6 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         let footView:UIView = UIView()
         footView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footView
-        tableView.contentOffset = CGPointMake(0,44)
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
         
         let textView:UITextView = UITextView(frame: CGRectMake(0, 0, 100, 300))
@@ -39,6 +40,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         textView.textAlignment = .Center
         textView.editable = false
         textView.selectable =  false
+        textView.userInteractionEnabled = false
         textView.text = showLoadingText
         self.view.addSubview(textView)
         
@@ -48,14 +50,15 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             textView.alpha = 0
             //textView.transform = CGAffineTransformMakeScale(2, 2)
             //textView.transform = CGAffineTransformMakeRotation(Float(2*M_PI))
-            }, completion: {(finish:Bool)->Void in
-                if self == nil {
-                    return
+            }, completion: {[weak self](finish:Bool)->Void in
+                if self != nil {
+                    self!.sectionkeys = ( (self!.isSong ? songNameMap.allKeys : authorMap.allKeys) as NSArray).sortedArrayUsingComparator({(s1:AnyObject!, s2:AnyObject!)->NSComparisonResult in
+                        return (s1 as NSString).compare(s2 as String) })
+                    self!.loadFinish = true
+                    self!.view.userInteractionEnabled = true
+                    self!.tableView.reloadData()
+                    self!.navigationController.setNavigationBarHidden(false, animated: false)
                 }
-                self.loadFinish = true
-                self.view.userInteractionEnabled = true
-                self.tableView.reloadData()
-                self.navigationController.setNavigationBarHidden(false, animated: false);
         })
     }
     
@@ -67,32 +70,18 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         if !loadFinish {
             return 0
         }
-        if isSong {
-            return songNameMap.count
-        } else {
-            return authorMap.count
-        }
+        return self.sectionkeys.count
     }
     
     override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-        if isSong {
-            let keys = songNameMap.allKeys
-            return keys[section] as String
-        } else {
-            let keys = authorMap.allKeys
-            return keys[section] as String
-        }
+        return self.sectionkeys[section] as String
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView!) -> AnyObject[]! {
         if !loadFinish {
             return nil
         }
-        if isSong {
-            return songNameMap.allKeys
-        } else {
-            return authorMap.allKeys
-        }
+        return self.sectionkeys
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
@@ -100,11 +89,11 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             return 0;
         }
         if isSong {
-            let key:String = songNameMap.allKeys[section] as String
+            let key:String = self.sectionkeys[section] as String
             let songSection = songNameMap[key] as NSArray
             return songSection.count
         } else {
-            let key:String = authorMap.allKeys[section] as String
+            let key:String = self.sectionkeys[section] as String
             let author = authorMap[key] as NSArray
             return author.count
         }
@@ -119,7 +108,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         cell.textLabel.font = UIFont(name: kFontSong, size: 20)
         cell.detailTextLabel.font = UIFont(name: kFontKai, size: 14)
         if isSong {
-            let key:String = songNameMap.allKeys[indexPath.section] as String
+            let key:String = self.sectionkeys[indexPath.section] as String
             let songSection = songNameMap[key] as NSArray
             let songName:SongNameEntity = songSection[indexPath.row] as SongNameEntity
             
@@ -131,6 +120,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
                 let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
                 label.text = songName.name
                 label.textAlignment = .Center
+                label.lineBreakMode = .ByClipping
                 label.numberOfLines = 0
                 label.tag = 1
                 label.font = UIFont(name: kFontSong, size: 18)
@@ -140,7 +130,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             cell.textLabel.text = songName.name
             cell.detailTextLabel.text = songName.info
         } else {
-            let key:String = authorMap.allKeys[indexPath.section] as String
+            let key:String = self.sectionkeys[indexPath.section] as String
             let authorSection = authorMap[key] as NSArray
             let author:AuthorEntity = authorSection[indexPath.row] as AuthorEntity
             
@@ -153,6 +143,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
                 label.text = author.name
                 label.textAlignment = .Center
                 label.numberOfLines = 0
+                label.lineBreakMode = .ByClipping
                 label.tag = 1
                 label.font = UIFont(name: kFontSong, size: 18)
                 cell.imageView.addSubview(label)
@@ -175,12 +166,12 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
                 searchDetailVC.isSong = isSong
                 searchDetailVC.keyword = cell.textLabel.text
                 if isSong {
-                    let key:String = songNameMap.allKeys[tableView.indexPathForCell(cell).section] as String
+                    let key:String = self.sectionkeys[tableView.indexPathForCell(cell).section] as String
                     let songSection = songNameMap[key] as NSArray
                     let songName:SongNameEntity = songSection[tableView.indexPathForCell(cell).row] as SongNameEntity
                     searchDetailVC.songNameEntity = songName
                 } else {
-                    let key:String = authorMap.allKeys[tableView.indexPathForCell(cell).section] as String
+                    let key:String = self.sectionkeys[tableView.indexPathForCell(cell).section] as String
                     let authorSection = authorMap[key] as NSArray
                     let author:AuthorEntity = authorSection[tableView.indexPathForCell(cell).row] as AuthorEntity
                     searchDetailVC.authorEntity = author

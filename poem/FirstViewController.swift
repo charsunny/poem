@@ -15,7 +15,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     
     @IBOutlet var pageControl : UIPageControl
 
-    var timer:NSTimer?
+    var timer:NSTimer!
     var lastPage = 0
     var lastReady = false
     var dataReady = false
@@ -29,13 +29,20 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         loadPoems()
         
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target:self, selector:"onTimer", userInfo: nil, repeats:true)
-        timer?.fire()
+        timer.fire()
+        
+        self.refreshControl.addTarget(self, action: "onValueChanged:", forControlEvents: .ValueChanged)
         
         let footView:UIView = UIView()
         footView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footView
-        tableView.contentOffset = CGPointMake(0,44)
         tableView.sectionIndexBackgroundColor = UIColor.clearColor()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fontnamechanged", name: "tradchar", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "tradchar", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,20 +52,46 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        timer?.invalidate()
+        timer.invalidate()
     }
     
-    func loadPoems() -> Void {
+    func onValueChanged(refreshControl:UIRefreshControl) -> Void {
+        if refreshControl.refreshing {
+            self.loadPoems(refreshControl: refreshControl)
+        }
+    }
+    
+    func fontnamechanged() -> Void {
+        tableView.reloadData()
+    }
+    
+    func loadPoems(refreshControl:UIRefreshControl? = nil) -> Void {
         
         pageControl.hidden = true
         self.view.userInteractionEnabled = false
         let activiyIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle:.Gray)
         activiyIndicator.center = self.view.center
         self.view.addSubview(activiyIndicator)
-        activiyIndicator.startAnimating()
+        if refreshControl == nil {
+            activiyIndicator.startAnimating()
+        }
         let reqURL = NSURL(string: "http://poetry.duapp.com/?qt=rec")
         let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
-            activiyIndicator.removeFromSuperview()
+            
+            if error != nil {
+                dispatch_async(dispatch_get_main_queue(), {()->Void in
+                    if refreshControl != nil {
+                        refreshControl!.endRefreshing()
+                        self.scrollView.contentOffset = CGPointMake(0, 0)
+                        self.pageControl.currentPage = 0
+                    }
+                    activiyIndicator.stopAnimating()
+                    activiyIndicator.removeFromSuperview()
+                    self.tableView.reloadData()
+                    self.view.userInteractionEnabled = true
+                })
+            }
+            
             if let json:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
                 
                 self.poemArray = json["data"] as NSArray
@@ -72,6 +105,15 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
                 self.dataReady = true
                 self.headPoems = headAr
                 dispatch_async(dispatch_get_main_queue(), {()->Void in
+                    if refreshControl != nil {
+                        refreshControl!.endRefreshing()
+                        self.scrollView.contentOffset = CGPointMake(0, 0)
+                        self.pageControl.currentPage = 0
+                    }
+                    let tapRecognizer = UITapGestureRecognizer(target: self, action: "onTapHeadView")
+                    self.scrollView.addGestureRecognizer(tapRecognizer)
+                    activiyIndicator.stopAnimating()
+                    activiyIndicator.removeFromSuperview()
                     self.pageControl.numberOfPages = headAr.count
                     self.pageControl.hidden = false
                     self.initHeadBannerView()
@@ -91,11 +133,13 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         scrollView.delegate = self
         var orginX:CGFloat = 0
         for var i = 0; i < self.headPoems.count;  i++ {
-            var idx:Int32 = rand() % 13 + 1
-            let imagePath:String = NSBundle.mainBundle().pathForResource("\(idx)", ofType: "jpg")
+            if scrollView.viewWithTag(100+i) != nil {
+                scrollView.viewWithTag(100+i).removeFromSuperview()
+            }
             var headBannerView:UIView;
             let poemEntity = headPoems[i] as NSDictionary
-            headBannerView = createHeadBannerView(imagePath, text: poemEntity["desc"] as String)
+            let imagePath:String = poemEntity["image"] as String
+            headBannerView = createHeadBannerView(imagePath, text: poemEntity["desc"] as String, title:poemEntity["title"] as String)
             headBannerView.tag = 100 + i
             headBannerView.frame = CGRectMake(orginX, 0, headBannerView.frame.width, headBannerView.frame.height)
             orginX = orginX + scrollView.frame.size.width
@@ -103,18 +147,36 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         }
     }
     
-    func createHeadBannerView(name:String, text:String) -> UIView {
+    func createHeadBannerView(name:String, text:String, title:String) -> UIView {
         let view:UIView = UIView(frame:scrollView.bounds)
+        
+        let imageData = NSData(contentsOfURL: NSURL(string: name))
         let imageView:UIImageView = UIImageView(frame:scrollView.bounds)
-        imageView.image = UIImage(contentsOfFile:name)
+        imageView.image = UIImage(data: imageData)
         imageView.alpha = 0.3
         imageView.tag = 10
         view.addSubview(imageView)
-        let headTextLabel:UILabel = UILabel(frame: CGRectMake(20, 100, scrollView.bounds.size.width - CGFloat(40), 80))
+        
+        let gradient:CAGradientLayer = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.grayColor().CGColor,
+        UIColor.grayColor().CGColor]
+        view.layer.insertSublayer(gradient,atIndex:0)
+        
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(20, 20, 40, 160))
+        titleLabel.backgroundColor = UIColor.clearColor()
+        titleLabel.font = UIFont(name: kFontSong, size: 24)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.numberOfLines = 0
+        titleLabel.text = title
+        titleLabel.tag = 30
+        view.addSubview(titleLabel)
+        
+        let headTextLabel:UILabel = UILabel(frame: CGRectMake(80, 20, scrollView.bounds.size.width - CGFloat(100), 160))
         headTextLabel.backgroundColor = UIColor.clearColor()
-        headTextLabel.font = UIFont(name: kFontKai, size: 20)
-        headTextLabel.textColor = UIColor.blackColor()
-        headTextLabel.numberOfLines = 2
+        headTextLabel.font = UIFont(name: kFontKai, size: 16)
+        headTextLabel.textColor = UIColor.whiteColor()
+        headTextLabel.numberOfLines = 0
         headTextLabel.text = text
         headTextLabel.tag = 20
         view.addSubview(headTextLabel)
@@ -177,7 +239,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         let contentVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
         let poem = headPoems[pageControl.currentPage] as NSDictionary
         contentVC.titleText = "诗词推荐"
-        //contentVC.poemEntity = poem
+        contentVC.poemDic = poem
         self.navigationController.pushViewController(contentVC, animated: true)
     }
     
@@ -234,6 +296,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         } else {
             let label:UILabel = UILabel(frame:CGRectMake(5,5,50,50))
             label.text = poem["author"] as String
+            label.lineBreakMode = .ByClipping
             label.textAlignment = .Center
             label.numberOfLines = 0
             label.tag = 1

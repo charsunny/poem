@@ -39,6 +39,8 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
             textView.center = self.view.center
             textView.font = UIFont(name: kFontSong, size: 36)
             textView.textAlignment = .Center
+            textView.editable = false
+            textView.selectable = false
             textView.text = showLoadingText
             self.view.addSubview(textView)
             dispatch_async(dispatch_get_global_queue(0, 0), {()->Void in

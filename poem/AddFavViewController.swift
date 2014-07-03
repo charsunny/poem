@@ -52,7 +52,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
         } else {
             favFolder = favItem!.folder
             descField.text = favItem!.desc
-            self.navigationBar.topItem.title = "编辑收藏"
+            self.navigationBar.topItem.title = "编辑归档"
         }
     }
 
@@ -77,6 +77,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
     @IBAction func confirmVC(sender: AnyObject) {
         if favItem == nil {
             favItem = NSEntityDescription.insertNewObjectForEntityForName("FavItem", inManagedObjectContext: favManagedDoc.managedObjectContext) as? FavItem
+            NSNotificationCenter.defaultCenter().postNotificationName("addfav", object: nil)
         }
         favItem!.type = poemEntity?.type
         favItem!.title = poemEntity?.title

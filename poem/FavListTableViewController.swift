@@ -10,7 +10,7 @@ import UIKit
 
 class FavListTableViewController: UITableViewController {
     
-    var favItems:Array<AnyObject>?
+    var favItems:NSMutableArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,13 +97,13 @@ class FavListTableViewController: UITableViewController {
 
 
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?) {
+    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            let favItem:FavItem = favItems![indexPath!.row] as FavItem
+            let favItem:FavItem = favItems![indexPath.row] as FavItem
             favManagedDoc.managedObjectContext.deleteObject(favItem)
-            //favItems!.removeAtIndex(indexPath!.row)
-            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
+            favItems!.removeObject(favItem)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

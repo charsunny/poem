@@ -11,8 +11,14 @@ import UIKit
 let kAppKey_WeiXin = "wxf04441074e0bff9c"
 let kAppKey_WeiBo = "979020811"
 
-let kFontSong:String = "FZQingKeBenYueSongS-R-GB"//"FZSongKeBenXiuKaiT-R-GB"
-let kFontKai:String = "FZKai-Z03S"//"FZKai-Z03T"//
+let fontSong:String = "FZQingKeBenYueSongS-R-GB"//"FZSongKeBenXiuKaiT-R-GB"
+let fontKai:String = "FZKai-Z03S"//"FZKai-Z03T"//
+let fontFSong:String = "FZSongKeBenXiuKaiT-R-GB"
+let fontFKai:String = "FZKai-Z03T"//
+
+var kFontSong = fontSong
+var kFontKai = fontKai
+
 let kFontIcon:String = "icomoon"
 let kDBPath:String? = NSBundle.mainBundle().pathForResource("poem", ofType: "db")
 let PoemDB:EGODatabase? = EGODatabase(path:kDBPath)
@@ -24,6 +30,10 @@ var favFolders:Array<FavFolder> = []
 
 var songNameMap:NSDictionary = NSDictionary()
 var authorMap:NSDictionary = NSDictionary()
+
+var isTraditionalChar:Bool = false
+var isBigFont:Bool = false
+var bgMusicOff:Bool = false
 
 func UIColorFromRGB(rgbValue:Int)->UIColor {
     return UIColor(red: CGFloat((rgbValue & 0xFF0000) >> 16)/255.0 , green: CGFloat((rgbValue & 0xFF00) >> 8)/255.0, blue: CGFloat((rgbValue & 0xFF))/255.0, alpha: 1.0)
@@ -50,6 +60,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             authorMap = AuthorEntity.getAllAuthor()
             songNameMap = SongNameEntity.getAllName()
         })
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("bigfont") {
+            isBigFont = true
+        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("tradchar") {
+            isTraditionalChar = true
+            kFontSong = fontFSong
+            kFontKai = fontFKai
+        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("musicoff") {
+            bgMusicOff = true
+        }
+
         return true
     }
     

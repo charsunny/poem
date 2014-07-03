@@ -11,7 +11,7 @@ import QuartzCore
 
 class SecondViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate ,UISearchDisplayDelegate{
     
-    var searchResult:NSArray = NSArray()
+    var searchResult:NSArray!
     
     @IBOutlet var searchBar : UISearchBar
     
@@ -26,6 +26,15 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
         self.searchDisplayController.delegate = self
         footView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footView
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fontnamechanged", name: "tradchar", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "tradchar", object: nil)
+    }
+
+    func fontnamechanged() -> Void {
+        tableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,7 +74,10 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if tableView === self.searchDisplayController.searchResultsTableView {
-            return searchResult.count;
+            if searchResult {
+                return searchResult.count;
+            }
+            return 0
         }
        return 4;
     }
@@ -111,11 +123,11 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
         cell.detailTextLabel.font = UIFont(name: kFontKai, size: 18)
         switch indexPath.row {
         case 0 :
-            cell.imageView.image = UIImage(named: "libai")
+            cell.imageView.image = UIImage(named: "wander1")
             cell.textLabel.text = "唐诗• 随览"
             cell.detailTextLabel.text = "『漫卷诗书喜欲狂』"
         case 1:
-            cell.imageView.image = UIImage(named: "sushi")
+            cell.imageView.image = UIImage(named: "wander2")
             cell.textLabel.text = "宋词• 漫游"
             cell.detailTextLabel.text = "『一曲新词酒一杯』"
         case 2:

@@ -30,6 +30,7 @@
 		503F1CA81949AA6300110456 /* poemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CA71949AA6300110456 /* poemTests.swift */; };
 		5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */; };
 		504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A751D19518221005A3353 /* SXCollectionViewCell.swift */; };
+		504C41BA19612D4000C3D5BB /* HistoryRecTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */; };
 		5063E68B195BDB7D008C56C8 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5063E68A195BDB7D008C56C8 /* music.mp3 */; };
 		5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */; };
 		508C5BC0194E11B100870925 /* SongName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C5BBF194E11B100870925 /* SongName.swift */; };
@@ -121,6 +122,7 @@
 		503F1CA71949AA6300110456 /* poemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = poemTests.swift; sourceTree = "<group>"; };
 		5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
 		504A751D19518221005A3353 /* SXCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXCollectionViewCell.swift; sourceTree = "<group>"; };
+		504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecTableViewController.swift; sourceTree = "<group>"; };
 		5063E68A195BDB7D008C56C8 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		508C5BBF194E11B100870925 /* SongName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongName.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				503F1C941949AA6300110456 /* FirstViewController.swift */,
+				504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */,
 				503F1C961949AA6300110456 /* SecondViewController.swift */,
 				50B63157194E0C10001D9CDC /* SearchListViewController.swift */,
 				5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */,
@@ -551,6 +554,7 @@
 				50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */,
 				50EDCD06194B853800940211 /* PoemContainerViewController.swift in Sources */,
 				501CE5FF194ABF400067B5FC /* PoemEntity.swift in Sources */,
+				504C41BA19612D4000C3D5BB /* HistoryRecTableViewController.swift in Sources */,
 				50340D941953F36800CE1593 /* FavManager.swift in Sources */,
 				503070AF194EAC9900C8FE67 /* PinyinHelper.m in Sources */,
 				50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */,

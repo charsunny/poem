@@ -79,7 +79,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         
         // init contents
         self.authorLabel.font = UIFont(name:kFontSong, size:16)
-        self.contentView.font = UIFont(name:kFontKai, size:20)
+        self.contentView.font = UIFont(name:kFontKai, size: (isBigFont ? 26 : 20))
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
         self.descLabel.font = UIFont(name:kFontSong, size:16)
         self.descView.font = UIFont(name:kFontKai, size:14)
@@ -97,7 +97,8 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         if poemEntity?.type == 1 {
             self.contentView.textAlignment = .Left
         }
-        self.contentView.text = PoemEntity.formatContent(poemEntity!.content)
+        let contentStr:NSString = PoemEntity.formatContent(poemEntity!.content) as NSString
+        self.contentView.text = contentStr
         self.descView.text = poemDic!["desc"] as String
         
         if self.parentViewController is UINavigationController {
@@ -142,8 +143,13 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        player!.play()
+        if !bgMusicOff {
+            player!.play()
+        }
         //createMenuButton()
+//        UIView.animateWithDuration(10, animations: {()-> Void in
+//            self.contentView.contentOffset = CGPointMake(0, 100)
+//        })
         favItem = getFavItem(poemEntity!.rowid)
     }
     
@@ -154,7 +160,9 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     }
     
     deinit {
-        player!.stop()
+        if !bgMusicOff {
+            player!.stop()
+        }
     }
     
     override func observeValueForKeyPath(keyPath: String!,

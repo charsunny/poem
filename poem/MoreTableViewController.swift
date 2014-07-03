@@ -26,15 +26,23 @@ class MoreTableViewController: UITableViewController,MFMailComposeViewController
         // self.clearsSelectionOnViewWillAppear = false
         let nameSwitch:UISwitch = UISwitch()
         nameSwitch.center = CGPointMake(280, 22)
+        nameSwitch.tag = 1
+        nameSwitch.on = isTraditionalChar
+        nameSwitch.addTarget(self, action: "valueDidChanged:", forControlEvents: .ValueChanged)
         fontNameCell.contentView.addSubview(nameSwitch)
         
         let sizeSwitch:UISwitch = UISwitch()
         sizeSwitch.center = CGPointMake(280, 22)
+        sizeSwitch.on = isBigFont
+        sizeSwitch.tag = 2
+        sizeSwitch.addTarget(self, action: "valueDidChanged:", forControlEvents: .ValueChanged)
         fontSizeCell.contentView.addSubview(sizeSwitch)
         
         let notifSwitch:UISwitch = UISwitch()
-        notifSwitch.setOn(true, animated: false)
+        notifSwitch.tag = 3
+        notifSwitch.on = !bgMusicOff
         notifSwitch.center = CGPointMake(280, 22)
+        notifSwitch.addTarget(self, action: "valueDidChanged:", forControlEvents: .ValueChanged)
         NotifCell.contentView.addSubview(notifSwitch)
     }
 
@@ -42,6 +50,25 @@ class MoreTableViewController: UITableViewController,MFMailComposeViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func valueDidChanged(swtch:UISwitch) -> Void {
+        switch swtch.tag {
+        case 1:
+            isTraditionalChar = swtch.on
+            kFontSong = isTraditionalChar ? fontFSong : fontSong
+            kFontKai = isTraditionalChar ? fontFKai : fontKai
+            NSUserDefaults.standardUserDefaults().setBool(swtch.on, forKey: "tradchar")
+            NSNotificationCenter.defaultCenter().postNotificationName("tradchar", object: nil)
+        case 2:
+            isBigFont = swtch.on
+            NSUserDefaults.standardUserDefaults().setBool(swtch.on, forKey: "bigfont")
+        case 3:
+            bgMusicOff = !swtch.on
+            NSUserDefaults.standardUserDefaults().setBool(swtch.on, forKey: "musicoff")
+        default:
+            println()
+        }
     }
     
     override func tableView(tableView: UITableView!, shouldHighlightRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
