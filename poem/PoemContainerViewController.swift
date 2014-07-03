@@ -60,7 +60,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
     }
     
     func initPageVC() -> Void {
-        self.pageViewController = UIPageViewController(transitionStyle:.Scroll, navigationOrientation: .Horizontal, options: nil)
+        self.pageViewController = UIPageViewController(transitionStyle:.Scroll, navigationOrientation: .Vertical, options: nil)
         if let contentVC:RandomContentViewController = contentVCAtIndex(curIdx) {
             self.pageViewController?.setViewControllers([contentVC], direction:.Forward, animated: false, completion: nil)
         }

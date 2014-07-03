@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
@@ -1105,15 +1106,6 @@
                                     <action selector="shareBtnClicked:" destination="abN-aD-csv" eventType="touchUpInside" id="PX6-B5-JTn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uR-ct-eZ9">
-                                <rect key="frame" x="290" y="25" width="25" height="25"/>
-                                <state key="normal" image="MagnifierCloseButton">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClickBack:" destination="abN-aD-csv" eventType="touchUpInside" id="Zsf-EM-rsz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1292,7 +1284,6 @@
     </scenes>
     <resources>
         <image name="10.jpg" width="640" height="960"/>
-        <image name="MagnifierCloseButton" width="35" height="35"/>
         <image name="first" width="30" height="30"/>
         <image name="libai" width="60" height="60"/>
         <image name="meihua" width="320" height="244"/>
