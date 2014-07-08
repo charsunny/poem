@@ -1,6 +1,9 @@
 {
   "images" : [
     {
+      "idiom" : "universal"
+    },
+    {
       "idiom" : "universal",
       "scale" : "1x",
       "filename" : "iconMedBooks.png"
@@ -9,6 +12,17 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "iconMedBooks@2x.png"
+    },
+    {
+      "idiom" : "iphone"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x"
     }
   ],
   "info" : {

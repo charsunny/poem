@@ -1,9 +1,23 @@
 {
   "images" : [
     {
+      "idiom" : "universal"
+    },
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 33
+        },
+        "capInsets" : {
+          "right" : 63,
+          "left" : 189
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "meihua.png"
+      "filename" : "meihua.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

@@ -57,7 +57,7 @@ class EditFavViewController: UIViewController,UICollectionViewDataSource,UIColle
     }
     
     @IBAction func dismissVC(sender: AnyObject) {
-        self.dismissModalViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func confirmVC(sender: AnyObject) {
@@ -77,7 +77,7 @@ class EditFavViewController: UIViewController,UICollectionViewDataSource,UIColle
         }
         FavManager.sharedFavManager.favDocReady()
         self.delegate?.finishEditFavFolder(self.favFolder!, isAdd)
-        self.dismissModalViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {

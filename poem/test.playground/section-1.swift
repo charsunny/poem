@@ -1,20 +1,14 @@
-// Playground - noun: a place where people can play
+var x = 5
+var y:Int? = 5
+var name:String? = "xiaogang"
+name!.lowercaseString
 
-println("你好，sunming")
+var z = "xxx\(y)\(name)"
 
-var x =  "你好，sunming"
-
-x += "haha"
-
-for i in x {
-    i = i + Character(55)
-}
-
-var y = x
-
-let z = y
-
-
+var a:Dictionary<String, Int> = Dictionary<String,Int>()
+a["xx"] = 5
+a
+var a:Array<AnyObject> = Array<AnyObject>()
 
 
 

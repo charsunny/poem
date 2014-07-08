@@ -12,7 +12,7 @@ protocol SXCollectionViewCellDelegate {
     func performEdit(sender:AnyObject?, cell:UICollectionViewCell)
     func performDelete(sender:AnyObject?, cell:UICollectionViewCell)
 }
-
+@IBDesignable
 class SXCollectionViewCell: UICollectionViewCell {
     
     var delegate:SXCollectionViewCellDelegate?

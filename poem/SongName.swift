@@ -35,13 +35,13 @@ class SongNameEntity {
         pyFormat.caseType = CaseTypeUppercase
 
         if let count:Int = result?.count() {
-            for idx in 0..count {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:SongNameEntity = SongNameEntity(row:poemRow!)
                 let char:String = poemEntity.name[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if songNameMap[key] == nil {
+                if !songNameMap[key] {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     songNameMap[key] = value

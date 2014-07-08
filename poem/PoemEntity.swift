@@ -47,7 +47,7 @@ class PoemEntity {
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if let count:Int = result?.count() {
-            for idx in 0..count {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
                 poems.append(poemEntity)
@@ -82,7 +82,7 @@ class PoemEntity {
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if let count:Int = result?.count() {
-            for idx in 0..count {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
                 poems.addObject(poemEntity)
@@ -109,13 +109,13 @@ class PoemEntity {
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if let count:Int = result?.count() {
-            for idx in 0..count {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
                 let char:String = poemEntity.title[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if poemMap[key] == nil {
+                if !poemMap[key] {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     poemMap[key] = value
@@ -147,13 +147,13 @@ class PoemEntity {
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if let count:Int = result?.count() {
-            for idx in 0..count {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
                 let char:String = poemEntity.author[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if poemMap[key] == nil {
+                if !poemMap[key] {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     poemMap[key] = value

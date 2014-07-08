@@ -119,7 +119,7 @@ class SearchDetailViewController: UITableViewController {
         return self.sectionkeys[section] as String
     }
 
-    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> AnyObject[]! {
+    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> [AnyObject]! {
         return self.sectionkeys
     }
     

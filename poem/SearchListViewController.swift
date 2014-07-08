@@ -77,7 +77,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         return self.sectionkeys[section] as String
     }
     
-    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> AnyObject[]! {
+    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> [AnyObject]! {
         if !loadFinish {
             return nil
         }

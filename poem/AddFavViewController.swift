@@ -71,7 +71,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
     }
     
     @IBAction func dismissVC(sender: AnyObject) {
-        self.dismissModalViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func confirmVC(sender: AnyObject) {
@@ -86,18 +86,18 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
         favItem!.folder = favFolder
         favItem!.index = poemEntity?.rowid
         favItem!.author = poemEntity?.author
-        self.dismissModalViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func collectionView(collectionView: UICollectionView?, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         return favFolders.count + 1
     }
     
-    func collectionView(collectionView: UICollectionView?, cellForItemAtIndexPath indexPath: NSIndexPath?) -> UICollectionViewCell? {
-        let cell = collectionView?.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as SXCollectionViewCell
+    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as SXCollectionViewCell
         // Configure the cell
-        if indexPath!.row == favFolders.count {
+        if indexPath.row == favFolders.count {
             let color:Int = favColorDic.allValues[8] as Int
             let bgColor = UIColorFromRGB(color)
             cell.backgroundColor = bgColor

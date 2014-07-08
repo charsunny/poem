@@ -159,8 +159,8 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         
         let gradient:CAGradientLayer = CAGradientLayer()
         gradient.frame = view.bounds
-        gradient.colors = [UIColor.grayColor().CGColor,
-        UIColor.grayColor().CGColor]
+        gradient.colors = [UIColor.grayColor(),
+        UIColor.grayColor()]
         view.layer.insertSublayer(gradient,atIndex:0)
         
         let titleLabel:UILabel = UILabel(frame: CGRectMake(20, 20, 40, 160))

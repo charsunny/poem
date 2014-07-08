@@ -68,7 +68,6 @@
 		50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508B195207FD0043D686 /* fav.xcdatamodeld */; };
 		50EF5090195209720043D686 /* FavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508F195209720043D686 /* FavItem.m */; };
 		50EF5093195209730043D686 /* FavFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EF5092195209730043D686 /* FavFolder.m */; };
-		50F5FAAA195AEB0D004A60E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F5FAA9195AEB0D004A60E0 /* StoreKit.framework */; };
 		50F5FAAC195AEB13004A60E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F5FAAB195AEB13004A60E0 /* MessageUI.framework */; };
 		50F5FAAF195AED87004A60E0 /* fkaiti.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAAD195AED87004A60E0 /* fkaiti.TTF */; };
 		50F5FAB2195AEF53004A60E0 /* fsongti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAB1195AEF53004A60E0 /* fsongti.ttf */; };
@@ -169,7 +168,6 @@
 		50EF508F195209720043D686 /* FavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavItem.m; sourceTree = "<group>"; };
 		50EF5091195209730043D686 /* FavFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavFolder.h; sourceTree = "<group>"; };
 		50EF5092195209730043D686 /* FavFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavFolder.m; sourceTree = "<group>"; };
-		50F5FAA9195AEB0D004A60E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		50F5FAAB195AEB13004A60E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		50F5FAAD195AED87004A60E0 /* fkaiti.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fkaiti.TTF; sourceTree = "<group>"; };
 		50F5FAB1195AEF53004A60E0 /* fsongti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fsongti.ttf; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F5FAAC195AEB13004A60E0 /* MessageUI.framework in Frameworks */,
-				50F5FAAA195AEB0D004A60E0 /* StoreKit.framework in Frameworks */,
 				501CE5FC194ABD650067B5FC /* libsqlite3.dylib in Frameworks */,
 				500287EB1954377F00F5D749 /* libWeiboSDK.a in Frameworks */,
 				500287ED1954377F00F5D749 /* libWeChatSDK.a in Frameworks */,
@@ -298,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				50F5FAAB195AEB13004A60E0 /* MessageUI.framework */,
-				50F5FAA9195AEB0D004A60E0 /* StoreKit.framework */,
 				501CE5FB194ABD650067B5FC /* libsqlite3.dylib */,
 				503F1C911949AA6300110456 /* Info.plist */,
 				501CE5FD194ABDB00067B5FC /* Poem-Bridging-Header.h */,
@@ -477,6 +473,12 @@
 				TargetAttributes = {
 					503F1C8C1949AA6300110456 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 2N57UDJZHV;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					503F1CA01949AA6300110456 = {
 						CreatedOnToolsVersion = 6.0;

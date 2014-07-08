@@ -34,13 +34,13 @@ class AuthorEntity {
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if let count:Int = result?.count() {
-            for idx in 0..count {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:AuthorEntity = AuthorEntity(row:poemRow!)
                 let char:String = poemEntity.name[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if authorMap[key] == nil {
+                if !authorMap[key] {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     authorMap[key] = value

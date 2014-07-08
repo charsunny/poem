@@ -83,7 +83,6 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
         self.descLabel.font = UIFont(name:kFontSong, size:16)
         self.descView.font = UIFont(name:kFontKai, size:14)
-        self.titleLabel.adjustsLetterSpacingToFitWidth = true
         self.titleLabel.adjustsFontSizeToFitWidth = true
         self.addParallaxEffect(self.titleLabel, depth: 15)
         self.addParallaxEffect(self.authorLabel, depth: 15)
@@ -165,10 +164,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String!,
-        ofObject object: AnyObject!,
-        change: NSDictionary!,
-        context: CMutableVoidPointer) {
+    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafePointer<()>) {
         let txtview = object as UITextView
         var topoffset =  (txtview.bounds.size.height - txtview.contentSize.height * txtview.zoomScale)/2.0;
         topoffset = ( topoffset < 0.0 ? 0.0 : topoffset );
@@ -252,34 +248,6 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         addFavVC.poemEntity = poemEntity
         addFavVC.favItem = favItem
         self.presentViewController(addFavVC, animated:true, completion:nil)
-//        let pt:CGPoint = sender.center
-//        
-//        for i:Int in 1...5 {
-//            
-//            let menu = self.view.viewWithTag(100+i)
-//            
-//            if !menuShow {
-//                let ptx = CDouble(pt.x) + cos(M_PI*(CDouble(i-1))/4)*60
-//                let pty = CDouble(pt.y) - sin(M_PI*(CDouble(i-1))/4)*60
-//                let color = favColorDic.allValues[2] as Int
-//                self.menuButton.setBackgroundImage(UIImage.colorImage(UIColorFromRGB(color), rect:self.menuButton.bounds), forState:.Normal)
-//                UIView.animateWithDuration(0.3, animations:{ ()-> Void in
-//                    menu.center = CGPointMake(CGFloat(ptx), CGFloat(pty))
-//                    menu.alpha = 1
-//                }, completion:{(finsh:Bool)->Void in
-//                    self.menuShow = true
-//                })
-//            } else {
-//                let color = favColorDic.allValues[3] as Int
-//                self.menuButton.setBackgroundImage(UIImage.colorImage(UIColorFromRGB(color), rect:self.menuButton.bounds), forState:.Normal)
-//                UIView.animateWithDuration(0.3, animations:{ ()-> Void in
-//                    menu.center = pt
-//                    menu.alpha = 0
-//                }, completion:{(finsh:Bool)->Void in
-//                    self.menuShow = false
-//                })
-//            }
-//        }
     }
     
     func onClick(sender:UIButton)->Void {
@@ -344,8 +312,8 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         ext.url = "http://www.baidu.com"
         message.mediaObject = ext
         let req:SendMessageToWXReq = SendMessageToWXReq()
-        req.bText = false;
-        req.message = message;
+        req.bText = true
+        req.text = poemEntity!.title + "\n" + poemEntity!.content;
         if circle {
             req.scene = 1
         } else {

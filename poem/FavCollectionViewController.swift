@@ -66,13 +66,14 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
 
     // #pragma mark UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView?, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         return favFolders.count
     }
 
-    override func collectionView(collectionView: UICollectionView?, cellForItemAtIndexPath indexPath: NSIndexPath?) -> UICollectionViewCell? {
-        let cell = collectionView?.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as SXCollectionViewCell
+
+    override func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell? {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as SXCollectionViewCell
         // Configure the cell
         let favItem = favFolders[indexPath!.row]
         cell.titleLabel.font = UIFont(name: kFontSong, size: 24)
@@ -86,7 +87,7 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
     }
 
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView?, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath?) -> Bool {
+    override func collectionView(collectionView: UICollectionView!, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
         let menuEdit:UIMenuItem = UIMenuItem(title:"编辑", action: "performEdit:")
         let menuDelete:UIMenuItem = UIMenuItem(title:"删除" , action:"performDelete:")
         UIMenuController.sharedMenuController().menuItems = [menuEdit, menuDelete]

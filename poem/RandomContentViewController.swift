@@ -65,7 +65,6 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         self.authorLabel.font = UIFont(name:kFontSong, size:16)
         self.contentView.font = UIFont(name:kFontKai, size:(isBigFont ? 26 : 20))
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
-        self.titleLabel.adjustsLetterSpacingToFitWidth = true
         self.titleLabel.adjustsFontSizeToFitWidth = true
         self.titleLabel.text = poemEntity?.title
         self.authorLabel.text = poemEntity?.author
@@ -129,15 +128,15 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         synthesizer.stopSpeakingAtBoundary(.Word)
     }
     
-    override func observeValueForKeyPath(keyPath: String!,
-        ofObject object: AnyObject!,
-        change: NSDictionary!,
-        context: CMutableVoidPointer) {
-            let txtview = object as UITextView
-            var topoffset =  (txtview.bounds.size.height - txtview.contentSize.height * txtview.zoomScale)/2.0;
-            topoffset = ( topoffset < 0.0 ? 0.0 : topoffset );
-            txtview.contentOffset = CGPointMake(0, -topoffset)
-    }
+//    override func observeValueForKeyPath(keyPath: String!,
+//        ofObject object: AnyObject!,
+//        change: NSDictionary!,
+//        context: CMutableVoidPointer) {
+//            let txtview = object as UITextView
+//            var topoffset =  (txtview.bounds.size.height - txtview.contentSize.height * txtview.zoomScale)/2.0;
+//            topoffset = ( topoffset < 0.0 ? 0.0 : topoffset );
+//            txtview.contentOffset = CGPointMake(0, -topoffset)
+//    }
     
     func getFavItem(idx:Int) -> FavItem? {
         let request = NSFetchRequest(entityName:"FavItem")
@@ -175,7 +174,11 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         myActionSheet.addButtonWithTitle("分享到微信朋友圈")
         myActionSheet.addButtonWithTitle("取消")
         myActionSheet.cancelButtonIndex = 3
-        myActionSheet.showInView(self.view)
+        if self.parentViewController {
+            myActionSheet.showInView(self.parentViewController.view)
+        } else {
+            myActionSheet.showInView(self.view)
+        }
     }
     
     @IBAction func touchMenuDown(sender : UIButton) {
@@ -209,8 +212,9 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         ext.url = "http://www.baidu.com"
         message.mediaObject = ext
         let req:SendMessageToWXReq = SendMessageToWXReq()
-        req.bText = false;
-        req.message = message;
+        req.bText = true
+        req.text = poemEntity!.title + "\n" + poemEntity!.content
+        //req.message = message;
         if circle {
             req.scene = 1
         } else {
