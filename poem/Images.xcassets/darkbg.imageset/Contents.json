@@ -1,17 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "meihua.png"
+      "filename" : "darkbg.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "meihua@2x.png"
+      "scale" : "2x"
     }
   ],
   "info" : {

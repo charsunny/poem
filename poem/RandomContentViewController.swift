@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import QuartzCore
+import CoreData
 
 class RandomContentViewController: UIViewController,UIActionSheetDelegate {
     
@@ -18,32 +19,46 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
     
     var favItem:FavItem?
     
-    @lazy var synthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
+    lazy var synthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
     
-    @IBOutlet var titleLabel:UILabel
+    @IBOutlet var titleLabel:UILabel!
     
-    @IBOutlet var authorLabel:UILabel
+    @IBOutlet var authorLabel:UILabel!
     
-    @IBOutlet var contentView:UITextView
+    @IBOutlet var contentView:UITextView!
     
-    @IBOutlet var backgroundImageView:UIImageView
+    @IBOutlet var backgroundImageView:UIImageView!
     
-    @IBOutlet var menuButton : UIButton
+    @IBOutlet var menuButton : UIButton!
     
-    @IBOutlet var shareButton: UIButton
+    @IBOutlet var shareButton: UIButton!
     
     //@IBOutlet var backButton : UIButton
     
-    @lazy var butterFly:UIImageView = UIImageView(frame:CGRectMake(0,0,30,30))
+    lazy var butterFly:UIImageView = UIImageView(frame:CGRectMake(0,0,30,30))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        let bgImageView = UIImageView(image: UIImage(named: darkMode ? "darkbg" : "lightbg"))
+
+        self.view.insertSubview(bgImageView, atIndex: 0)
+    
+        for subview in self.view.subviews {
+            if subview is UILabel {
+                (subview as UILabel).textColor = darkMode ? UIColor.whiteColor() : UIColor.blackColor()
+            } else if subview is UITextView {
+                (subview as UITextView).textColor = darkMode ? UIColor.whiteColor() : UIColor.blackColor()
+            }
+        }
+
         menuButton.clipsToBounds = true
-        menuButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
+        menuButton.setTitleColor(darkMode ? UIColor.lightTextColor() : UIColor.darkTextColor(), forState: .Normal)
+        shareButton.setTitleColor(darkMode ? UIColor.lightTextColor() : UIColor.darkTextColor(), forState: .Normal)
+        menuButton.titleLabel?.font = UIFont(name: kFontIcon, size: 30)
         //backButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
-        shareButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
+        shareButton.titleLabel?.font = UIFont(name: kFontIcon, size: 24)
         
         var images:NSMutableArray = NSMutableArray()
         var butterFlyImages = NSMutableArray()
@@ -56,18 +71,18 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
             }
         }
         butterFly.animationImages = butterFlyImages
-        butterFly.center = CGPointMake(10,CGFloat(rand()%480))
+        butterFly.center = CGPointFromString("{10,\(rand()%480)}")
         self.view.addSubview(butterFly)
         butterFly.startAnimating()
         self.initButterFlyAnimation(Int(butterFlyIndex))
         
         // init contents
-        self.authorLabel.font = UIFont(name:kFontSong, size:16)
-        self.contentView.font = UIFont(name:kFontKai, size:(isBigFont ? 26 : 20))
-        self.titleLabel.font = UIFont(name:kFontSong, size: 28)
-        self.titleLabel.adjustsFontSizeToFitWidth = true
-        self.titleLabel.text = poemEntity?.title
-        self.authorLabel.text = poemEntity?.author
+        self.authorLabel?.font = UIFont(name:kFontSong, size:16)
+        self.contentView?.font = UIFont(name:kFontKai, size:(isBigFont ? 26 : 20))
+        self.titleLabel?.font = UIFont(name:kFontSong, size: 28)
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.titleLabel?.text = poemEntity?.title
+        self.authorLabel?.text = poemEntity?.author
         if poemEntity?.type == 1 {
             self.contentView.textAlignment = .Left
         }
@@ -77,22 +92,22 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         self.addParallaxEffect(self.contentView, depth: 15)
     
         if self.parentViewController is UINavigationController {
-            self.navigationController.interactivePopGestureRecognizer.delegate = nil
+            self.navigationController?.interactivePopGestureRecognizer.delegate = nil
         }
     }
     
     func initButterFlyAnimation(type:Int) {
-        var starPoint = CGPointMake(10,CGFloat(rand()%100+340))
+        var starPoint = CGPointFromString("{10,\(rand()%100+340)}")
         var endPoint = CGPointMake(250, 82)
         switch type {
         case 1: // left to right
-            starPoint = CGPointMake(10,CGFloat(rand()%100+340))
+            starPoint = CGPointFromString("{10,\(rand()%100+340)}")
             endPoint = CGPointMake(260, 160)
         case 2:
-            starPoint = CGPointMake(320,CGFloat(rand()%100+340))
+            starPoint = CGPointFromString("{320,\(rand()%100+340)}")
             endPoint = CGPointMake(70, 120)
         case 3:
-            starPoint = CGPointMake(320,CGFloat(rand()%80+400))
+            starPoint = CGPointFromString("{320,\(rand()%100+340)}")
             endPoint = CGPointMake(53, 250)
         default:
             println()
@@ -109,7 +124,7 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         pathAnimation.duration = 6
         butterFly.layer.addAnimation(pathAnimation, forKey:"savingAnimation")
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         //navHidden = self.navigationController.navigationBarHidden
@@ -128,6 +143,9 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         synthesizer.stopSpeakingAtBoundary(.Word)
     }
     
+    override func prefersStatusBarHidden()->Bool {
+        return true;
+    }
 //    override func observeValueForKeyPath(keyPath: String!,
 //        ofObject object: AnyObject!,
 //        change: NSDictionary!,
@@ -159,9 +177,9 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
     
     @IBAction func onClickBack(sender : AnyObject) {
         if self.parentViewController is UINavigationController {
-            self.navigationController.popViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(true)
         } else {
-            self.parentViewController.navigationController.popViewControllerAnimated(true)
+            self.parentViewController?.navigationController?.popViewControllerAnimated(true)
         }
     }
     
@@ -174,15 +192,15 @@ class RandomContentViewController: UIViewController,UIActionSheetDelegate {
         myActionSheet.addButtonWithTitle("分享到微信朋友圈")
         myActionSheet.addButtonWithTitle("取消")
         myActionSheet.cancelButtonIndex = 3
-        if self.parentViewController {
-            myActionSheet.showInView(self.parentViewController.view)
+        if (self.parentViewController != nil) {
+            myActionSheet.showInView(self.parentViewController?.view)
         } else {
             myActionSheet.showInView(self.view)
         }
     }
     
     @IBAction func touchMenuDown(sender : UIButton) {
-        let addFavVC = self.storyboard.instantiateViewControllerWithIdentifier("addfavvc") as AddFavViewController
+        let addFavVC = self.storyboard?.instantiateViewControllerWithIdentifier("addfavvc") as AddFavViewController
         addFavVC.poemEntity = poemEntity
         addFavVC.favItem = favItem
         self.presentViewController(addFavVC, animated:true, completion:nil)

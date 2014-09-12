@@ -39,14 +39,14 @@ class PoemEntity {
         
         var poems:Array<PoemEntity> = Array<PoemEntity>()
         
-        var query:String = String("SELECT rowid, * FROM poetry where type = \(type) ORDER BY RANDOM() LIMIT \(count)")
+        var query:String =  "SELECT rowid, * FROM poetry where type = \(type) ORDER BY RANDOM() LIMIT \(count)"
         
         if type < 0 {
-            query = String("SELECT rowid, * FROM poetry ORDER BY RANDOM() LIMIT \(count)")
+            query = "SELECT rowid, * FROM poetry ORDER BY RANDOM() LIMIT \(count)"
         }
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
+        if let count = result?.count() {
             for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
@@ -57,7 +57,7 @@ class PoemEntity {
     }
     
     class func getPoemByIndex(index:Int) -> PoemEntity? {
-        var query:String = String("SELECT rowid, * FROM poetry where rowid = \(index) ")
+        var query:String = "SELECT rowid, * FROM poetry where rowid = \(index) "
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
         if result?.count() > 0 {
             let poemRow:EGODatabaseRow? = result?.rowAtIndex(0)
@@ -72,16 +72,16 @@ class PoemEntity {
         
         let poems:NSMutableArray = NSMutableArray()
         
-        var query:String = "SELECT rowid, * FROM poetry WHERE title like '%%\(key)%%' LIMIT 100"
+        var query:String = "SELECT rowid, * FROM poetry WHERE title like '%\(key)%' LIMIT 100"
         if scope == 1 {
-            query = "SELECT rowid, * FROM poetry WHERE author like '%%\(key)%%' LIMIT 100"
+            query = "SELECT rowid, * FROM poetry WHERE author like '%\(key)%' LIMIT 100"
         } else if scope == 2 {
-            query = "SELECT rowid, * FROM poetry WHERE content like '%%\(key)%%' LIMIT 100"
+            query = "SELECT rowid, * FROM poetry WHERE content like '%\(key)%' LIMIT 100"
         }
         
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
+        if let count = result?.count() {
             for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
@@ -92,7 +92,7 @@ class PoemEntity {
         return poems
     }
     
-    class func getPoemByAuthor(author:String?) -> NSDictionary {
+    class func getPoemByAuthor(author:String!) -> NSDictionary {
         
         let poemMap:NSMutableDictionary = NSMutableDictionary()
         
@@ -105,17 +105,17 @@ class PoemEntity {
         pyFormat.vCharType = VCharTypeWithV
         pyFormat.caseType = CaseTypeUppercase
         
-        let query:String = "SELECT rowid, * FROM poetry WHERE type = 0 AND author like '%%\(author)%%'"
+        let query:String = "SELECT rowid, * FROM poetry WHERE type = 0 AND author = '\(author)'"
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
+        if let count = result?.count() {
             for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
                 let char:String = poemEntity.title[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if !poemMap[key] {
+                if (poemMap[key] == nil) {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     poemMap[key] = value
@@ -130,7 +130,7 @@ class PoemEntity {
         return poemMap;
     }
     
-    class func getSongByName(var name:String?) -> NSDictionary {
+    class func getSongByName(var name:String!) -> NSDictionary {
         
         let poemMap:NSMutableDictionary = NSMutableDictionary()
         
@@ -143,17 +143,17 @@ class PoemEntity {
         pyFormat.vCharType = VCharTypeWithV
         pyFormat.caseType = CaseTypeUppercase
         
-        let query:String = "SELECT rowid, * FROM poetry WHERE type = 1 AND title like '%%\(name)%%'"
+        let query:String = "SELECT rowid, * FROM poetry WHERE type = 1 AND title = '\(name)'"
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
+        if let count = result?.count() {
             for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:PoemEntity = PoemEntity(row:poemRow!)
                 let char:String = poemEntity.author[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if !poemMap[key] {
+                if (poemMap[key] == nil) {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     poemMap[key] = value

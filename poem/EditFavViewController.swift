@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol EditFavViewControllerDelegate {
     func finishEditFavFolder(folder:FavFolder, _ isAdd:Bool)->Void
@@ -22,22 +23,23 @@ class EditFavViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     var favFolder:FavFolder?
     
-    @IBOutlet var navigationBar: UINavigationBar
+    @IBOutlet var navigationBar: UINavigationBar!
     
-    @IBOutlet var titleField: UITextField
+    @IBOutlet var titleField: UITextField!
     
-    @IBOutlet var collectionView: UICollectionView
+    @IBOutlet var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        navigationBar.barStyle = darkMode ? .Black : .Default
         titleField.becomeFirstResponder()
         let spLine = UIView(frame: CGRectMake(20, 106, 280, 0.5))
         spLine.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(spLine)
         titleField.clearButtonMode = .WhileEditing
         if favFolder != nil {
-            self.navigationBar.topItem.title = "编辑收藏夹"
+            self.navigationBar?.topItem?.title = "编辑收藏夹"
             titleField.text = favFolder!.name
         }
     }
@@ -80,12 +82,12 @@ class EditFavViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
         let color:Int = favColorDic.allValues[indexPath.row] as Int
         let bgColor = UIColorFromRGB(color)

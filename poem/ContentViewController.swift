@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import AudioToolbox
 import QuartzCore
+import CoreData
 
 class ContentViewController: UIViewController,UIActionSheetDelegate {
     
@@ -25,42 +26,56 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     
     var favItem:FavItem?
     
-    @lazy var synthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
+    lazy var synthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
     
-    @IBOutlet var titleLabel:UILabel
+    @IBOutlet var titleLabel:UILabel!
     
-    @IBOutlet var authorLabel:UILabel
+    @IBOutlet var authorLabel:UILabel!
     
-    @IBOutlet var descLabel: UILabel
+    //@IBOutlet var descLabel: UILabel!
     
-    @IBOutlet var descView: UITextView
+    @IBOutlet var descView: UITextView!
     
-    @IBOutlet var contentView:UITextView
+    @IBOutlet var contentView:UITextView!
     
-    @IBOutlet var backgroundImageView:UIImageView
+    @IBOutlet var backgroundImageView:UIImageView!
 
-    @IBOutlet var menuButton : UIButton
+    @IBOutlet var menuButton : UIButton!
     
-    @IBOutlet var shareButton: UIButton
+    @IBOutlet var shareButton: UIButton!
     
-    @lazy var butterFly:UIImageView = UIImageView(frame:CGRectMake(0,0,30,30))
+    lazy var butterFly:UIImageView = UIImageView(frame:CGRectMake(0,0,30,30))
     
     var player:AVAudioPlayer?
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.whiteColor()
+        let bgImageView = UIImageView(image: UIImage(named: darkMode ? "darkbg" : "lightbg"))
+        bgImageView.alpha = 1
+
+        for subview in self.view.subviews {
+            if subview is UILabel {
+                (subview as UILabel).textColor = darkMode ? UIColor.whiteColor() : UIColor.blackColor()
+            } else if subview is UITextView {
+                (subview as UITextView).textColor = darkMode ? UIColor.whiteColor() : UIColor.blackColor()
+            }
+        }
+
+        self.view.insertSubview(bgImageView, atIndex: 0)
 
         // Do any additional setup after loading the view.
         // init backgound music
-        let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("music",ofType:"mp3"))
+        let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("music",ofType:"mp3")!)
         player = AVAudioPlayer(contentsOfURL:soundFileURL,error:nil)
         player!.numberOfLoops = -1; //infinite
-        
-        //let color = favColorDic.allValues[3] as Int
-        //menuButton.setBackgroundImage(UIImage.colorImage(UIColorFromRGB(color), rect:menuButton.bounds), forState:.Normal)
+
         menuButton.clipsToBounds = true
-        menuButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
-        shareButton.titleLabel.font = UIFont(name: kFontIcon, size: 30)
+         menuButton.setTitleColor(darkMode ? UIColor.lightTextColor() : UIColor.darkTextColor(), forState: .Normal)
+        shareButton.setTitleColor(darkMode ? UIColor.lightTextColor() : UIColor.darkTextColor(), forState: .Normal)
+        menuButton.titleLabel?.font = UIFont(name: kFontIcon, size: 30)
+        shareButton.titleLabel?.font = UIFont(name: kFontIcon, size: 30)
         
         var butterFlyImages = NSMutableArray()
         let butterFlyIndex = rand()%3+1
@@ -72,7 +87,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
             }
         }
         butterFly.animationImages = butterFlyImages
-        butterFly.center = CGPointMake(10,CGFloat(rand()%480))
+        //butterFly.center = CGPointMake(CGFloat(10), CGFloat(rand()%480))
         self.view.addSubview(butterFly)
         butterFly.startAnimating()
         self.initButterFlyAnimation(Int(butterFlyIndex))
@@ -81,14 +96,14 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         self.authorLabel.font = UIFont(name:kFontSong, size:16)
         self.contentView.font = UIFont(name:kFontKai, size: (isBigFont ? 26 : 20))
         self.titleLabel.font = UIFont(name:kFontSong, size: 28)
-        self.descLabel.font = UIFont(name:kFontSong, size:16)
+        //self.descLabel.font = UIFont(name:kFontSong, size:16)
         self.descView.font = UIFont(name:kFontKai, size:14)
         self.titleLabel.adjustsFontSizeToFitWidth = true
         self.addParallaxEffect(self.titleLabel, depth: 15)
         self.addParallaxEffect(self.authorLabel, depth: 15)
         self.addParallaxEffect(self.contentView, depth: 15)
         self.addParallaxEffect(self.descView, depth: 15)
-        self.addParallaxEffect(self.descLabel, depth: 15)
+        //self.addParallaxEffect(self.descLabel, depth: 15)
         
         poemEntity = PoemEntity.getPoemByIndex((poemDic!["index"] as String).toInt()!)
         self.titleLabel.text = poemEntity?.title
@@ -96,27 +111,28 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         if poemEntity?.type == 1 {
             self.contentView.textAlignment = .Left
         }
+        
         let contentStr:NSString = PoemEntity.formatContent(poemEntity!.content) as NSString
         self.contentView.text = contentStr
         self.descView.text = poemDic!["desc"] as String
         
         if self.parentViewController is UINavigationController {
-            self.navigationController.interactivePopGestureRecognizer.delegate = nil
+            self.navigationController?.interactivePopGestureRecognizer.delegate = nil
         }
     }
     
     func initButterFlyAnimation(type:Int) {
-        var starPoint = CGPointMake(10,CGFloat(rand()%100+340))
+        var starPoint = CGPointFromString("{10,\(rand()%100+340)}")
         var endPoint = CGPointMake(250, 82)
         switch type {
         case 1: // left to right
-            starPoint = CGPointMake(10,CGFloat(rand()%100+340))
+            starPoint = CGPointFromString("{10,\(rand()%100+340)}")
             endPoint = CGPointMake(260, 120)
         case 2:
-            starPoint = CGPointMake(320,CGFloat(rand()%100+340))
+            starPoint = CGPointFromString("{320,\(rand()%100+340)}")
             endPoint = CGPointMake(120, 40)
         case 3:
-            starPoint = CGPointMake(320,CGFloat(rand()%80+400))
+            starPoint = CGPointFromString("{320,\(rand()%100+340)}")
             endPoint = CGPointMake(70, 290)
         default:
             println()
@@ -137,7 +153,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         //navHidden = self.navigationController.navigationBarHidden
-        self.navigationController.setNavigationBarHidden(true, animated: false);
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -146,16 +162,16 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
             player!.play()
         }
         //createMenuButton()
-//        UIView.animateWithDuration(10, animations: {()-> Void in
-//            self.contentView.contentOffset = CGPointMake(0, 100)
-//        })
         favItem = getFavItem(poemEntity!.rowid)
     }
     
     override func viewDidDisappear(animated: Bool)  {
-//        self.contentView.removeObserver(self , forKeyPath:"contentSize");
         super.viewDidDisappear(animated)
         synthesizer.stopSpeakingAtBoundary(.Word)
+    }
+
+    override func prefersStatusBarHidden()->Bool {
+        return true;
     }
     
     deinit {
@@ -164,7 +180,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafePointer<()>) {
+    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafeMutablePointer<()>) {
         let txtview = object as UITextView
         var topoffset =  (txtview.bounds.size.height - txtview.contentSize.height * txtview.zoomScale)/2.0;
         topoffset = ( topoffset < 0.0 ? 0.0 : topoffset );
@@ -212,7 +228,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
             default:
                 println()
             }
-            menuButton.titleLabel.font = UIFont(name: kFontIcon, size: 28)
+            menuButton.titleLabel?.font = UIFont(name: kFontIcon, size: 28)
             menuButton.addTarget(self, action: "onClick:", forControlEvents:.TouchUpInside)
             self.view.insertSubview(menuButton, belowSubview:self.menuButton)
         }
@@ -225,9 +241,9 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     
     @IBAction func onClickBack(sender : AnyObject) {
         if self.parentViewController is UINavigationController {
-            self.navigationController.popViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(true)
         } else {
-            self.parentViewController.navigationController.popViewControllerAnimated(true)
+            self.parentViewController?.navigationController?.popViewControllerAnimated(true)
         }
     }
 
@@ -244,7 +260,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
     }
     
     @IBAction func touchMenuDown(sender : UIButton) {
-        let addFavVC = self.storyboard.instantiateViewControllerWithIdentifier("addfavvc") as AddFavViewController
+        let addFavVC = self.storyboard?.instantiateViewControllerWithIdentifier("addfavvc") as AddFavViewController
         addFavVC.poemEntity = poemEntity
         addFavVC.favItem = favItem
         self.presentViewController(addFavVC, animated:true, completion:nil)
@@ -266,7 +282,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
             myActionSheet.showInView(self.view)
         case 103:
             
-            let addFavVC = self.storyboard.instantiateViewControllerWithIdentifier("addfavvc") as AddFavViewController
+            let addFavVC = self.storyboard?.instantiateViewControllerWithIdentifier("addfavvc") as AddFavViewController
             addFavVC.poemEntity = poemEntity
             addFavVC.favItem = favItem
             self.presentViewController(addFavVC, animated:true, completion:nil)

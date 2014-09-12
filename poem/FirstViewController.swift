@@ -11,9 +11,9 @@ import QuartzCore
 
 class FirstViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate {
     
-    @IBOutlet var scrollView : UIScrollView
+    @IBOutlet var scrollView : UIScrollView!
     
-    @IBOutlet var pageControl : UIPageControl
+    @IBOutlet var pageControl : UIPageControl!
 
     var timer:NSTimer!
     var lastPage = 0
@@ -24,14 +24,21 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     var headPoems:NSArray = NSArray()
                             
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        loadPoems()
+        self.tabBarController?.tabBar.barStyle = darkMode ? .Black : .Default
+        
+        self.navigationController?.navigationBar.barStyle = darkMode ? .Black : .Default
+        
+        loadPoems();
+        
+        //initHeadBannerView();
         
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target:self, selector:"onTimer", userInfo: nil, repeats:true)
         timer.fire()
         
-        self.refreshControl.addTarget(self, action: "onValueChanged:", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: "onValueChanged:", forControlEvents: .ValueChanged)
         
         let footView:UIView = UIView()
         footView.backgroundColor = UIColor.clearColor()
@@ -47,7 +54,11 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -68,7 +79,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     func loadPoems(refreshControl:UIRefreshControl? = nil) -> Void {
         
         pageControl.hidden = true
-        self.view.userInteractionEnabled = false
+        //self.view.userInteractionEnabled = false
         let activiyIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle:.Gray)
         activiyIndicator.center = self.view.center
         self.view.addSubview(activiyIndicator)
@@ -134,7 +145,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         var orginX:CGFloat = 0
         for var i = 0; i < self.headPoems.count;  i++ {
             if scrollView.viewWithTag(100+i) != nil {
-                scrollView.viewWithTag(100+i).removeFromSuperview()
+                scrollView.viewWithTag(100+i)!.removeFromSuperview()
             }
             var headBannerView:UIView;
             let poemEntity = headPoems[i] as NSDictionary
@@ -166,7 +177,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         let titleLabel:UILabel = UILabel(frame: CGRectMake(20, 20, 40, 160))
         titleLabel.backgroundColor = UIColor.clearColor()
         titleLabel.font = UIFont(name: kFontSong, size: 24)
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textColor = UIColor.blackColor()
         titleLabel.numberOfLines = 0
         titleLabel.text = title
         titleLabel.tag = 30
@@ -175,7 +186,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         let headTextLabel:UILabel = UILabel(frame: CGRectMake(80, 20, scrollView.bounds.size.width - CGFloat(100), 160))
         headTextLabel.backgroundColor = UIColor.clearColor()
         headTextLabel.font = UIFont(name: kFontKai, size: 16)
-        headTextLabel.textColor = UIColor.whiteColor()
+        headTextLabel.textColor = UIColor.blackColor()
         headTextLabel.numberOfLines = 0
         headTextLabel.text = text
         headTextLabel.tag = 20
@@ -236,14 +247,14 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     }
     
     func onTapHeadView() -> Void {
-        let contentVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
+        let contentVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
         let poem = headPoems[pageControl.currentPage] as NSDictionary
         contentVC.titleText = "诗词推荐"
         contentVC.poemDic = poem
-        self.navigationController.pushViewController(contentVC, animated: true)
+        self.navigationController?.pushViewController(contentVC, animated: true)
     }
     
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         timer?.invalidate()
         if scrollView === self.scrollView {
             var page = abs(scrollView.contentOffset.x) / scrollView.frame.size.width
@@ -272,49 +283,49 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         self.runHeadAnimation(direction)
     }
     
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return poemArray.count
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.imageView.layer.cornerRadius = 10
+        cell.imageView?.layer.cornerRadius = 10
         
         let poem = poemArray[indexPath.row] as NSDictionary
-        cell.textLabel.font = UIFont(name: kFontSong, size: 22)
-        cell.textLabel.text = poem["title"] as String
-        cell.detailTextLabel.font = UIFont(name:kFontKai, size:14)
-        cell.detailTextLabel.numberOfLines = 2
-        cell.detailTextLabel.text = poem["desc"] as String
+        cell.textLabel?.font = UIFont(name: kFontSong, size: 22)
+        cell.textLabel?.text = poem["title"] as? String
+        cell.detailTextLabel?.font = UIFont(name:kFontKai, size:14)
+        cell.detailTextLabel?.numberOfLines = 2
+        cell.detailTextLabel?.text = poem["desc"] as? String
         
         let color = favColorDic.allValues[abs((poem["author"] as String).hashValue)%9] as Int
-        cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
-        if let label = cell.imageView.viewWithTag(1) as? UILabel {
-            label.text = poem["author"] as String
+        cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
+        if let label = cell.imageView?.viewWithTag(1) as? UILabel {
+            label.text = poem["author"] as? String
         } else {
             let label:UILabel = UILabel(frame:CGRectMake(5,5,50,50))
-            label.text = poem["author"] as String
+            label.text = poem["author"] as? String
             label.lineBreakMode = .ByClipping
             label.textAlignment = .Center
             label.numberOfLines = 0
             label.tag = 1
             label.font = UIFont(name: kFontSong, size: 20)
-            cell.imageView.addSubview(label)
+            cell.imageView?.addSubview(label)
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let containerVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
+        let containerVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
         let poem = poemArray[indexPath.row] as NSDictionary
         containerVC.titleText = "诗词推荐"
         containerVC.poemDic = poem
             //containerVC.curIdx = indexPath.row
-        self.navigationController.pushViewController(containerVC, animated: true)
+        self.navigationController?.pushViewController(containerVC, animated: true)
     }
 
 }

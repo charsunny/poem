@@ -10,29 +10,29 @@
 	<string>poem</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>087778BF-6821-4A70-8B6F-D0249512A744</key>
+		<key>79B6F9D883731D2334E5EAF2FD28709B641B1BB5</key>
 		<string>https://github.com/charsunny/poem.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>poem.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>087778BF-6821-4A70-8B6F-D0249512A744</key>
+		<key>79B6F9D883731D2334E5EAF2FD28709B641B1BB5</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/charsunny/poem.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>087778BF-6821-4A70-8B6F-D0249512A744</string>
+	<string>79B6F9D883731D2334E5EAF2FD28709B641B1BB5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>087778BF-6821-4A70-8B6F-D0249512A744</string>
+			<string>79B6F9D883731D2334E5EAF2FD28709B641B1BB5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>poem</string>
 		</dict>

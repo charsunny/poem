@@ -38,7 +38,7 @@ class FavListTableViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     // #pragma mark - Table view data source
@@ -58,23 +58,23 @@ class FavListTableViewController: UITableViewController {
         return favItems!.count
     }
 
-    override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
-        let cell = tableView!.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        let favItem = favItems![indexPath!.row] as FavItem
+        let favItem = favItems![indexPath.row] as FavItem
         // Configure the cell...
         
         let color = favColorDic.allValues[abs(favItem.author.hashValue)%9] as Int
-        cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
+        cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
         
-        cell.textLabel.font = UIFont(name: kFontSong, size: 20)
-        cell.textLabel.text = favItem.title
-        cell.detailTextLabel.font = UIFont(name:kFontKai, size:16)
-        cell.detailTextLabel.numberOfLines = 2
-        cell.detailTextLabel.text = favItem.desc
+        cell.textLabel?.font = UIFont(name: kFontSong, size: 20)
+        cell.textLabel?.text = favItem.title
+        cell.detailTextLabel?.font = UIFont(name:kFontKai, size:16)
+        cell.detailTextLabel?.numberOfLines = 2
+        cell.detailTextLabel?.text = favItem.desc
         
-        cell.imageView.layer.cornerRadius = 5
-        if let label = cell.imageView.viewWithTag(1) as? UILabel {
+        cell.imageView?.layer.cornerRadius = 5
+        if let label = cell.imageView?.viewWithTag(1) as? UILabel {
             label.text = favItem.author
         } else {
             let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
@@ -83,21 +83,21 @@ class FavListTableViewController: UITableViewController {
             label.numberOfLines = 0
             label.tag = 1
             label.font = UIFont(name: kFontSong, size: 18)
-            cell.imageView.addSubview(label)
+            cell.imageView?.addSubview(label)
         }
         
         return cell
     }
 
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath?) -> Bool {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
 
 
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
             let favItem:FavItem = favItems![indexPath.row] as FavItem
@@ -110,12 +110,12 @@ class FavListTableViewController: UITableViewController {
     }
 
 
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let favItem = favItems![indexPath!.row] as FavItem
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let favItem = favItems![indexPath.row] as FavItem
         let poemEntity = PoemEntity.getPoemByIndex(favItem.index.integerValue)
-        let contentVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
+        let contentVC:RandomContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         contentVC.poemEntity = poemEntity
-        self.navigationController.pushViewController(contentVC, animated: true)
+        self.navigationController?.pushViewController(contentVC, animated: true)
     }
 
     // #pragma mark - Navigation

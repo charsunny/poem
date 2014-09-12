@@ -14,6 +14,10 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.barStyle = darkMode ? .Black : .Default
+        self.navigationController?.navigationBar.barStyle = darkMode ? .Black : .Default
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "fontnamechanged", name: "addfav", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "fontnamechanged", name: "tradchar", object: nil)
     }
@@ -24,13 +28,12 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
     }
     
     func fontnamechanged() -> Void {
-        collectionView.reloadData()
+        self.collectionView?.reloadData()
     }
-
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     // #pragma mark - Navigation
@@ -41,8 +44,8 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
             
             let desVC = segue.destinationViewController as FavListTableViewController
             let cell = sender as SXCollectionViewCell
-            let indexPath = collectionView.indexPathForCell(cell)
-            let favItems = favFolders[indexPath.row].items
+            let indexPath = collectionView?.indexPathForCell(cell)
+            let favItems = favFolders[indexPath!.row].items
             desVC.favItems = NSMutableArray(array: favItems.allObjects)
             desVC.navigationItem.title = cell.titleLabel.text
             
@@ -52,30 +55,30 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
             desVC.delegate = self
             desVC.favIndex = favFolders.count
             if sender is UICollectionViewCell {
-                let indexPath = collectionView.indexPathForCell(sender as UICollectionViewCell)
-                desVC.favFolder = favFolders[indexPath.row]
+                let indexPath = collectionView?.indexPathForCell(sender as UICollectionViewCell)
+                desVC.favFolder = favFolders[indexPath!.row]
                 desVC.selectedSel = desVC.favFolder!.color.integerValue
-                desVC.favIndex = indexPath.row
+                desVC.favIndex = indexPath!.row
             }
         }
     }
     
     func finishEditFavFolder(folder:FavFolder, _ isAdd:Bool)->Void {
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
 
     // #pragma mark UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         return favFolders.count
     }
 
 
-    override func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell? {
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as SXCollectionViewCell
         // Configure the cell
-        let favItem = favFolders[indexPath!.row]
+        let favItem = favFolders[indexPath.row]
         cell.titleLabel.font = UIFont(name: kFontSong, size: 24)
         cell.titleLabel.text = favItem.name
         let color:Int = favColorDic.allValues[favItem.color.integerValue] as Int
@@ -87,18 +90,18 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
     }
 
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView!, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         let menuEdit:UIMenuItem = UIMenuItem(title:"编辑", action: "performEdit:")
         let menuDelete:UIMenuItem = UIMenuItem(title:"删除" , action:"performDelete:")
         UIMenuController.sharedMenuController().menuItems = [menuEdit, menuDelete]
         return true
     }
     
-    override func collectionView(collectionView: UICollectionView!, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath!, withSender sender: AnyObject!) -> Bool {
+    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
         return true
     }
     
-    override func collectionView(collectionView: UICollectionView!, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath!, withSender sender: AnyObject!) {
+    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
         
         if action == "cut:" {
             let moveCell = favFolders[indexPath.row]
@@ -113,7 +116,7 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
         }
     }
     
-    func performDelete(sender: AnyObject?, cell: UICollectionViewCell) {
+    func performDelete(sender: AnyObject, cell: UICollectionViewCell) {
         let myActionSheet:UIActionSheet = UIActionSheet()
         myActionSheet.title  = "删除收藏夹"
         myActionSheet.delegate = self
@@ -123,11 +126,11 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
         myActionSheet.destructiveButtonIndex = 1
         myActionSheet.cancelButtonIndex = 2
         myActionSheet.showInView(self.view)
-        let indexPath = collectionView.indexPathForCell(cell)
-        myActionSheet.tag = indexPath.row
+        let indexPath = collectionView?.indexPathForCell(cell)
+        myActionSheet.tag = indexPath!.row
     }
     
-    func performEdit(sender: AnyObject?, cell: UICollectionViewCell) {
+    func performEdit(sender: AnyObject, cell: UICollectionViewCell) {
         self.performSegueWithIdentifier("editsegue", sender: cell)
     }
     
@@ -143,14 +146,14 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
                 favFolder = favFolders[1]
             }
             let delFolder = favFolders[row]
-            favFolder.addItems(delFolder.items)
+            favFolder.items.unionSet(delFolder.items);
             favManagedDoc.managedObjectContext.deleteObject(delFolder)
             favFolders.removeAtIndex(row)
-            self.collectionView.deleteItemsAtIndexPaths([indexPath])
+            self.collectionView?.deleteItemsAtIndexPaths([indexPath])
         case 1:
             favManagedDoc.managedObjectContext.deleteObject(favFolders[row])
             favFolders.removeAtIndex(row)
-        self.collectionView.deleteItemsAtIndexPaths([indexPath])
+        self.collectionView?.deleteItemsAtIndexPaths([indexPath])
         default:
             println("xx")
         }

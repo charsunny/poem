@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, EditFavViewControllerDelegate {
     
@@ -16,18 +17,20 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
     
     var favItem:FavItem?
 
-    @IBOutlet var navigationBar: UINavigationBar
+    @IBOutlet var navigationBar: UINavigationBar!
     
-    @IBOutlet var titleLabel: UILabel
+    @IBOutlet var titleLabel: UILabel!
     
-    @IBOutlet var authorLabel: UILabel
+    @IBOutlet var authorLabel: UILabel!
     
-    @IBOutlet var descField: UITextField
+    @IBOutlet var descField: UITextField!
     
-    @IBOutlet var collectionView: UICollectionView
+    @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationBar.barStyle = darkMode ? .Black : .Default
 
         // Do any additional setup after loading the view.
         titleLabel.text = poemEntity?.title
@@ -52,7 +55,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
         } else {
             favFolder = favItem!.folder
             descField.text = favItem!.desc
-            self.navigationBar.topItem.title = "编辑归档"
+            self.navigationBar?.topItem.title = "编辑归档"
         }
     }
 
@@ -79,13 +82,13 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
             favItem = NSEntityDescription.insertNewObjectForEntityForName("FavItem", inManagedObjectContext: favManagedDoc.managedObjectContext) as? FavItem
             NSNotificationCenter.defaultCenter().postNotificationName("addfav", object: nil)
         }
-        favItem!.type = poemEntity?.type
-        favItem!.title = poemEntity?.title
+        favItem!.type = poemEntity!.type
+        favItem!.title = poemEntity!.title
         favItem!.time = NSDate()
         favItem!.desc = descField.text
-        favItem!.folder = favFolder
-        favItem!.index = poemEntity?.rowid
-        favItem!.author = poemEntity?.author
+        favItem!.folder = favFolder!
+        favItem!.index = poemEntity!.rowid
+        favItem!.author = poemEntity!.author
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -125,7 +128,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
     
     func collectionView(collectionView: UICollectionView!, didSelectItemAtIndexPath indexPath: NSIndexPath!) {
         if indexPath!.row == favFolders.count {
-            let addFavFolderVC = self.storyboard.instantiateViewControllerWithIdentifier("editfavvc") as EditFavViewController
+            let addFavFolderVC = self.storyboard?.instantiateViewControllerWithIdentifier("editfavvc") as EditFavViewController
             addFavFolderVC.delegate = self
             addFavFolderVC.favIndex = favFolders.count
             self.presentViewController(addFavFolderVC, animated: true, completion: nil)

@@ -23,11 +23,11 @@ class SearchDetailViewController: UITableViewController {
     
     var sectionkeys:NSArray!
     
-    @IBOutlet var titleLabel : UILabel
+    @IBOutlet var titleLabel : UILabel!
     
-    @IBOutlet var descLabel : UITextView
+    @IBOutlet var descLabel : UITextView!
     
-    var activtyIndicator:UIActivityIndicatorView?
+    var activtyIndicator:UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +42,17 @@ class SearchDetailViewController: UITableViewController {
         descLabel.font = UIFont(name: kFontKai, size: 16)
         
         if !isSong {
-            titleLabel.text = authorEntity!.name
-            descLabel.text = authorEntity!.desc
+            titleLabel.text = authorEntity.name
+            descLabel.text = authorEntity.desc
+            self.navigationItem.title = authorEntity.name
             tableView.reloadData()
         } else {
-            titleLabel.text = songNameEntity!.name
-            descLabel.text = songNameEntity!.info + "\n" + songNameEntity!.desc
+            titleLabel.text = songNameEntity.name
+            self.navigationItem.title = songNameEntity.name
+            descLabel.text = songNameEntity.info + "\n" + songNameEntity.desc
         }
         
-        let color = favColorDic.allValues[abs(titleLabel.text.hashValue)%9] as Int
+        let color = favColorDic.allValues[abs(titleLabel.text!.hashValue)%9] as Int
         titleLabel.backgroundColor = UIColorFromRGB(color)
         
         activtyIndicator = UIActivityIndicatorView(activityIndicatorStyle:.Gray)
@@ -70,8 +72,22 @@ class SearchDetailViewController: UITableViewController {
                 return (s1 as NSString).compare(s2 as String)
             })
             dispatch_async(dispatch_get_main_queue(), { ()->Void in
-                self?.activtyIndicator!.stopAnimating()
-                self?.tableView.reloadData()
+                if self == nil {
+                    return
+                }
+                self!.activtyIndicator!.stopAnimating()
+                self!.tableView.reloadData()
+                if self?.detailPoemMap?.count == 0 {
+                    let label = UITextView(frame:CGRectMake(0, 0, 200, 60))
+                    label.text = "暂无诗作"
+                    label.textColor = UIColor.lightGrayColor()
+                    label.textAlignment = .Center
+                    label.editable = false
+                    label.selectable = false
+                    label.font = UIFont(name: kFontSong, size: 28)
+                    label.center = CGPointMake(self!.tableView.center.x,self!.tableView.center.y+60)
+                    self?.view.addSubview(label)
+                }
                 self?.runCellAnimation(1)
             })
         })
@@ -115,16 +131,16 @@ class SearchDetailViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-        return self.sectionkeys[section] as String
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sectionkeys[section] as? String
     }
 
-    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> [AnyObject]! {
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]? {
         return self.sectionkeys
     }
     
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if tableView === self.searchDisplayController.searchResultsTableView {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView === self.searchDisplayController?.searchResultsTableView {
             return 0;
         }
         let key:String = self.sectionkeys[section] as String
@@ -134,28 +150,28 @@ class SearchDetailViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        if tableView === self.searchDisplayController.searchResultsTableView {
-            return nil;
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if tableView === self.searchDisplayController?.searchResultsTableView {
+            return UITableViewCell();
         }
         
         let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel.font = UIFont(name: kFontSong, size: 18)
-        cell.detailTextLabel.font = UIFont(name: kFontKai, size: 14)
-        cell.imageView.layer.cornerRadius = 5
-        cell.imageView.clipsToBounds = true
+        cell.textLabel?.font = UIFont(name: kFontSong, size: 18)
+        cell.detailTextLabel?.font = UIFont(name: kFontKai, size: 14)
+        cell.imageView?.layer.cornerRadius = 5
+        cell.imageView?.clipsToBounds = true
         
         let key:String = self.sectionkeys[indexPath.section] as String
         if let poemSection = detailPoemMap[key] as? NSArray {
             let poem:PoemEntity = poemSection[indexPath.row] as PoemEntity
-            cell.imageView.image = nil
-            cell.textLabel.text = poem.title
-            cell.detailTextLabel.text = poem.content
+            cell.imageView?.image = nil
+            cell.textLabel?.text = poem.title
+            cell.detailTextLabel?.text = poem.content
             if poem.type == 1 {
-                cell.textLabel.text = poem.subtitle
+                cell.textLabel?.text = poem.subtitle
                 let color = favColorDic.allValues[abs(poem.author.hashValue)%9] as Int
-                cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
-                if let label = cell.imageView.viewWithTag(1) as? UILabel {
+                cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
+                if let label = cell.imageView?.viewWithTag(1) as? UILabel {
                     label.text = poem.author
                 } else {
                     let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
@@ -165,22 +181,22 @@ class SearchDetailViewController: UITableViewController {
                     label.numberOfLines = 0
                     label.tag = 1
                     label.font = UIFont(name: kFontSong, size: 18)
-                    cell.imageView.addSubview(label)
+                    cell.imageView?.addSubview(label)
                 }
             }
         }
         return cell
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        let containerVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
+        let containerVC:RandomContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         
         let key:String = self.sectionkeys[indexPath.section] as String
         if let poemSection = detailPoemMap[key] as? NSArray {
             containerVC.poemEntity = poemSection[indexPath.row] as? PoemEntity
-            self.navigationController.pushViewController(containerVC, animated: true)
+            self.navigationController?.pushViewController(containerVC, animated: true)
         }
     }
 }

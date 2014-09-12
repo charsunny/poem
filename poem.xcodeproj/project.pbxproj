@@ -28,6 +28,9 @@
 		503F1C9A1949AA6300110456 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 503F1C981949AA6300110456 /* Main.storyboard */; };
 		503F1C9C1949AA6300110456 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503F1C9B1949AA6300110456 /* Images.xcassets */; };
 		503F1CA81949AA6300110456 /* poemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CA71949AA6300110456 /* poemTests.swift */; };
+		5040430519AB052500F0B26B /* Poem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040430419AB052500F0B26B /* Poem.swift */; };
+		5040430719AB16CD00F0B26B /* FavItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040430619AB16CD00F0B26B /* FavItem.swift */; };
+		5040430919AB16FA00F0B26B /* FavFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040430819AB16FA00F0B26B /* FavFolder.swift */; };
 		5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */; };
 		504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A751D19518221005A3353 /* SXCollectionViewCell.swift */; };
 		504C41BA19612D4000C3D5BB /* HistoryRecTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */; };
@@ -66,8 +69,6 @@
 		50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF50851951B95C0043D686 /* EditFavViewController.swift */; };
 		50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF50871951D1780043D686 /* FavListTableViewController.swift */; };
 		50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508B195207FD0043D686 /* fav.xcdatamodeld */; };
-		50EF5090195209720043D686 /* FavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508F195209720043D686 /* FavItem.m */; };
-		50EF5093195209730043D686 /* FavFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EF5092195209730043D686 /* FavFolder.m */; };
 		50F5FAAC195AEB13004A60E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F5FAAB195AEB13004A60E0 /* MessageUI.framework */; };
 		50F5FAAF195AED87004A60E0 /* fkaiti.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAAD195AED87004A60E0 /* fkaiti.TTF */; };
 		50F5FAB2195AEF53004A60E0 /* fsongti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAB1195AEF53004A60E0 /* fsongti.ttf */; };
@@ -119,6 +120,9 @@
 		503F1CA11949AA6300110456 /* poemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = poemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		503F1CA61949AA6300110456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503F1CA71949AA6300110456 /* poemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = poemTests.swift; sourceTree = "<group>"; };
+		5040430419AB052500F0B26B /* Poem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poem.swift; sourceTree = "<group>"; };
+		5040430619AB16CD00F0B26B /* FavItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavItem.swift; sourceTree = "<group>"; };
+		5040430819AB16FA00F0B26B /* FavFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavFolder.swift; sourceTree = "<group>"; };
 		5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
 		504A751D19518221005A3353 /* SXCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXCollectionViewCell.swift; sourceTree = "<group>"; };
 		504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecTableViewController.swift; sourceTree = "<group>"; };
@@ -164,10 +168,6 @@
 		50EF50851951B95C0043D686 /* EditFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavViewController.swift; sourceTree = "<group>"; };
 		50EF50871951D1780043D686 /* FavListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavListTableViewController.swift; sourceTree = "<group>"; };
 		50EF508C195207FD0043D686 /* fav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fav.xcdatamodel; sourceTree = "<group>"; };
-		50EF508E195209720043D686 /* FavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavItem.h; sourceTree = "<group>"; };
-		50EF508F195209720043D686 /* FavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavItem.m; sourceTree = "<group>"; };
-		50EF5091195209730043D686 /* FavFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavFolder.h; sourceTree = "<group>"; };
-		50EF5092195209730043D686 /* FavFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavFolder.m; sourceTree = "<group>"; };
 		50F5FAAB195AEB13004A60E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		50F5FAAD195AED87004A60E0 /* fkaiti.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fkaiti.TTF; sourceTree = "<group>"; };
 		50F5FAB1195AEF53004A60E0 /* fsongti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fsongti.ttf; sourceTree = "<group>"; };
@@ -284,6 +284,7 @@
 				503F1C921949AA6300110456 /* AppDelegate.swift */,
 				503F1C981949AA6300110456 /* Main.storyboard */,
 				50EF508B195207FD0043D686 /* fav.xcdatamodeld */,
+				5040430419AB052500F0B26B /* Poem.swift */,
 				503F1C9B1949AA6300110456 /* Images.xcassets */,
 				503F1C901949AA6300110456 /* Supporting Files */,
 				50CF5FB1194AE1B800A22460 /* test.playground */,
@@ -344,10 +345,8 @@
 		504A751A195181DA005A3353 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				50EF5091195209730043D686 /* FavFolder.h */,
-				50EF5092195209730043D686 /* FavFolder.m */,
-				50EF508E195209720043D686 /* FavItem.h */,
-				50EF508F195209720043D686 /* FavItem.m */,
+				5040430619AB16CD00F0B26B /* FavItem.swift */,
+				5040430819AB16FA00F0B26B /* FavFolder.swift */,
 				501CE5FE194ABF400067B5FC /* PoemEntity.swift */,
 				508C5BBF194E11B100870925 /* SongName.swift */,
 				50B63155194E0787001D9CDC /* AuthorEntity.swift */,
@@ -473,7 +472,7 @@
 				TargetAttributes = {
 					503F1C8C1949AA6300110456 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 2N57UDJZHV;
+						DevelopmentTeam = CX3SW7JBRE;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -560,14 +559,15 @@
 				50340D941953F36800CE1593 /* FavManager.swift in Sources */,
 				503070AF194EAC9900C8FE67 /* PinyinHelper.m in Sources */,
 				50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */,
+				5040430719AB16CD00F0B26B /* FavItem.swift in Sources */,
 				500DFC53194A1C0900E95BE5 /* ContentViewController.swift in Sources */,
 				503F1C971949AA6300110456 /* SecondViewController.swift in Sources */,
 				50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */,
 				50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */,
-				50EF5090195209720043D686 /* FavItem.m in Sources */,
 				504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */,
 				5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */,
 				50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */,
+				5040430919AB16FA00F0B26B /* FavFolder.swift in Sources */,
 				50E71CF6194ABB11006AAD93 /* EGODatabaseRow.m in Sources */,
 				503F1C931949AA6300110456 /* AppDelegate.swift in Sources */,
 				50B0E19019503450008FDF34 /* FavCollectionViewController.swift in Sources */,
@@ -580,12 +580,12 @@
 				50AFDFF619534DA500983C64 /* AddFavViewController.swift in Sources */,
 				503070AE194EAC9900C8FE67 /* PinyinFormatter.m in Sources */,
 				503F1C951949AA6300110456 /* FirstViewController.swift in Sources */,
+				5040430519AB052500F0B26B /* Poem.swift in Sources */,
 				50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */,
 				508C5BC0194E11B100870925 /* SongName.swift in Sources */,
 				503070B2194EB69A00C8FE67 /* string+subscript.swift in Sources */,
 				50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */,
 				5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */,
-				50EF5093195209730043D686 /* FavFolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +702,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = poem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -712,7 +714,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D01EEEF8-0953-4015-95FA-D74F1A2F0C0D";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "poem/Poem-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -725,6 +727,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = poem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -734,7 +738,7 @@
 					"$(PROJECT_DIR)/poem/WeChat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D01EEEF8-0953-4015-95FA-D74F1A2F0C0D";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "poem/Poem-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";

@@ -8,7 +8,5 @@
 
 #import "EGODatabase.h"
 #import "PinYin4Objc.h"
-#import "FavFolder.h"
-#import "FavItem.h"
 #import "WeiboSDK.h"
 #import "WXApi.h"

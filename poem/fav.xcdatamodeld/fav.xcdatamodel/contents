@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.15" systemVersion="14A261i" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="FavFolder" representedClassName="FavFolder" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6220.14" systemVersion="14A329f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="FavFolder" representedClassName="poem.FavFolder" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavItem" inverseName="folder" inverseEntity="FavItem" syncable="YES"/>
     </entity>
-    <entity name="FavItem" representedClassName="FavItem" syncable="YES">
+    <entity name="FavItem" representedClassName="poem.FavItem" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -17,6 +17,6 @@
     </entity>
     <elements>
         <element name="FavFolder" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="FavItem" positionX="171" positionY="-16" width="128" height="150"/>
+        <element name="FavItem" positionX="171" positionY="-16" width="128" height="148"/>
     </elements>
 </model>

@@ -80,25 +80,25 @@ class HistoryRecTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     // #pragma mark - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        if self.sectionArray {
+        if (self.sectionArray != nil) {
             return self.sectionArray.count
         }
         return 0
     }
     
-    override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-        return self.sectionArray[section] as String
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        return self.sectionArray[section] as? String
     }
 
-    override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         let key = sectionArray[section] as String
@@ -106,49 +106,49 @@ class HistoryRecTableViewController: UITableViewController {
         return poems.count
     }
 
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell? {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:UITableViewCell = tableView!.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
 
-        cell.imageView.layer.cornerRadius = 10
-        cell.imageView.clipsToBounds = true
+        cell.imageView?.layer.cornerRadius = 10
+        cell.imageView?.clipsToBounds = true
         
         let key = sectionArray[indexPath.section] as String
         let poems = poemDic[key] as NSArray
         let poem = poems[indexPath.row] as NSDictionary
-        cell.textLabel.font = UIFont(name: kFontSong, size: 22)
-        cell.textLabel.text = poem["title"] as String
-        cell.detailTextLabel.font = UIFont(name:kFontKai, size:14)
-        cell.detailTextLabel.numberOfLines = 2
-        cell.detailTextLabel.text = poem["desc"] as String
+        cell.textLabel?.font = UIFont(name: kFontSong, size: 22)
+        cell.textLabel?.text = poem["title"] as? String
+        cell.detailTextLabel?.font = UIFont(name:kFontKai, size:14)
+        cell.detailTextLabel?.numberOfLines = 2
+        cell.detailTextLabel?.text = poem["desc"] as? String
         
         let color = favColorDic.allValues[abs((poem["author"] as String).hashValue)%9] as Int
-        cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
-        if let label = cell.imageView.viewWithTag(1) as? UILabel {
-            label.text = poem["author"] as String
+        cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
+        if let label = cell.imageView?.viewWithTag(1) as? UILabel {
+            label.text = poem["author"] as? String
         } else {
             let label:UILabel = UILabel(frame:CGRectMake(5,5,50,50))
-            label.text = poem["author"] as String
+            label.text = poem["author"] as? String
             label.textAlignment = .Center
             label.numberOfLines = 0
             label.tag = 1
             label.font = UIFont(name: kFontSong, size: 20)
-            cell.imageView.addSubview(label)
+            cell.imageView?.addSubview(label)
         }
 
         return cell
     }
 
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let containerVC:ContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
+        let containerVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
         let key = sectionArray[indexPath.section] as String
         let poems = poemDic[key] as NSArray
         let poem = poems[indexPath.row] as NSDictionary
         containerVC.titleText = "诗词推荐"
         containerVC.poemDic = poem
         //containerVC.curIdx = indexPath.row
-        self.navigationController.pushViewController(containerVC, animated: true)
+        self.navigationController?.pushViewController(containerVC, animated: true)
     }
 
     /*

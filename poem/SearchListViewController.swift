@@ -52,12 +52,12 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             //textView.transform = CGAffineTransformMakeRotation(Float(2*M_PI))
             }, completion: {[weak self](finish:Bool)->Void in
                 if self != nil {
-                    self!.sectionkeys = ( (self!.isSong ? songNameMap.allKeys : authorMap.allKeys) as NSArray).sortedArrayUsingComparator({(s1:AnyObject!, s2:AnyObject!)->NSComparisonResult in
+                    self?.sectionkeys = ( (self!.isSong ? songNameMap.allKeys : authorMap.allKeys) as NSArray).sortedArrayUsingComparator({(s1:AnyObject!, s2:AnyObject!)->NSComparisonResult in
                         return (s1 as NSString).compare(s2 as String) })
-                    self!.loadFinish = true
-                    self!.view.userInteractionEnabled = true
-                    self!.tableView.reloadData()
-                    self!.navigationController.setNavigationBarHidden(false, animated: false)
+                    self?.loadFinish = true
+                    self?.view.userInteractionEnabled = true
+                    self?.tableView.reloadData()
+                    self?.navigationController?.setNavigationBarHidden(false, animated: false)
                 }
         })
     }
@@ -73,19 +73,19 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         return self.sectionkeys.count
     }
     
-    override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-        return self.sectionkeys[section] as String
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sectionkeys[section] as? String
     }
     
-    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> [AnyObject]! {
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]? {
         if !loadFinish {
             return nil
         }
         return self.sectionkeys
     }
     
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if tableView === self.searchDisplayController.searchResultsTableView {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView === self.searchDisplayController?.searchResultsTableView {
             return 0;
         }
         if isSong {
@@ -99,22 +99,22 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         }
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        if tableView === self.searchDisplayController.searchResultsTableView {
-            return nil;
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if tableView === self.searchDisplayController?.searchResultsTableView {
+            return UITableViewCell();
         }
         
         let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel.font = UIFont(name: kFontSong, size: 20)
-        cell.detailTextLabel.font = UIFont(name: kFontKai, size: 14)
+        cell.textLabel?.font = UIFont(name: kFontSong, size: 20)
+        cell.detailTextLabel?.font = UIFont(name: kFontKai, size: 14)
         if isSong {
             let key:String = self.sectionkeys[indexPath.section] as String
             let songSection = songNameMap[key] as NSArray
             let songName:SongNameEntity = songSection[indexPath.row] as SongNameEntity
             
             let color = favColorDic.allValues[abs(songName.name.hashValue)%9] as Int
-            cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
-            if let label = cell.imageView.viewWithTag(1) as? UILabel {
+            cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
+            if let label = cell.imageView?.viewWithTag(1) as? UILabel {
                 label.text = songName.name
             } else {
                 let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
@@ -124,19 +124,19 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
                 label.numberOfLines = 0
                 label.tag = 1
                 label.font = UIFont(name: kFontSong, size: 18)
-                cell.imageView.addSubview(label)
+                cell.imageView?.addSubview(label)
             }
             
-            cell.textLabel.text = songName.name
-            cell.detailTextLabel.text = songName.info
+            cell.textLabel?.text = songName.name
+            cell.detailTextLabel?.text = songName.info
         } else {
             let key:String = self.sectionkeys[indexPath.section] as String
             let authorSection = authorMap[key] as NSArray
             let author:AuthorEntity = authorSection[indexPath.row] as AuthorEntity
             
             let color = favColorDic.allValues[abs(author.name.hashValue)%9] as Int
-            cell.imageView.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
-            if let label = cell.imageView.viewWithTag(1) as? UILabel {
+            cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
+            if let label = cell.imageView?.viewWithTag(1) as? UILabel {
                 label.text = author.name
             } else {
                 let label:UILabel = UILabel(frame:CGRectMake(5,5,40,40))
@@ -146,11 +146,11 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
                 label.lineBreakMode = .ByClipping
                 label.tag = 1
                 label.font = UIFont(name: kFontSong, size: 18)
-                cell.imageView.addSubview(label)
+                cell.imageView?.addSubview(label)
             }
             
-            cell.textLabel.text = author.name
-            cell.detailTextLabel.text = author.desc
+            cell.textLabel?.text = author.name
+            cell.detailTextLabel?.text = author.desc
         }
         return cell
     }
@@ -164,16 +164,16 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
         if let searchDetailVC:SearchDetailViewController = segue?.destinationViewController as? SearchDetailViewController {
             if let cell:UITableViewCell = sender as? UITableViewCell {
                 searchDetailVC.isSong = isSong
-                searchDetailVC.keyword = cell.textLabel.text
+                searchDetailVC.keyword = cell.textLabel?.text
                 if isSong {
-                    let key:String = self.sectionkeys[tableView.indexPathForCell(cell).section] as String
+                    let key:String = self.sectionkeys[tableView.indexPathForCell(cell)!.section] as String
                     let songSection = songNameMap[key] as NSArray
-                    let songName:SongNameEntity = songSection[tableView.indexPathForCell(cell).row] as SongNameEntity
+                    let songName:SongNameEntity = songSection[tableView.indexPathForCell(cell)!.row] as SongNameEntity
                     searchDetailVC.songNameEntity = songName
                 } else {
-                    let key:String = self.sectionkeys[tableView.indexPathForCell(cell).section] as String
+                    let key:String = self.sectionkeys[tableView.indexPathForCell(cell)!.section] as String
                     let authorSection = authorMap[key] as NSArray
-                    let author:AuthorEntity = authorSection[tableView.indexPathForCell(cell).row] as AuthorEntity
+                    let author:AuthorEntity = authorSection[tableView.indexPathForCell(cell)!.row] as AuthorEntity
                     searchDetailVC.authorEntity = author
                 }
             }

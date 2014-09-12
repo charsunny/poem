@@ -13,18 +13,21 @@ import StoreKit
 class MoreTableViewController: UITableViewController,MFMailComposeViewControllerDelegate ,SKStoreProductViewControllerDelegate,
     UIActionSheetDelegate {
 
-    @IBOutlet var fontNameCell: UITableViewCell
+    @IBOutlet var fontNameCell: UITableViewCell!
 
-    @IBOutlet var fontSizeCell: UITableViewCell
+    @IBOutlet var fontSizeCell: UITableViewCell!
 
-    @IBOutlet var NotifCell: UITableViewCell
+    @IBOutlet var NotifCell: UITableViewCell!
     
+    @IBOutlet var modeCell: UITableViewCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.tabBarController?.tabBar.barStyle = darkMode ? .Black : .Default
+        
+        self.navigationController?.navigationBar.barStyle = darkMode ? .Black : .Default
+        
         let nameSwitch:UISwitch = UISwitch()
         nameSwitch.center = CGPointMake(280, 22)
         nameSwitch.tag = 1
@@ -39,8 +42,15 @@ class MoreTableViewController: UITableViewController,MFMailComposeViewController
         sizeSwitch.addTarget(self, action: "valueDidChanged:", forControlEvents: .ValueChanged)
         fontSizeCell.contentView.addSubview(sizeSwitch)
         
+        let modeSwitch:UISwitch = UISwitch()
+        modeSwitch.tag = 3
+        modeSwitch.on = darkMode
+        modeSwitch.center = CGPointMake(280, 22)
+        modeSwitch.addTarget(self, action: "valueDidChanged:", forControlEvents: .ValueChanged)
+        modeCell.contentView.addSubview(modeSwitch)
+        
         let notifSwitch:UISwitch = UISwitch()
-        notifSwitch.tag = 3
+        notifSwitch.tag = 4
         notifSwitch.on = !bgMusicOff
         notifSwitch.center = CGPointMake(280, 22)
         notifSwitch.addTarget(self, action: "valueDidChanged:", forControlEvents: .ValueChanged)
@@ -65,6 +75,12 @@ class MoreTableViewController: UITableViewController,MFMailComposeViewController
             isBigFont = swtch.on
             NSUserDefaults.standardUserDefaults().setBool(swtch.on, forKey: "bigfont")
         case 3:
+            darkMode = swtch.on
+            NSUserDefaults.standardUserDefaults().setBool(swtch.on, forKey: "darkmode")
+            NSNotificationCenter.defaultCenter().postNotificationName("darkmode", object: nil)
+            self.tabBarController?.tabBar.barStyle = darkMode ? .Black : .Default
+            self.navigationController?.navigationBar.barStyle = darkMode ? .Black : .Default
+        case 4:
             bgMusicOff = !swtch.on
             NSUserDefaults.standardUserDefaults().setBool(swtch.on, forKey: "musicoff")
         default:
@@ -72,14 +88,14 @@ class MoreTableViewController: UITableViewController,MFMailComposeViewController
         }
     }
     
-    override func tableView(tableView: UITableView!, shouldHighlightRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.section == 0 {
             return false
         }
         return true
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch indexPath.section {
         case 1:

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kAppKey_WeiXin = "wxf04441074e0bff9c"
+let kAppKey_WeiXin = "wx8d80d52485f4cb05"
 let kAppKey_WeiBo = "979020811"
 
 let fontSong:String = "FZQingKeBenYueSongS-R-GB"//"FZSongKeBenXiuKaiT-R-GB"
@@ -25,15 +25,16 @@ let PoemDB:EGODatabase? = EGODatabase(path:kDBPath)
 let docPath:AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
 let favItemPath = docPath.stringByAppendingString("/favdoc")
 let favManagedDoc:UIManagedDocument = UIManagedDocument(fileURL: NSURL(fileURLWithPath: favItemPath))
-let favColorDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("color", ofType: "plist"))
+let favColorDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("color", ofType: "plist")!)
 var favFolders:Array<FavFolder> = []
 
 var songNameMap:NSDictionary = NSDictionary()
 var authorMap:NSDictionary = NSDictionary()
 
-var isTraditionalChar:Bool = false
-var isBigFont:Bool = false
-var bgMusicOff:Bool = false
+var isTraditionalChar = false
+var isBigFont = false
+var bgMusicOff = false
+var darkMode = false
 
 func UIColorFromRGB(rgbValue:Int)->UIColor {
     return UIColor(red: CGFloat((rgbValue & 0xFF0000) >> 16)/255.0 , green: CGFloat((rgbValue & 0xFF00) >> 8)/255.0, blue: CGFloat((rgbValue & 0xFF))/255.0, alpha: 1.0)
@@ -74,8 +75,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if NSUserDefaults.standardUserDefaults().boolForKey("musicoff") {
             bgMusicOff = true
         }
-
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("darkmode") {
+            darkMode = true
+            UITabBar.appearance().barStyle = darkMode ? .Black : .Default
+            UINavigationBar.appearance().barStyle = darkMode ? .Black : .Default
+        }
+        
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "modechanged", name: "darkmode", object: nil)
         return true
+    }
+    
+    func modechanged() -> Void {
+        UISearchBar.appearance().barStyle = darkMode ? .Black : .Default
+        UITabBar.appearance().barStyle = darkMode ? .Black : .Default
+        UINavigationBar.appearance().barStyle = darkMode ? .Black : .Default
     }
     
     func applicationWillResignActive(application: UIApplication) {

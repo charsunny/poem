@@ -28,7 +28,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("bg",ofType:"mp3"))
+        let soundFileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("bg",ofType:"mp3")!)
         player = AVAudioPlayer(contentsOfURL:soundFileURL,error:nil)
         player!.volume = 0.5
         player!.numberOfLoops = -1; //infinite
@@ -48,15 +48,13 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
                 dispatch_async(dispatch_get_main_queue(), { ()->Void in
                     UIView.animateWithDuration(1, animations: {() -> Void in
                         textView.alpha = 0
-                        //textView.transform = CGAffineTransformMakeScale(2, 2)
-                        //textView.transform = CGAffineTransformMakeRotation(Float(2*M_PI))
                         }, completion: {(finish:Bool)->Void in
                         self.initPageVC()
                     })
                 })
             })
         }
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil
+        self.navigationController?.interactivePopGestureRecognizer.delegate = nil
     }
     
     func initPageVC() -> Void {
@@ -66,15 +64,19 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
         }
         self.pageViewController!.delegate = self
         self.pageViewController!.dataSource = self
-        self.addChildViewController(pageViewController)
+        self.addChildViewController(pageViewController!)
         self.view.addSubview(pageViewController!.view)
         //self.pageViewController!.didMoveToParentViewController(self)
         self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
     }
     
+    override func prefersStatusBarHidden()->Bool {
+        return true;
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
-        self.navigationController.setNavigationBarHidden(true, animated: false);
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
         player!.play()
     }
     
@@ -88,7 +90,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
             return nil
         }
         
-        let contentVC:RandomContentViewController = self.storyboard.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
+        let contentVC:RandomContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
         contentVC.pageNum = index + 1
         let poem:PoemEntity = poems[index]
         contentVC.poemEntity = poem
@@ -105,7 +107,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
         return .Min
     }
     
-    func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController! {
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if curIdx == 0 {
             return nil
         }
@@ -113,7 +115,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
         return self.contentVCAtIndex(curIdx)
     }
     
-    func pageViewController(pageViewController: UIPageViewController!, viewControllerAfterViewController viewController: UIViewController!) -> UIViewController! {
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         if curIdx == (poems.count-1) {
             return nil

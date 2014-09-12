@@ -23,6 +23,11 @@
       "idiom" : "iphone",
       "scale" : "2x",
       "filename" : "wander1@2x.png"
+    },
+    {
+      "idiom" : "iphone",
+      "subtype" : "retina4",
+      "scale" : "2x"
     }
   ],
   "info" : {

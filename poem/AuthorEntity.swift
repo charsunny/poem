@@ -25,7 +25,7 @@ class AuthorEntity {
         
        var authorMap:NSMutableDictionary = NSMutableDictionary()
         
-        let query:String = String("SELECT rowid, * FROM author")
+        let query = "SELECT rowid, * FROM author"
         
         var pyFormat:HanyuPinyinOutputFormat = HanyuPinyinOutputFormat()
         pyFormat.toneType = ToneTypeWithoutTone
@@ -33,14 +33,14 @@ class AuthorEntity {
         pyFormat.caseType = CaseTypeUppercase
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
+        if let count = result?.count() {
             for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:AuthorEntity = AuthorEntity(row:poemRow!)
                 let char:String = poemEntity.name[0]
                 let pyStr:String = PinyinHelper.toHanyuPinyinStringWithNSString(char, withHanyuPinyinOutputFormat: pyFormat, withNSString:"")
                 let key = pyStr[0]
-                if !authorMap[key] {
+                if (authorMap[key] == nil) {
                     var value:NSMutableArray = NSMutableArray()
                     value.addObject(poemEntity)
                     authorMap[key] = value

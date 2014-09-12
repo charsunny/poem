@@ -9,21 +9,21 @@
 import UIKit
 
 protocol SXCollectionViewCellDelegate {
-    func performEdit(sender:AnyObject?, cell:UICollectionViewCell)
-    func performDelete(sender:AnyObject?, cell:UICollectionViewCell)
+    func performEdit(sender:AnyObject, cell:UICollectionViewCell)
+    func performDelete(sender:AnyObject, cell:UICollectionViewCell)
 }
-@IBDesignable
+
 class SXCollectionViewCell: UICollectionViewCell {
     
     var delegate:SXCollectionViewCellDelegate?
     
     var belongVC:FavCollectionViewController?
     
-    @IBOutlet var titleLabel:UILabel
+    @IBOutlet var titleLabel:UILabel!
     
     override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
         
-        let count = belongVC!.collectionView.numberOfItemsInSection(0)
+        let count = belongVC!.collectionView?.numberOfItemsInSection(0)
         if count == 1 {
             if action == "performEdit:" {
                 return true
