@@ -10,7 +10,6 @@
 		500287EB1954377F00F5D749 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500287E41954377F00F5D749 /* libWeiboSDK.a */; };
 		500287EC1954377F00F5D749 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 500287E51954377F00F5D749 /* WeiboSDK.bundle */; };
 		500287ED1954377F00F5D749 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500287E81954377F00F5D749 /* libWeChatSDK.a */; };
-		500DFC53194A1C0900E95BE5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DFC52194A1C0900E95BE5 /* ContentViewController.swift */; };
 		501CE5FC194ABD650067B5FC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 501CE5FB194ABD650067B5FC /* libsqlite3.dylib */; };
 		501CE5FF194ABF400067B5FC /* PoemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501CE5FE194ABF400067B5FC /* PoemEntity.swift */; };
 		501EE77F1952BB2B00FF3F3E /* color.plist in Resources */ = {isa = PBXBuildFile; fileRef = 501EE77E1952BB2B00FF3F3E /* color.plist */; };
@@ -21,10 +20,7 @@
 		503070AF194EAC9900C8FE67 /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 503070A8194EAC9900C8FE67 /* PinyinHelper.m */; };
 		503070B0194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 503070AA194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt */; };
 		503070B2194EB69A00C8FE67 /* string+subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503070B1194EB69A00C8FE67 /* string+subscript.swift */; };
-		50340D941953F36800CE1593 /* FavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50340D931953F36800CE1593 /* FavManager.swift */; };
 		503F1C931949AA6300110456 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1C921949AA6300110456 /* AppDelegate.swift */; };
-		503F1C951949AA6300110456 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1C941949AA6300110456 /* FirstViewController.swift */; };
-		503F1C971949AA6300110456 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1C961949AA6300110456 /* SecondViewController.swift */; };
 		503F1C9A1949AA6300110456 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 503F1C981949AA6300110456 /* Main.storyboard */; };
 		503F1C9C1949AA6300110456 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503F1C9B1949AA6300110456 /* Images.xcassets */; };
 		503F1CA81949AA6300110456 /* poemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CA71949AA6300110456 /* poemTests.swift */; };
@@ -32,18 +28,20 @@
 		5040430719AB16CD00F0B26B /* FavItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040430619AB16CD00F0B26B /* FavItem.swift */; };
 		5040430919AB16FA00F0B26B /* FavFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040430819AB16FA00F0B26B /* FavFolder.swift */; };
 		5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */; };
-		504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A751D19518221005A3353 /* SXCollectionViewCell.swift */; };
-		504C41BA19612D4000C3D5BB /* HistoryRecTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */; };
 		5063E68B195BDB7D008C56C8 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5063E68A195BDB7D008C56C8 /* music.mp3 */; };
-		5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */; };
 		508C5BC0194E11B100870925 /* SongName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C5BBF194E11B100870925 /* SongName.swift */; };
-		50A5109B195ABA5300A8A026 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5109A195ABA5300A8A026 /* MoreTableViewController.swift */; };
-		50AFDFF619534DA500983C64 /* AddFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AFDFF519534DA500983C64 /* AddFavViewController.swift */; };
-		50B0E19019503450008FDF34 /* FavCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E18F19503450008FDF34 /* FavCollectionViewController.swift */; };
-		50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */; };
 		50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63155194E0787001D9CDC /* AuthorEntity.swift */; };
-		50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B63157194E0C10001D9CDC /* SearchListViewController.swift */; };
 		50D0B4B7195D1B4C0006E6D1 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */; };
+		50D910F019C311940009538A /* SXCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910EF19C311940009538A /* SXCollectionViewCell.swift */; };
+		50D910F919C311A90009538A /* AddFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F119C311A90009538A /* AddFavViewController.swift */; };
+		50D910FA19C311A90009538A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F219C311A90009538A /* ContentViewController.swift */; };
+		50D910FB19C311A90009538A /* EditFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F319C311A90009538A /* EditFavViewController.swift */; };
+		50D910FC19C311A90009538A /* FavCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F419C311A90009538A /* FavCollectionViewController.swift */; };
+		50D910FD19C311A90009538A /* FavListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F519C311A90009538A /* FavListTableViewController.swift */; };
+		50D910FE19C311A90009538A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F619C311A90009538A /* FirstViewController.swift */; };
+		50D910FF19C311A90009538A /* HistoryRecTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F719C311A90009538A /* HistoryRecTableViewController.swift */; };
+		50D9110019C311A90009538A /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D910F819C311A90009538A /* MoreTableViewController.swift */; };
+		50D9110219C311B90009538A /* FavManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9110119C311B90009538A /* FavManager.swift */; };
 		50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD6194ABB11006AAD93 /* EGODatabase.m */; };
 		50E71CF4194ABB11006AAD93 /* EGODatabaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CD8194ABB11006AAD93 /* EGODatabaseRequest.m */; };
 		50E71CF5194ABB11006AAD93 /* EGODatabaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E71CDA194ABB11006AAD93 /* EGODatabaseResult.m */; };
@@ -65,9 +63,6 @@
 		50E71D07194ABB11006AAD93 /* kaiti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CF0194ABB11006AAD93 /* kaiti.ttf */; };
 		50E71D08194ABB11006AAD93 /* poem.db in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CF1194ABB11006AAD93 /* poem.db */; };
 		50E71D09194ABB11006AAD93 /* songti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50E71CF2194ABB11006AAD93 /* songti.ttf */; };
-		50EDCD06194B853800940211 /* PoemContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EDCD05194B853800940211 /* PoemContainerViewController.swift */; };
-		50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF50851951B95C0043D686 /* EditFavViewController.swift */; };
-		50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF50871951D1780043D686 /* FavListTableViewController.swift */; };
 		50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50EF508B195207FD0043D686 /* fav.xcdatamodeld */; };
 		50F5FAAC195AEB13004A60E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F5FAAB195AEB13004A60E0 /* MessageUI.framework */; };
 		50F5FAAF195AED87004A60E0 /* fkaiti.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 50F5FAAD195AED87004A60E0 /* fkaiti.TTF */; };
@@ -91,7 +86,6 @@
 		500287E81954377F00F5D749 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		500287E91954377F00F5D749 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		500287EA1954377F00F5D749 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		500DFC52194A1C0900E95BE5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		501CE5FB194ABD650067B5FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		501CE5FD194ABDB00067B5FC /* Poem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Poem-Bridging-Header.h"; sourceTree = "<group>"; };
 		501CE5FE194ABF400067B5FC /* PoemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemEntity.swift; sourceTree = "<group>"; };
@@ -109,12 +103,9 @@
 		503070A8194EAC9900C8FE67 /* PinyinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinHelper.m; sourceTree = "<group>"; };
 		503070AA194EAC9900C8FE67 /* unicode_to_hanyu_pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unicode_to_hanyu_pinyin.txt; sourceTree = "<group>"; };
 		503070B1194EB69A00C8FE67 /* string+subscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "string+subscript.swift"; sourceTree = "<group>"; };
-		50340D931953F36800CE1593 /* FavManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavManager.swift; sourceTree = "<group>"; };
 		503F1C8D1949AA6300110456 /* poem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = poem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		503F1C911949AA6300110456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503F1C921949AA6300110456 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		503F1C941949AA6300110456 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		503F1C961949AA6300110456 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		503F1C991949AA6300110456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		503F1C9B1949AA6300110456 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		503F1CA11949AA6300110456 /* poemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = poemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,19 +115,21 @@
 		5040430619AB16CD00F0B26B /* FavItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavItem.swift; sourceTree = "<group>"; };
 		5040430819AB16FA00F0B26B /* FavFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavFolder.swift; sourceTree = "<group>"; };
 		5044723C1952CD070098C8BE /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
-		504A751D19518221005A3353 /* SXCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXCollectionViewCell.swift; sourceTree = "<group>"; };
-		504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecTableViewController.swift; sourceTree = "<group>"; };
 		5063E68A195BDB7D008C56C8 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
-		5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		508C5BBF194E11B100870925 /* SongName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongName.swift; sourceTree = "<group>"; };
-		50A5109A195ABA5300A8A026 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
-		50AFDFF519534DA500983C64 /* AddFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavViewController.swift; sourceTree = "<group>"; };
-		50B0E18F19503450008FDF34 /* FavCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavCollectionViewController.swift; sourceTree = "<group>"; };
-		50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomContentViewController.swift; sourceTree = "<group>"; };
 		50B63155194E0787001D9CDC /* AuthorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorEntity.swift; sourceTree = "<group>"; };
-		50B63157194E0C10001D9CDC /* SearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		50CF5FB1194AE1B800A22460 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; };
 		50D0B4B6195D1B4C0006E6D1 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
+		50D910EF19C311940009538A /* SXCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXCollectionViewCell.swift; sourceTree = "<group>"; };
+		50D910F119C311A90009538A /* AddFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFavViewController.swift; sourceTree = "<group>"; };
+		50D910F219C311A90009538A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		50D910F319C311A90009538A /* EditFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavViewController.swift; sourceTree = "<group>"; };
+		50D910F419C311A90009538A /* FavCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavCollectionViewController.swift; sourceTree = "<group>"; };
+		50D910F519C311A90009538A /* FavListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavListTableViewController.swift; sourceTree = "<group>"; };
+		50D910F619C311A90009538A /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		50D910F719C311A90009538A /* HistoryRecTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecTableViewController.swift; sourceTree = "<group>"; };
+		50D910F819C311A90009538A /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
+		50D9110119C311B90009538A /* FavManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavManager.swift; sourceTree = "<group>"; };
 		50E71CD5194ABB11006AAD93 /* EGODatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabase.h; sourceTree = "<group>"; };
 		50E71CD6194ABB11006AAD93 /* EGODatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGODatabase.m; sourceTree = "<group>"; };
 		50E71CD7194ABB11006AAD93 /* EGODatabaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGODatabaseRequest.h; sourceTree = "<group>"; };
@@ -164,9 +157,6 @@
 		50E71CF0194ABB11006AAD93 /* kaiti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kaiti.ttf; sourceTree = "<group>"; };
 		50E71CF1194ABB11006AAD93 /* poem.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = poem.db; sourceTree = "<group>"; };
 		50E71CF2194ABB11006AAD93 /* songti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = songti.ttf; sourceTree = "<group>"; };
-		50EDCD05194B853800940211 /* PoemContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemContainerViewController.swift; sourceTree = "<group>"; };
-		50EF50851951B95C0043D686 /* EditFavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavViewController.swift; sourceTree = "<group>"; };
-		50EF50871951D1780043D686 /* FavListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavListTableViewController.swift; sourceTree = "<group>"; };
 		50EF508C195207FD0043D686 /* fav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fav.xcdatamodel; sourceTree = "<group>"; };
 		50F5FAAB195AEB13004A60E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		50F5FAAD195AED87004A60E0 /* fkaiti.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fkaiti.TTF; sourceTree = "<group>"; };
@@ -284,7 +274,6 @@
 				503F1C921949AA6300110456 /* AppDelegate.swift */,
 				503F1C981949AA6300110456 /* Main.storyboard */,
 				50EF508B195207FD0043D686 /* fav.xcdatamodeld */,
-				5040430419AB052500F0B26B /* Poem.swift */,
 				503F1C9B1949AA6300110456 /* Images.xcassets */,
 				503F1C901949AA6300110456 /* Supporting Files */,
 				50CF5FB1194AE1B800A22460 /* test.playground */,
@@ -324,20 +313,15 @@
 		504A7519195181C6005A3353 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				503F1C941949AA6300110456 /* FirstViewController.swift */,
-				504C41B919612D4000C3D5BB /* HistoryRecTableViewController.swift */,
-				503F1C961949AA6300110456 /* SecondViewController.swift */,
-				50B63157194E0C10001D9CDC /* SearchListViewController.swift */,
-				5065CA94194E1A9400492B9A /* SearchDetailViewController.swift */,
-				50EDCD05194B853800940211 /* PoemContainerViewController.swift */,
-				50B0E18F19503450008FDF34 /* FavCollectionViewController.swift */,
-				50AFDFF519534DA500983C64 /* AddFavViewController.swift */,
-				50EF50851951B95C0043D686 /* EditFavViewController.swift */,
-				500DFC52194A1C0900E95BE5 /* ContentViewController.swift */,
-				50EF50871951D1780043D686 /* FavListTableViewController.swift */,
-				50340D931953F36800CE1593 /* FavManager.swift */,
-				50A5109A195ABA5300A8A026 /* MoreTableViewController.swift */,
-				50B3A56C195C6CAD00DD13D1 /* RandomContentViewController.swift */,
+				50D9110119C311B90009538A /* FavManager.swift */,
+				50D910F119C311A90009538A /* AddFavViewController.swift */,
+				50D910F219C311A90009538A /* ContentViewController.swift */,
+				50D910F319C311A90009538A /* EditFavViewController.swift */,
+				50D910F419C311A90009538A /* FavCollectionViewController.swift */,
+				50D910F519C311A90009538A /* FavListTableViewController.swift */,
+				50D910F619C311A90009538A /* FirstViewController.swift */,
+				50D910F719C311A90009538A /* HistoryRecTableViewController.swift */,
+				50D910F819C311A90009538A /* MoreTableViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -346,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				5040430619AB16CD00F0B26B /* FavItem.swift */,
+				5040430419AB052500F0B26B /* Poem.swift */,
 				5040430819AB16FA00F0B26B /* FavFolder.swift */,
 				501CE5FE194ABF400067B5FC /* PoemEntity.swift */,
 				508C5BBF194E11B100870925 /* SongName.swift */,
@@ -357,7 +342,7 @@
 		504A751B195181E3005A3353 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				504A751D19518221005A3353 /* SXCollectionViewCell.swift */,
+				50D910EF19C311940009538A /* SXCollectionViewCell.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -553,39 +538,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				50E71CF3194ABB11006AAD93 /* EGODatabase.m in Sources */,
-				50EDCD06194B853800940211 /* PoemContainerViewController.swift in Sources */,
 				501CE5FF194ABF400067B5FC /* PoemEntity.swift in Sources */,
-				504C41BA19612D4000C3D5BB /* HistoryRecTableViewController.swift in Sources */,
-				50340D941953F36800CE1593 /* FavManager.swift in Sources */,
 				503070AF194EAC9900C8FE67 /* PinyinHelper.m in Sources */,
-				50EF50881951D1780043D686 /* FavListTableViewController.swift in Sources */,
 				5040430719AB16CD00F0B26B /* FavItem.swift in Sources */,
-				500DFC53194A1C0900E95BE5 /* ContentViewController.swift in Sources */,
-				503F1C971949AA6300110456 /* SecondViewController.swift in Sources */,
-				50EF50861951B95C0043D686 /* EditFavViewController.swift in Sources */,
-				50B3A56D195C6CAD00DD13D1 /* RandomContentViewController.swift in Sources */,
-				504A751E19518221005A3353 /* SXCollectionViewCell.swift in Sources */,
-				5065CA95194E1A9400492B9A /* SearchDetailViewController.swift in Sources */,
-				50B63158194E0C10001D9CDC /* SearchListViewController.swift in Sources */,
+				50D910F919C311A90009538A /* AddFavViewController.swift in Sources */,
+				50D910FE19C311A90009538A /* FirstViewController.swift in Sources */,
 				5040430919AB16FA00F0B26B /* FavFolder.swift in Sources */,
 				50E71CF6194ABB11006AAD93 /* EGODatabaseRow.m in Sources */,
+				50D9110219C311B90009538A /* FavManager.swift in Sources */,
+				50D910FB19C311A90009538A /* EditFavViewController.swift in Sources */,
 				503F1C931949AA6300110456 /* AppDelegate.swift in Sources */,
-				50B0E19019503450008FDF34 /* FavCollectionViewController.swift in Sources */,
+				50D9110019C311A90009538A /* MoreTableViewController.swift in Sources */,
+				50D910FA19C311A90009538A /* ContentViewController.swift in Sources */,
 				503070AD194EAC9900C8FE67 /* NSString+PinYin4Cocoa.m in Sources */,
-				50A5109B195ABA5300A8A026 /* MoreTableViewController.swift in Sources */,
 				50E71CF4194ABB11006AAD93 /* EGODatabaseRequest.m in Sources */,
+				50D910FC19C311A90009538A /* FavCollectionViewController.swift in Sources */,
 				503070AB194EAC9900C8FE67 /* ChineseToPinyinResource.m in Sources */,
 				503070AC194EAC9900C8FE67 /* HanyuPinyinOutputFormat.m in Sources */,
 				50E71CF5194ABB11006AAD93 /* EGODatabaseResult.m in Sources */,
-				50AFDFF619534DA500983C64 /* AddFavViewController.swift in Sources */,
 				503070AE194EAC9900C8FE67 /* PinyinFormatter.m in Sources */,
-				503F1C951949AA6300110456 /* FirstViewController.swift in Sources */,
 				5040430519AB052500F0B26B /* Poem.swift in Sources */,
+				50D910FD19C311A90009538A /* FavListTableViewController.swift in Sources */,
 				50B63156194E0787001D9CDC /* AuthorEntity.swift in Sources */,
+				50D910FF19C311A90009538A /* HistoryRecTableViewController.swift in Sources */,
 				508C5BC0194E11B100870925 /* SongName.swift in Sources */,
 				503070B2194EB69A00C8FE67 /* string+subscript.swift in Sources */,
 				50EF508D195207FD0043D686 /* fav.xcdatamodeld in Sources */,
 				5044723D1952CD070098C8BE /* UIImage+ColorImage.swift in Sources */,
+				50D910F019C311940009538A /* SXCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,7 +697,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "poem/Poem-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -741,7 +721,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "poem/Poem-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

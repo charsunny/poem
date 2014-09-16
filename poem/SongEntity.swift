@@ -44,8 +44,8 @@ struct SongEntity {
         let query:String = String("SELECT rowid, * FROM song ORDER BY RANDOM() LIMIT \(count)")
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
-            for idx in 0..count {
+        if let count:UInt = result?.count() {
+            for idx in 0..<count {
                 let songRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let songEntity:SongEntity = SongEntity(row:songRow!)
                 songs.append(songEntity)
@@ -66,8 +66,8 @@ struct SongEntity {
         let query:String = "SELECT rowid, * FROM song WHERE song like '%%\(name)%%'"
         
         let result:EGODatabaseResult? = PoemDB?.executeQuery(query)
-        if let count:Int = result?.count() {
-            for idx in 0..count {
+        if let count:UInt = result?.count() {
+            for idx in 0..<count {
                 let poemRow:EGODatabaseRow? = result?.rowAtIndex(idx)
                 let poemEntity:SongEntity = SongEntity(row:poemRow!)
                 let char:String = poemEntity.author[0]
