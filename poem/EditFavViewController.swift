@@ -89,7 +89,7 @@ class EditFavViewController: UIViewController,UICollectionViewDataSource,UIColle
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
-        let color:Int = favColorDic.allValues[indexPath.row] as Int
+        let color:Int = favColorDic!.allValues[indexPath.row] as Int
         let bgColor = UIColorFromRGB(color)
         cell.backgroundColor = bgColor
         if indexPath.row == selectedSel {
@@ -101,7 +101,7 @@ class EditFavViewController: UIViewController,UICollectionViewDataSource,UIColle
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView!, didSelectItemAtIndexPath indexPath: NSIndexPath!) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedSel = indexPath.row
         collectionView.reloadData()
     }

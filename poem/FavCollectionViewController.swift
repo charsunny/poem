@@ -81,7 +81,7 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
         let favItem = favFolders[indexPath.row]
         cell.titleLabel.font = UIFont(name: kFontSong, size: 24)
         cell.titleLabel.text = favItem.name
-        let color:Int = favColorDic.allValues[favItem.color.integerValue] as Int
+        let color:Int = favColorDic!.allValues[favItem.color.integerValue] as Int
         let bgColor = UIColorFromRGB(color)
         cell.backgroundColor = bgColor
         cell.belongVC = self
@@ -91,8 +91,8 @@ class FavCollectionViewController: UICollectionViewController,UICollectionViewDa
 
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        let menuEdit:UIMenuItem = UIMenuItem(title:"编辑", action: "performEdit:")
-        let menuDelete:UIMenuItem = UIMenuItem(title:"删除" , action:"performDelete:")
+        let menuEdit:UIMenuItem = UIMenuItem(title:"编辑", action: "performEdit:")!
+        let menuDelete:UIMenuItem = UIMenuItem(title:"删除" , action:"performDelete:")!
         UIMenuController.sharedMenuController().menuItems = [menuEdit, menuDelete]
         return true
     }

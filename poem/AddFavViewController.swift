@@ -36,7 +36,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
         titleLabel.text = poemEntity?.title
         titleLabel.font = UIFont(name: kFontSong, size: 18)
         
-        let color = favColorDic.allValues[abs(poemEntity!.author.hashValue)%9] as Int
+        let color = favColorDic!.allValues[abs(poemEntity!.author.hashValue)%9] as Int
         authorLabel.backgroundColor = UIColorFromRGB(color)
         authorLabel.layer.cornerRadius = 5
         authorLabel.text = poemEntity?.author
@@ -55,7 +55,7 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
         } else {
             favFolder = favItem!.folder
             descField.text = favItem!.desc
-            self.navigationBar?.topItem.title = "编辑归档"
+            self.navigationBar?.topItem!.title = "编辑归档"
         }
     }
 
@@ -92,16 +92,16 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favFolders.count + 1
     }
     
-    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as SXCollectionViewCell
         // Configure the cell
         if indexPath.row == favFolders.count {
-            let color:Int = favColorDic.allValues[8] as Int
+            let color:Int = favColorDic!.allValues[8] as Int
             let bgColor = UIColorFromRGB(color)
             cell.backgroundColor = bgColor
             cell.titleLabel.font = UIFont(name: kFontIcon, size: 48)
@@ -109,10 +109,10 @@ class AddFavViewController: UIViewController,UICollectionViewDelegate,UICollecti
             return cell
         }
         
-        let favItem = favFolders[indexPath!.row]
+        let favItem = favFolders[indexPath.row]
         cell.titleLabel.font = UIFont(name: kFontSong, size: 22)
         cell.titleLabel.text = favItem.name
-        let color:Int = favColorDic.allValues[favItem.color.integerValue] as Int
+        let color:Int = favColorDic!.allValues[favItem.color.integerValue] as Int
         let bgColor = UIColorFromRGB(color)
         cell.backgroundColor = bgColor
         

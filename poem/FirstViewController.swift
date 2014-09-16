@@ -87,7 +87,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
             activiyIndicator.startAnimating()
         }
         let reqURL = NSURL(string: "http://poetry.duapp.com/?qt=rec")
-        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
+        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL!, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
             
             if error != nil {
                 dispatch_async(dispatch_get_main_queue(), {()->Void in
@@ -161,9 +161,9 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
     func createHeadBannerView(name:String, text:String, title:String) -> UIView {
         let view:UIView = UIView(frame:scrollView.bounds)
         
-        let imageData = NSData(contentsOfURL: NSURL(string: name))
+        let imageData = NSData(contentsOfURL: NSURL(string: name)!)
         let imageView:UIImageView = UIImageView(frame:scrollView.bounds)
-        imageView.image = UIImage(data: imageData)
+        imageView.image = UIImage(data: imageData!)
         imageView.alpha = 0.3
         imageView.tag = 10
         view.addSubview(imageView)
@@ -300,7 +300,7 @@ class FirstViewController: UITableViewController,UITableViewDataSource,UITableVi
         cell.detailTextLabel?.numberOfLines = 2
         cell.detailTextLabel?.text = poem["desc"] as? String
         
-        let color = favColorDic.allValues[abs((poem["author"] as String).hashValue)%9] as Int
+        let color = favColorDic!.allValues[abs((poem["author"] as String).hashValue)%9] as Int
         cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
         if let label = cell.imageView?.viewWithTag(1) as? UILabel {
             label.text = poem["author"] as? String

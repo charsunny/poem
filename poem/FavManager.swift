@@ -33,7 +33,7 @@ class FavManager {
             favFolder.name = "默认归档"
             favFolder.index = 0
             favFolder.color = 0
-            favManagedDoc.saveToURL(NSURL(fileURLWithPath: favItemPath), forSaveOperation: .ForCreating, completionHandler: {Bool -> Void in
+            favManagedDoc.saveToURL(NSURL(fileURLWithPath: favItemPath)!, forSaveOperation: .ForCreating, completionHandler: {Bool -> Void in
                 self.favDocReady()
                 })
         }

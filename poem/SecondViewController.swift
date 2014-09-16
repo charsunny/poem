@@ -105,7 +105,7 @@ class SecondViewController: UITableViewController, UITableViewDelegate, UITableV
             cell!.detailTextLabel?.text = poem.content
             cell!.textLabel?.font = UIFont(name: kFontSong, size: 18)
             cell!.detailTextLabel?.font = UIFont(name: kFontKai, size: 14)
-            let color = favColorDic.allValues[abs(poem.author.hashValue)%9] as Int
+            let color = favColorDic!.allValues[abs(poem.author.hashValue)%9] as Int
             cell!.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
             cell!.imageView?.layer.cornerRadius = 5
             cell!.imageView?.clipsToBounds = true

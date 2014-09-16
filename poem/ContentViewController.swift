@@ -211,7 +211,7 @@ class ContentViewController: UIViewController,UIActionSheetDelegate {
             menuButton.alpha = 0
             menuButton.tag = 100 + i
             
-            let color = favColorDic.allValues[9-i] as Int
+            let color = favColorDic!.allValues[9-i] as Int
             menuButton.setBackgroundImage(UIImage.colorImage(UIColorFromRGB(color), rect:menuButton.bounds), forState:.Normal)
             menuButton.clipsToBounds = true
             switch i {

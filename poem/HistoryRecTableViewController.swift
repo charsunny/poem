@@ -28,7 +28,7 @@ class HistoryRecTableViewController: UITableViewController {
         activiyIndicator.startAnimating()
 
         let reqURL = NSURL(string: "http://poetry.duapp.com/?qt=his")
-        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
+        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL!, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
             
             if error != nil {
                 dispatch_async(dispatch_get_main_queue(), {()->Void in
@@ -122,7 +122,7 @@ class HistoryRecTableViewController: UITableViewController {
         cell.detailTextLabel?.numberOfLines = 2
         cell.detailTextLabel?.text = poem["desc"] as? String
         
-        let color = favColorDic.allValues[abs((poem["author"] as String).hashValue)%9] as Int
+        let color = favColorDic!.allValues[abs((poem["author"] as String).hashValue)%9] as Int
         cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
         if let label = cell.imageView?.viewWithTag(1) as? UILabel {
             label.text = poem["author"] as? String

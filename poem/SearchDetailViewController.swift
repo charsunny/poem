@@ -52,7 +52,7 @@ class SearchDetailViewController: UITableViewController {
             descLabel.text = songNameEntity.info + "\n" + songNameEntity.desc
         }
         
-        let color = favColorDic.allValues[abs(titleLabel.text!.hashValue)%9] as Int
+        let color = favColorDic!.allValues[abs(titleLabel.text!.hashValue)%9] as Int
         titleLabel.backgroundColor = UIColorFromRGB(color)
         
         activtyIndicator = UIActivityIndicatorView(activityIndicatorStyle:.Gray)
@@ -169,7 +169,7 @@ class SearchDetailViewController: UITableViewController {
             cell.detailTextLabel?.text = poem.content
             if poem.type == 1 {
                 cell.textLabel?.text = poem.subtitle
-                let color = favColorDic.allValues[abs(poem.author.hashValue)%9] as Int
+                let color = favColorDic!.allValues[abs(poem.author.hashValue)%9] as Int
                 cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
                 if let label = cell.imageView?.viewWithTag(1) as? UILabel {
                     label.text = poem.author

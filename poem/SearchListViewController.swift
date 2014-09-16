@@ -112,7 +112,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             let songSection = songNameMap[key] as NSArray
             let songName:SongNameEntity = songSection[indexPath.row] as SongNameEntity
             
-            let color = favColorDic.allValues[abs(songName.name.hashValue)%9] as Int
+            let color = favColorDic!.allValues[abs(songName.name.hashValue)%9] as Int
             cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
             if let label = cell.imageView?.viewWithTag(1) as? UILabel {
                 label.text = songName.name
@@ -134,7 +134,7 @@ class SearchListViewController: UITableViewController,UITableViewDelegate, UITab
             let authorSection = authorMap[key] as NSArray
             let author:AuthorEntity = authorSection[indexPath.row] as AuthorEntity
             
-            let color = favColorDic.allValues[abs(author.name.hashValue)%9] as Int
+            let color = favColorDic!.allValues[abs(author.name.hashValue)%9] as Int
             cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
             if let label = cell.imageView?.viewWithTag(1) as? UILabel {
                 label.text = author.name
