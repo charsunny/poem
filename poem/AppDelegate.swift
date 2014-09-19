@@ -24,7 +24,7 @@ let kDBPath:String? = NSBundle.mainBundle().pathForResource("poem", ofType: "db"
 let PoemDB:EGODatabase? = EGODatabase(path:kDBPath)
 let docPath:AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
 let favItemPath = docPath.stringByAppendingString("/favdoc")
-let favManagedDoc:UIManagedDocument = UIManagedDocument(fileURL: NSURL(fileURLWithPath: favItemPath)!)!
+let favManagedDoc:UIManagedDocument = UIManagedDocument(fileURL: NSURL(fileURLWithPath: favItemPath))
 let favColorDic = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("color", ofType: "plist")!)
 var favFolders:Array<FavFolder> = []
 
@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //|.Sound|.Alert
         UIApplication.sharedApplication().registerForRemoteNotificationTypes(.Alert)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         WXApi.registerApp(kAppKey_WeiXin)
         WeiboSDK.registerApp(kAppKey_WeiBo)
         WeiboSDK.enableDebugMode(true)

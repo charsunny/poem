@@ -59,7 +59,7 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
     
     func initPageVC() -> Void {
         self.pageViewController = UIPageViewController(transitionStyle:.Scroll, navigationOrientation: .Vertical, options: nil)
-        if let contentVC:RandomContentViewController = contentVCAtIndex(curIdx) {
+        if let contentVC:ContentViewController = contentVCAtIndex(curIdx) {
             self.pageViewController?.setViewControllers([contentVC], direction:.Forward, animated: false, completion: nil)
         }
         self.pageViewController!.delegate = self
@@ -84,13 +84,13 @@ class PoemContainerViewController: UIViewController,UIPageViewControllerDelegate
         player!.stop()
     }
     
-    func contentVCAtIndex(index:Int) -> RandomContentViewController? {
+    func contentVCAtIndex(index:Int) -> ContentViewController? {
         
         if poems.count == 0 {
             return nil
         }
         
-        let contentVC:RandomContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
+        let contentVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contentvc") as ContentViewController
         contentVC.pageNum = index + 1
         let poem:PoemEntity = poems[index]
         contentVC.poemEntity = poem

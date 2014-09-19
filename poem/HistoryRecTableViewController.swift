@@ -28,7 +28,7 @@ class HistoryRecTableViewController: UITableViewController {
         activiyIndicator.startAnimating()
 
         let reqURL = NSURL(string: "http://poetry.duapp.com/?qt=his")
-        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL!, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
+        let reqTask = NSURLSession.sharedSession().dataTaskWithURL(reqURL, completionHandler: {(data:NSData!, resp:NSURLResponse!, error:NSError!) -> Void in
             
             if error != nil {
                 dispatch_async(dispatch_get_main_queue(), {()->Void in
@@ -122,7 +122,7 @@ class HistoryRecTableViewController: UITableViewController {
         cell.detailTextLabel?.numberOfLines = 2
         cell.detailTextLabel?.text = poem["desc"] as? String
         
-        let color = favColorDic!.allValues[abs((poem["author"] as String).hashValue)%9] as Int
+        let color = favColorDic.allValues[abs((poem["author"] as String).hashValue)%9] as Int
         cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,60,60))
         if let label = cell.imageView?.viewWithTag(1) as? UILabel {
             label.text = poem["author"] as? String
@@ -141,51 +141,13 @@ class HistoryRecTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let containerVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("songcontentvc") as ContentViewController
+        let containerVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contentvc") as ContentViewController
         let key = sectionArray[indexPath.section] as String
         let poems = poemDic[key] as NSArray
         let poem = poems[indexPath.row] as NSDictionary
-        containerVC.titleText = "诗词推荐"
-        containerVC.poemDic = poem
+        //containerVC.titleText = "诗词推荐"
+        containerVC.poemEntity = PoemEntity.getPoemByIndex((poem["index"] as String).toInt()!)
         //containerVC.curIdx = indexPath.row
         self.navigationController?.pushViewController(containerVC, animated: true)
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView?, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView?, moveRowAtIndexPath fromIndexPath: NSIndexPath?, toIndexPath: NSIndexPath?) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView?, canMoveRowAtIndexPath indexPath: NSIndexPath?) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

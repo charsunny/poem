@@ -64,7 +64,7 @@ class FavListTableViewController: UITableViewController {
         let favItem = favItems![indexPath.row] as FavItem
         // Configure the cell...
         
-        let color = favColorDic!.allValues[abs(favItem.author.hashValue)%9] as Int
+        let color = favColorDic.allValues[abs(favItem.author.hashValue)%9] as Int
         cell.imageView?.image = UIImage.colorImage(UIColorFromRGB(color), rect:CGRectMake(0,0,50,50))
         
         cell.textLabel?.font = UIFont(name: kFontSong, size: 20)
@@ -113,7 +113,7 @@ class FavListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let favItem = favItems![indexPath.row] as FavItem
         let poemEntity = PoemEntity.getPoemByIndex(favItem.index.integerValue)
-        let contentVC:RandomContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("rdcontentvc") as RandomContentViewController
+        let contentVC:ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contentvc") as ContentViewController
         contentVC.poemEntity = poemEntity
         self.navigationController?.pushViewController(contentVC, animated: true)
     }
